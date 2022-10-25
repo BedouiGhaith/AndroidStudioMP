@@ -27,9 +27,7 @@ app.use(express.urlencoded({ extended: true })); // Pour analyser application/x-
 
 app.use('/user', userRouter);
 
-app.post("/register", (req, res) => {
-// our register logic goes here...
-});
+app.post("/register", authentificationRouter);
 
 app.post("/login",authentificationRouter);
 
