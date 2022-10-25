@@ -108,7 +108,6 @@ export async function addOnce(req, res) {
     }
 
     export async function register (req, res){
-        app.post("/register", async (req, res) => {
 
             // Our register logic starts here
             try {
@@ -154,5 +153,5 @@ export async function addOnce(req, res) {
                 console.log(err);
             }
             // Our register logic ends here
-        });
+
     }
