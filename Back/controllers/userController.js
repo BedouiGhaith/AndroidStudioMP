@@ -46,7 +46,8 @@ export async function addOnce(req, res) {
 
     export function patchOnce(req, res) {
         User
-            .findOneAndUpdate({ "Username": req.params.username })
+            .findOneAndUpdate({ "username": req.params.username,
+                                "password": req.params.password})
             .then(doc => {
                 res.status(200).json(doc);
             })
