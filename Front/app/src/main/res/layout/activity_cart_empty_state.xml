@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearCartEmptystat"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/imageArrowleft"
+            android:layout_gravity="start"
+            android:layout_height="@dimen/_14pxh"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_7pxv"
+            android:layout_width="@dimen/_14pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowleft_14x14"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_14x14"/>
+        <ImageView android:id="@+id/imageGroup6215"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_126pxh"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_195pxv"
+            android:layout_width="@dimen/_134pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_group6215"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group6215"/>
+        <TextView android:ellipsize="end" android:id="@+id/txtWhoops"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_22pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true" android:text="@string/lbl_whoops"
+            style="@style/txtOverpassromanregular16" tools:text="@string/lbl_whoops"/>
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtYourcartisem"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_5pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/msg_your_cart_is_em"
+            style="@style/txtOverpassromanregular14_1" tools:text="@string/msg_your_cart_is_em"/>
+    </LinearLayout>
+</layout>

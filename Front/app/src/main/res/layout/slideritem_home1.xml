@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <FrameLayout android:id="@+id/frameStackflatlaypills"
+        android:layout_height="match_parent" android:layout_width="match_parent">
+        <ImageView android:id="@+id/imageFlatlaypills"
+            android:layout_gravity="start"
+            android:layout_height="@dimen/_140pxh"
+            android:layout_width="match_parent"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_10pxh}"
+            imageRes="@{@drawable/img_flatlaypills}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_flatlaypills"/>
+        <LinearLayout android:id="@+id/linearColumnsaveextraone"
+            android:layout_gravity="bottom|start"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_24pxv"
+            android:layout_marginEnd="@dimen/_23pxh"
+            android:layout_marginStart="@dimen/_23pxh"
+            android:layout_marginTop="@dimen/_24pxv"
+            android:layout_width="wrap_content" android:orientation="vertical">
+            <TextView android:gravity="center_horizontal"
+                android:id="@+id/txtSaveextraone"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1pxh"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:text="@string/msg_save_extra_on"
+                style="@style/txtOverpassbold20" tools:text="@string/msg_save_extra_on"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtDescription"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_27pxv"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:text="@string/lbl_description"
+                style="@style/txtOverpasslight12" tools:text="@string/lbl_description"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

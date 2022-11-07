@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearWalkthroughThr"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/imageGroup1209"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_248pxh"
+            android:layout_marginEnd="@dimen/_40pxh"
+            android:layout_marginStart="@dimen/_40pxh"
+            android:layout_marginTop="@dimen/_135pxv"
+            android:layout_width="@dimen/_291pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_group1209"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group1209"/>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumngetdeliveryon"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_66pxv"
+            android:layout_marginEnd="@dimen/_38pxh"
+            android:layout_marginStart="@dimen/_40pxh"
+            android:layout_marginTop="@dimen/_87pxv"
+            android:layout_width="match_parent" android:orientation="vertical">
+            <TextView android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:id="@+id/txtGetDeliveryon"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_34pxh"
+                android:layout_marginStart="@dimen/_34pxh"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@string/msg_get_delivery_on"
+                style="@style/txtOverpassbold24" tools:text="@string/msg_get_delivery_on"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtDescriptionCounter"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_34pxh"
+                android:layout_marginStart="@dimen/_34pxh"
+                android:layout_marginTop="@dimen/_70pxv"
+                android:layout_width="wrap_content"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@string/msg_description"
+                style="@style/txtOverpasslight16" tools:text="@string/msg_description"/>
+            <LinearLayout android:id="@+id/linearRowskip"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_104pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtSkip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="0.28"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@string/lbl_skip"
+                    style="@style/txtOverpassregular14" tools:text="@string/lbl_skip"/>
+
+                <com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
+                    android:id="@+id/indicatorGroupThirteen"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_3pxv"
+                    android:layout_marginStart="@dimen/_99pxh"
+                    android:layout_marginTop="@dimen/_8pxv"
+                    android:layout_weight="0.4"
+                    android:layout_width="0dp"
+                    app:drawable_normal="@drawable/indicator_unselected_bg_gray_400_radius_8"
+                    app:drawable_selected="@drawable/indicator_selected_bg_green_600_radius_8"
+                    app:indicator_size="@dimen/_4pxh" app:indicator_spacing="@dimen/_8pxh"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtNext"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginStart="@dimen/_99pxh"
+                    android:layout_weight="0.31"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@string/lbl_next"
+                    style="@style/txtOverpassbold14" tools:text="@string/lbl_next"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

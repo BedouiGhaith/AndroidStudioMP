@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearNointernetemp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/imageArrowleft"
+            android:layout_gravity="start"
+            android:layout_height="@dimen/_14pxh"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_7pxv"
+            android:layout_width="@dimen/_14pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowleft_14x14"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_14x14"/>
+        <ImageView android:id="@+id/imageGroup1387"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_126pxh"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_227pxv"
+            android:layout_width="@dimen/_143pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_group1387"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group1387"/>
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtNonetworkconn"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_23pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/msg_no_network_conn"
+            style="@style/txtOverpassromanregular16_1" tools:text="@string/msg_no_network_conn"/>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumntryagain"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_33pxv"
+            android:layout_width="wrap_content"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_6">
+            <TextView android:ellipsize="end" android:gravity="start"
+                android:id="@+id/txtTryagain"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_try_again"
+                style="@style/txtOverpassromanregular14_2" tools:text="@string/lbl_try_again"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:id="@+id/linearRowfour"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:orientation="horizontal">
+        <TextView android:ellipsize="end" android:id="@+id/txtFour"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2pxv"
+            android:layout_weight="0.05" android:layout_width="0dp"
+            android:lineSpacingExtra="@dimen/_1pxh"
+            android:singleLine="true" android:text="@string/lbl_4"
+            style="@style/txtOverpassregular14" tools:text="@string/lbl_4"/>
+        <ImageView android:id="@+id/imageStarSix"
+            android:layout_height="@dimen/_16pxh"
+            android:layout_marginBottom="@dimen/_1pxv"
+            android:layout_marginStart="@dimen/_1pxh"
+            android:layout_width="@dimen/_16pxh"
+            android:scaleType="fitXY" android:src="@drawable/img_star6"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_star6"/>
+        <LinearLayout android:gravity="start"
+            android:id="@+id/linearColumnlineten"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5pxv"
+            android:layout_marginStart="@dimen/_8pxh"
+            android:layout_marginTop="@dimen/_8pxv"
+            android:layout_weight="0.7" android:layout_width="0dp" android:orientation="vertical">
+            <View android:background="@color/black_900_19"
+                android:id="@+id/lineLineTen"
+                android:layout_height="@dimen/_3pxv" android:layout_width="@dimen/_123pxh"/>
+            <View android:background="@color/indigo_A400"
+                android:id="@+id/lineLineEleven"
+                android:layout_height="@dimen/_3pxv"
+                android:layout_marginEnd="@dimen/_10pxh" android:layout_width="@dimen/_103pxh"/>
+        </LinearLayout>
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtSixtySeven"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_1pxv"
+            android:layout_marginStart="@dimen/_8pxh"
+            android:layout_marginTop="@dimen/_2pxv"
+            android:layout_weight="0.16" android:layout_width="0dp"
+            android:lineSpacingExtra="@dimen/_1pxh"
+            android:singleLine="true" android:text="@string/lbl_67"
+            style="@style/txtOverpassregular14" tools:text="@string/lbl_67"/>
+    </LinearLayout>
+</layout>
