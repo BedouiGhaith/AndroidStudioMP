@@ -1,4 +1,4 @@
-package com.bedouisapplication.app.appcomponents.ui
+package com.androidproject.app.appcomponents.ui
 
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.bedouisapplication.app.R
+import com.androidproject.app.R
 
 /**
  * Custom Binding Adapter : which used in data binding for managing views and model value,

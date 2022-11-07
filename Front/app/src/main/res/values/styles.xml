@@ -106,12 +106,6 @@
     <style name="groupStylewhite_A701">
         <item name="android:background">@drawable/rectangle_bg_white_a701</item>
     </style>
-    <style name="txtAbelregular28_1">
-        <item name="android:textSize">@dimen/_28pxh</item>
-        <item name="android:textColor">@color/bluegray_900</item>
-        <item name="android:fontFamily">@font/abel</item>
-        <item name="android:textFontWeight" tools:targetApi="p">400</item>
-    </style>
     <style name="txtOverpasslight12">
         <item name="android:textSize">@dimen/_12pxh</item>
         <item name="android:textColor">@color/bluegray_900_a5</item>
@@ -270,6 +264,12 @@
         <item name="android:fontFamily">@font/overpass</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+    <style name="txtOverpassromanregular28">
+        <item name="android:textSize">@dimen/_28pxh</item>
+        <item name="android:textColor">@color/white_A700</item>
+        <item name="android:fontFamily">@font/overpass</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
     <style name="txtOverpassromanregular16_1">
         <item name="android:textSize">@dimen/_16pxh</item>
         <item name="android:textColor">@color/bluegray_900_73</item>
@@ -354,6 +354,12 @@
     <style name="groupStylegray_104cornerRadius">
         <item name="android:background">@drawable/rectangle_bg_gray_104_radius_6</item>
     </style>
+    <style name="txtOverpassromanregular28_1">
+        <item name="android:textSize">@dimen/_28pxh</item>
+        <item name="android:textColor">@color/bluegray_900</item>
+        <item name="android:fontFamily">@font/overpass</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
     <style name="groupStylegray_51cornerRadius">
         <item name="android:background">@drawable/rectangle_bg_gray_51_radius_16</item>
     </style>
@@ -369,12 +375,6 @@
     </style>
     <style name="groupStylewhite_A700cornerRadius">
         <item name="android:background">@drawable/rectangle_bg_white_a700_border_bluegray_900_19_radius_25</item>
-    </style>
-    <style name="txtAbelregular28">
-        <item name="android:textSize">@dimen/_28pxh</item>
-        <item name="android:textColor">@color/white_A700</item>
-        <item name="android:fontFamily">@font/abel</item>
-        <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="txtSofiaProregular14">
         <item name="android:textSize">@dimen/_14pxh</item>

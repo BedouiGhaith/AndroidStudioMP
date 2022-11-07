@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <FrameLayout android:id="@+id/frameSplash"
         android:layout_height="match_parent"
         android:layout_width="match_parent" style="@style/groupStylewhite_A700">
-
-        <ImageView
-            android:id="@+id/imageGroup"
-            cornerRadius="@{@dimen/_40pxh}"
-            imageRes="@{@drawable/img_group_526x375}"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_526pxv"
+        <ImageView android:id="@+id/imageGroup"
             android:layout_gravity="bottom|start"
+            android:layout_height="@dimen/_526pxv"
             android:layout_marginTop="@dimen/_10pxv"
-            android:scaleType="fitXY"
-            tools:ignore="ContentDescription"
-            tools:src="@drawable/img_group_526x375"
-            app:tint="@color/green_602" />
+            android:layout_width="match_parent"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_40pxh}"
+            imageRes="@{@drawable/img_group_526x375}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group_526x375"/>
         <LinearLayout android:id="@+id/linearColumnvolume"
             android:layout_gravity="top|center"
             android:layout_height="wrap_content"
@@ -30,7 +22,6 @@
             <ImageButton
                 android:background="@drawable/rectangle_bg_green_600_radius_37"
                 android:id="@+id/btnVolume"
-                android:layout_gravity="start"
                 android:layout_height="@dimen/_74pxh"
                 android:layout_width="@dimen/_74pxh"
                 android:paddingHorizontal="@dimen/_16pxh"
@@ -41,13 +32,13 @@
                 android:gravity="center_horizontal"
                 android:id="@+id/txtOPPI"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_11pxh"
-                android:layout_marginStart="@dimen/_12pxh"
-                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_21pxv"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:text="@string/lbl_oppi"
-                style="@style/txtAbelregular28_1" tools:text="@string/lbl_oppi"/>
+                style="@style/txtOverpassromanregular28_1" tools:text="@string/lbl_oppi"/>
         </LinearLayout>
     </FrameLayout>
 </layout>

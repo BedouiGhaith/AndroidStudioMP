@@ -1,4 +1,4 @@
-package com.bedouisapplication.app.appcomponents.ui
+package com.androidproject.app.appcomponents.ui
 
 import android.graphics.Rect
 import android.view.View
