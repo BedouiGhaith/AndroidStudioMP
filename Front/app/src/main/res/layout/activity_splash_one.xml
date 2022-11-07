@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <FrameLayout android:id="@+id/frameSplashOne"
         android:layout_height="match_parent"
         android:layout_width="match_parent" style="@style/groupStylegreen_600">
-        <ImageView android:id="@+id/imageGroup"
-            android:layout_gravity="start"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:scaleType="fitXY" cornerRadius="@{@dimen/_40pxh}"
+
+        <ImageView
+            android:id="@+id/imageGroup"
+            cornerRadius="@{@dimen/_40pxh}"
             imageRes="@{@drawable/img_group}"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_group"/>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:scaleType="fitXY"
+            app:tint="#349E38"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_group" />
         <LinearLayout android:id="@+id/linearColumnvolume"
             android:layout_gravity="top|center"
             android:layout_height="wrap_content"
