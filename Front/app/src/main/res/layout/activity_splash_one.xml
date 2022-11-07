@@ -21,7 +21,6 @@
             <ImageButton
                 android:background="@drawable/rectangle_bg_white_a700_radius_37"
                 android:id="@+id/btnVolume"
-                android:layout_gravity="start"
                 android:layout_height="@dimen/_74pxh"
                 android:layout_width="@dimen/_74pxh"
                 android:paddingHorizontal="@dimen/_16pxh"
@@ -32,13 +31,13 @@
                 android:gravity="center_horizontal"
                 android:id="@+id/txtOPPI"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_11pxh"
-                android:layout_marginStart="@dimen/_12pxh"
-                android:layout_marginTop="@dimen/_24pxv"
+                android:layout_marginEnd="@dimen/_5pxh"
+                android:layout_marginStart="@dimen/_5pxh"
+                android:layout_marginTop="@dimen/_21pxv"
                 android:layout_width="match_parent"
                 android:singleLine="true"
                 android:text="@string/lbl_oppi"
-                style="@style/txtAbelregular28" tools:text="@string/lbl_oppi"/>
+                style="@style/txtOverpassromanregular28" tools:text="@string/lbl_oppi"/>
         </LinearLayout>
     </FrameLayout>
 </layout>

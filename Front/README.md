@@ -1,5 +1,5 @@
 
-# bedoui_s_application1
+# androidproject
 
 Built with AndroidX Support
 

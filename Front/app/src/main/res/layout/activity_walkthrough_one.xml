@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
     <LinearLayout android:gravity="center_horizontal"
         android:id="@+id/linearWalkthroughOne"
         android:layout_height="match_parent"
@@ -20,7 +19,7 @@
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearColumnviewandbuyme"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_66pxv"
+            android:layout_marginBottom="@dimen/_64pxv"
             android:layout_marginEnd="@dimen/_38pxh"
             android:layout_marginStart="@dimen/_40pxh"
             android:layout_marginTop="@dimen/_56pxv"
@@ -62,7 +61,7 @@
                 <com.asksira.loopingviewpager.indicator.CustomShapePagerIndicator
                     android:id="@+id/indicatorGroupThirteen"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_3pxv"
+                    android:layout_marginBottom="@dimen/_6pxv"
                     android:layout_marginStart="@dimen/_99pxh"
                     android:layout_marginTop="@dimen/_8pxv"
                     android:layout_weight="0.4"
@@ -73,7 +72,7 @@
                 <TextView android:ellipsize="end"
                     android:id="@+id/txtNext"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginBottom="@dimen/_4pxv"
                     android:layout_marginStart="@dimen/_99pxh"
                     android:layout_weight="0.31"
                     android:layout_width="0dp" android:singleLine="true"

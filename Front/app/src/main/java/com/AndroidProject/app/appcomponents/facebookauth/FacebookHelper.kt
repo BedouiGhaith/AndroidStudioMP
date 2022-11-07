@@ -1,4 +1,4 @@
-package com.bedouisapplication.app.appcomponents.facebookauth
+package com.androidproject.app.appcomponents.facebookauth
 
 import com.facebook.*
 import com.facebook.AccessToken

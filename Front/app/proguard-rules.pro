@@ -75,7 +75,7 @@
 
 
 # Add any classes the interact with gson
--keep class com.bedouisapplication.app.** { *; }
+-keep class com.androidproject.app.** { *; }
 
 
 

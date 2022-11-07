@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
     <LinearLayout android:gravity="end"
         android:id="@+id/linearMyProfile"
         android:layout_height="match_parent"

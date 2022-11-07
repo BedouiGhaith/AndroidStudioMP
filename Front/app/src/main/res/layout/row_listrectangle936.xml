@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <data/>
     <LinearLayout android:id="@+id/linearRowellipsethirty"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent" android:orientation="horizontal">
+        android:layout_width="match_parent" android:orientation="horizontal"
+        android:baselineAligned="false">
         <LinearLayout android:id="@+id/linearRowrectangle936"
             android:layout_height="wrap_content"
             android:layout_weight="0.88" android:layout_width="0dp" android:orientation="horizontal">
