@@ -24,37 +24,51 @@
             android:singleLine="true"
             android:text="@string/lbl_welcome_back"
             style="@style/txtOverpassbold24" tools:text="@string/lbl_welcome_back"/>
-        <LinearLayout android:gravity="start"
-            android:id="@+id/linearRowuser"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_38pxh"
-            android:layout_marginStart="@dimen/_38pxh"
-            android:layout_marginTop="@dimen/_43pxv"
-            android:layout_width="wrap_content" android:orientation="horizontal">
-            <ImageView android:id="@+id/imageUser"
-                android:layout_height="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_width="@dimen/_13pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_user"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_user"/>
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtUsername"
+
+            <LinearLayout
+                android:id="@+id/linearRowuser"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_weight="0.84" android:layout_width="0dp"
-                android:singleLine="true"
-                android:text="@string/lbl_username"
-                style="@style/txtOverpassromanregular15" tools:text="@string/lbl_username"/>
-        </LinearLayout>
-        <View android:background="@color/bluegray_900_19"
-            android:id="@+id/lineLineOne"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_1pxv"
-            android:layout_marginEnd="@dimen/_29pxh"
-            android:layout_marginStart="@dimen/_29pxh"
-            android:layout_marginTop="@dimen/_18pxv" android:layout_width="@dimen/_311pxh"/>
+                android:layout_marginStart="@dimen/_29pxh"
+                android:layout_marginTop="@dimen/_43pxv"
+                android:layout_marginEnd="@dimen/_38pxh"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageUser"
+                    android:layout_width="@dimen/_13pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_user"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_user" />
+
+                <TextView
+                    android:id="@+id/txtUsername"
+                    style="@style/txtOverpassromanregular15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10pxh"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_weight="0.84"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_username"
+                    tools:text="@string/lbl_username" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/username_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_29pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_marginEnd="@dimen/_29pxh"
+                android:background="@color/bluegray_900_19"
+                android:textSize="34sp" />
         <LinearLayout android:id="@+id/linearRowforgot"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_29pxh"
@@ -72,33 +86,40 @@
                     android:scaleType="fitXY"
                     android:src="@drawable/img_lock"
                     tools:ignore="ContentDescription" tools:src="@drawable/img_lock"/>
-                <TextView android:ellipsize="end"
+
+                <TextView
                     android:id="@+id/txtPassword"
+                    style="@style/txtOverpassromanregular15_1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_2pxv"
-                    android:layout_marginStart="@dimen/_19pxh"
-                    android:layout_weight="0.82"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:layout_marginLeft="@dimen/_10pxv"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="@string/lbl_password"
-                    style="@style/txtOverpassromanregular15_1" tools:text="@string/lbl_password"/>
+                    tools:text="@string/lbl_password" />
             </LinearLayout>
-            <TextView android:ellipsize="end"
+
+            <TextView
                 android:id="@+id/txtForgot"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_175pxh"
-                android:layout_marginTop="@dimen/_6pxv"
-                android:layout_weight="0.27" android:layout_width="0dp"
+                style="@style/txtAbelregular12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_forgot"
-                style="@style/txtAbelregular12" tools:text="@string/lbl_forgot"/>
+                tools:text="@string/lbl_forgot" />
         </LinearLayout>
-        <View android:background="@color/bluegray_900_19"
-            android:id="@+id/lineLineOneOne"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_1pxv"
-            android:layout_marginEnd="@dimen/_29pxh"
-            android:layout_marginStart="@dimen/_29pxh"
-            android:layout_marginTop="@dimen/_16pxv" android:layout_width="@dimen/_311pxh"/>
+
+            <EditText
+                android:id="@+id/password_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_29pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginEnd="@dimen/_29pxh"
+                android:background="@color/bluegray_900_19"
+                android:textSize="34sp" />
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
             android:id="@+id/btnLogin"
@@ -113,30 +134,25 @@
             android:paddingTop="@dimen/_17pxv" android:singleLine="true"
             android:text="@string/lbl_login2" android:textAllCaps="true"
             style="@style/btnSolidRounded" tools:text="@string/lbl_login2"/>
-        <LinearLayout android:gravity="start"
-            android:id="@+id/linearRowarrowleftOne"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_314pxv"
-            android:layout_marginEnd="@dimen/_82pxh"
-            android:layout_marginStart="@dimen/_82pxh"
-            android:layout_marginTop="@dimen/_137pxv"
-            android:layout_width="wrap_content" android:orientation="horizontal">
-            <ImageView android:id="@+id/imageArrowleftOne"
-                android:layout_height="@dimen/_8pxh"
-                android:layout_marginBottom="@dimen/_3pxv"
-                android:layout_marginTop="@dimen/_2pxv"
-                android:layout_width="@dimen/_4pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_arrowleft_bluegray_900"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft_bluegray_900"/>
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtConfirmation"
+
+            <LinearLayout
+                android:id="@+id/linearRowarrowleftOne"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_27pxh"
-                android:layout_weight="0.98" android:layout_width="0dp"
-                android:singleLine="true"
-                android:text="@string/msg_don_t_have_an_a"
-                style="@style/txtAbelregular14" tools:text="@string/msg_don_t_have_an_a"/>
-        </LinearLayout>
+                android:layout_marginStart="@dimen/_40pxh"
+                android:layout_marginTop="@dimen/_20pxv"
+                android:layout_marginEnd="@dimen/_82pxh"
+                android:gravity="start"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtConfirmation"
+                    style="@style/txtAbelregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="false"
+                    android:text="@string/msg_don_t_have_an_a"
+                    tools:text="@string/msg_don_t_have_an_a" />
+            </LinearLayout>
     </LinearLayout>
 </layout>

@@ -35,7 +35,7 @@
             android:text="@string/lbl_your_name"
             style="@style/txtOverpassregular15" tools:text="@string/lbl_your_name"/>
         <View android:background="@color/bluegray_900_19"
-            android:id="@+id/lineLineOne"
+            android:id="@+id/username_txt"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/_1pxv"
             android:layout_marginEnd="@dimen/_29pxh"
@@ -52,7 +52,7 @@
             android:text="@string/lbl_mobile_number"
             style="@style/txtOverpassromanregular15" tools:text="@string/lbl_mobile_number"/>
         <View android:background="@color/bluegray_900_19"
-            android:id="@+id/lineLineOneOne"
+            android:id="@+id/password_txt"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/_1pxv"
             android:layout_marginEnd="@dimen/_29pxh"
