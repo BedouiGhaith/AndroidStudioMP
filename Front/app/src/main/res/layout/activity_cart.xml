@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
-
+    <data/>
     <LinearLayout android:gravity="start" android:id="@+id/linearCart"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -138,15 +138,18 @@
                 android:singleLine="true"
                 android:text="@string/lbl_order_total"
                 style="@style/txtOverpassregular14" tools:text="@string/lbl_order_total"/>
-            <TextView android:ellipsize="end"
+
+            <TextView
                 android:id="@+id/txtPriceTwo"
+                style="@style/txtOverpassregular14_4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_196pxh"
-                android:layout_weight="0.44" android:layout_width="0dp"
+                android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_1pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_228_80"
-                style="@style/txtOverpassregular14_4" tools:text="@string/lbl_228_80"/>
+                tools:text="@string/lbl_228_80" />
         </LinearLayout>
         <LinearLayout android:id="@+id/linearRowitemsdiscount"
             android:layout_height="wrap_content"
@@ -164,15 +167,17 @@
                 android:singleLine="true"
                 android:text="@string/lbl_items_discount"
                 style="@style/txtOverpassregular14" tools:text="@string/lbl_items_discount"/>
-            <TextView android:ellipsize="end"
+
+            <TextView
                 android:id="@+id/txtPriceThree"
+                style="@style/txtOverpassregular14_4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_173pxh"
-                android:layout_weight="0.37" android:layout_width="0dp"
+                android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_1pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_28_80"
-                style="@style/txtOverpassregular14_4" tools:text="@string/lbl_28_80"/>
+                tools:text="@string/lbl_28_80" />
         </LinearLayout>
         <LinearLayout android:id="@+id/linearRowcoupondiscount"
             android:layout_height="wrap_content"
@@ -189,15 +194,17 @@
                 android:singleLine="true"
                 android:text="@string/lbl_coupon_discount"
                 style="@style/txtOverpassregular14" tools:text="@string/lbl_coupon_discount"/>
-            <TextView android:ellipsize="end"
+
+            <TextView
                 android:id="@+id/txtPriceFour"
+                style="@style/txtOverpassregular14_4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_165pxh"
-                android:layout_weight="0.31" android:layout_width="0dp"
+                android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_1pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_15_80"
-                style="@style/txtOverpassregular14_4" tools:text="@string/lbl_15_80"/>
+                tools:text="@string/lbl_15_80" />
         </LinearLayout>
         <LinearLayout android:id="@+id/linearRowshipping"
             android:layout_height="wrap_content"
@@ -214,15 +221,19 @@
                 android:singleLine="true"
                 android:text="@string/lbl_shipping"
                 style="@style/txtOverpassregular14" tools:text="@string/lbl_shipping"/>
-            <TextView android:ellipsize="end" android:id="@+id/txtFree"
+
+            <TextView
+                android:id="@+id/txtFree"
+                style="@style/txtOverpassregular14_4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_1pxv"
                 android:layout_marginStart="@dimen/_239pxh"
-                android:layout_weight="0.34" android:layout_width="0dp"
+                android:layout_marginBottom="@dimen/_1pxv"
+                android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_1pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_free"
-                style="@style/txtOverpassregular14_4" tools:text="@string/lbl_free"/>
+                tools:text="@string/lbl_free" />
         </LinearLayout>
         <View android:background="@color/black_900_0c"
             android:id="@+id/lineLineFive"
@@ -245,16 +256,17 @@
                 android:singleLine="true"
                 android:text="@string/lbl_total"
                 style="@style/txtOverpassregular16" tools:text="@string/lbl_total"/>
-            <TextView android:ellipsize="end"
+
+            <TextView
                 android:id="@+id/txtPriceFive"
+                style="@style/txtOverpassbold16"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_marginStart="@dimen/_225pxh"
-                android:layout_weight="0.63" android:layout_width="0dp"
+                android:ellipsize="end"
                 android:lineSpacingExtra="@dimen/_1pxh"
                 android:singleLine="true"
                 android:text="@string/lbl_185_00"
-                style="@style/txtOverpassbold16" tools:text="@string/lbl_185_00"/>
+                tools:text="@string/lbl_185_00" />
         </LinearLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"

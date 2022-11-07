@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <FrameLayout android:id="@+id/frameSplash"
         android:layout_height="match_parent"
         android:layout_width="match_parent" style="@style/groupStylewhite_A700">
-        <ImageView android:id="@+id/imageGroup"
-            android:layout_gravity="bottom|start"
-            android:layout_height="@dimen/_526pxv"
-            android:layout_marginTop="@dimen/_10pxv"
-            android:layout_width="match_parent"
-            android:scaleType="fitXY" cornerRadius="@{@dimen/_40pxh}"
+
+        <ImageView
+            android:id="@+id/imageGroup"
+            cornerRadius="@{@dimen/_40pxh}"
             imageRes="@{@drawable/img_group_526x375}"
-            tools:ignore="ContentDescription" tools:src="@drawable/img_group_526x375"/>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_526pxv"
+            android:layout_gravity="bottom|start"
+            android:layout_marginTop="@dimen/_10pxv"
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_group_526x375"
+            app:tint="#4CAF50" />
         <LinearLayout android:id="@+id/linearColumnvolume"
             android:layout_gravity="top|center"
             android:layout_height="wrap_content"
