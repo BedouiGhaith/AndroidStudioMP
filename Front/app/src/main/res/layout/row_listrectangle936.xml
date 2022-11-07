@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:id="@+id/linearRowellipsethirty"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/linearRowrectangle936"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.88" android:layout_width="0dp" android:orientation="horizontal">
+            <FrameLayout android:id="@+id/frameStackrectangle936"
+                android:layout_height="@dimen/_40pxv" android:layout_width="@dimen/_40pxh">
+                <ImageView android:id="@+id/imageImage139"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/_30pxh"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:layout_marginEnd="@dimen/_3pxh"
+                    android:layout_marginStart="@dimen/_4pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_width="@dimen/_32pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_image139"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_image139"/>
+                <View
+                    android:background="@drawable/rectangle_border_bluegray_900_19_radius_6"
+                    android:id="@+id/viewRectangle936"
+                    android:layout_gravity="start"
+                    android:layout_height="@dimen/_40pxh" android:layout_width="@dimen/_40pxh"/>
+            </FrameLayout>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtCreditcard"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_12pxv"
+                android:layout_marginStart="@dimen/_16pxh"
+                android:layout_marginTop="@dimen/_13pxv"
+                android:layout_weight="0.64" android:layout_width="0dp"
+                android:singleLine="true"
+                android:text="@string/lbl_credit_card"
+                style="@style/txtOverpasssemibold14" tools:text="@string/lbl_credit_card"/>
+        </LinearLayout>
+        <LinearLayout android:gravity="center_horizontal"
+            android:id="@+id/linearColumnellipsethirty"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_11pxv"
+            android:layout_marginStart="@dimen/_135pxh"
+            android:layout_marginTop="@dimen/_11pxv"
+            android:layout_weight="0.12" android:layout_width="0dp"
+            android:orientation="vertical" style="@style/groupStylecornerRadius_7">
+            <View
+                android:background="@drawable/rectangle_bg_green_600_radius_6_16"
+                android:id="@+id/viewEllipseThirty"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="@dimen/_12pxh"
+                android:layout_marginHorizontal="@dimen/_2pxh"
+                android:layout_marginVertical="@dimen/_2pxv" android:layout_width="@dimen/_12pxh"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

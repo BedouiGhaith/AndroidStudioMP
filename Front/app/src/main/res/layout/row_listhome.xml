@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:id="@+id/linearRowhome"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal" style="@style/groupStylewhite_7">
+        <LinearLayout android:id="@+id/linearColumnhome"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_19pxv"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_16pxv"
+            android:layout_weight="0.96" android:layout_width="0dp" android:orientation="vertical">
+            <RadioButton android:buttonTint="@color/green_600"
+                android:ellipsize="end"
+                android:fontFamily="@font/overpass"
+                android:id="@+id/rbHome" android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="wrap_content"
+                android:paddingBottom="@dimen/_1pxv"
+                android:paddingStart="@dimen/_16pxh"
+                android:paddingTop="@dimen/_3pxv"
+                android:singleLine="true"
+                android:text="@string/lbl_home"
+                android:textColor="@color/bluegray_900"
+                android:textFontWeight="600"
+                android:textSize="@dimen/_14pxh"
+                android:textStyle="bold" tools:text="@string/lbl_home"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txt21612345678"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_34pxh"
+                android:layout_marginStart="@dimen/_34pxh"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/lbl_216_12345678"
+                style="@style/txtOverpassregular13_2" tools:text="@string/lbl_216_12345678"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txt1001FoulenStr"
+                android:layout_gravity="start"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_34pxh"
+                android:layout_marginStart="@dimen/_34pxh"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/msg_1001_foulen_str"
+                style="@style/txtOverpassregular13_2" tools:text="@string/msg_1001_foulen_str"/>
+        </LinearLayout>
+        <ImageView android:id="@+id/imageEdit"
+            android:layout_height="@dimen/_16pxh"
+            android:layout_marginBottom="@dimen/_61pxv"
+            android:layout_marginEnd="@dimen/_20pxh"
+            android:layout_marginTop="@dimen/_16pxv"
+            android:layout_width="@dimen/_12pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_edit_16x12"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_edit_16x12"/>
+    </LinearLayout>
+</layout>

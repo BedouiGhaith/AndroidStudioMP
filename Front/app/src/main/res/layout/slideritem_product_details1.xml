@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <FrameLayout android:id="@+id/frameStack"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent" style="@style/groupStylegray_103cornerRadius">
+        <ImageView android:id="@+id/imageImageNineteen"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/_131pxh"
+            android:layout_marginBottom="@dimen/_3pxv"
+            android:layout_marginEnd="@dimen/_40pxh"
+            android:layout_marginStart="@dimen/_40pxh"
+            android:layout_marginTop="@dimen/_5pxv"
+            android:layout_width="@dimen/_131pxh"
+            android:scaleType="fitXY" cornerRadius="@{@dimen/_10pxh}"
+            imageRes="@{@drawable/img_image137}"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_image137"/>
+    </FrameLayout>
+</layout>

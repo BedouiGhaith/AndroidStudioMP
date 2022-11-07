@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:id="@+id/linearLoginSuccess"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/imageArrowleft"
+            android:layout_gravity="start"
+            android:layout_height="@dimen/_14pxh"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_21pxv"
+            android:layout_width="@dimen/_14pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowleft"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft"/>
+        <ImageView android:id="@+id/imageGroup3645"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_196pxh"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_100pxv"
+            android:layout_width="@dimen/_245pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_group3645"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group3645"/>
+        <TextView android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:id="@+id/txtPhoneNumberVe"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_54pxv"
+            android:layout_width="match_parent"
+            android:lineSpacingExtra="@dimen/_1pxh"
+            android:singleLine="true"
+            android:text="@string/msg_phone_number_ve"
+            style="@style/txtOverpassbold24" tools:text="@string/msg_phone_number_ve"/>
+        <TextView android:gravity="center_horizontal"
+            android:id="@+id/txtLoginusingoth"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_26pxv"
+            android:layout_width="match_parent"
+            android:lineSpacingExtra="@dimen/_8pxh"
+            android:text="@string/msg_congratulations"
+            style="@style/txtOverpasslight16" tools:text="@string/msg_congratulations"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnContinue"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_29pxh"
+            android:layout_marginStart="@dimen/_29pxh"
+            android:layout_marginTop="@dimen/_155pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_17pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_17pxv" android:singleLine="true"
+            android:text="@string/lbl_continue"
+            android:textAllCaps="true" style="@style/btnSolidRounded" tools:text="@string/lbl_continue"/>
+    </LinearLayout>
+</layout>

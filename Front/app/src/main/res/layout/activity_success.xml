@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearSuccess"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <ImageView android:id="@+id/imageGroup3645"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_196pxh"
+            android:layout_marginEnd="@dimen/_24pxh"
+            android:layout_marginStart="@dimen/_24pxh"
+            android:layout_marginTop="@dimen/_98pxv"
+            android:layout_width="@dimen/_245pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_group3645_196x245"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_group3645_196x245"/>
+        <TextView android:ellipsize="end" android:id="@+id/txtThankyou"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24pxh"
+            android:layout_marginStart="@dimen/_24pxh"
+            android:layout_marginTop="@dimen/_64pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/lbl_thank_you"
+            style="@style/txtOverpassbold24" tools:text="@string/lbl_thank_you"/>
+        <TextView android:gravity="center_horizontal"
+            android:id="@+id/txtLoginusingoth"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24pxh"
+            android:layout_marginStart="@dimen/_24pxh"
+            android:layout_marginTop="@dimen/_24pxv"
+            android:layout_width="match_parent"
+            android:lineSpacingExtra="@dimen/_5pxh"
+            android:text="@string/msg_your_order_will"
+            style="@style/txtSofiaProregular14" tools:text="@string/msg_your_order_will"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnContinueOrder"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_24pxh"
+            android:layout_marginStart="@dimen/_24pxh"
+            android:layout_marginTop="@dimen/_216pxv"
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_17pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_17pxv" android:singleLine="true"
+            android:text="@string/lbl_continue_order"
+            android:textAllCaps="false" style="@style/btnSolidRounded" tools:text="@string/lbl_continue_order"/>
+    </LinearLayout>
+</layout>

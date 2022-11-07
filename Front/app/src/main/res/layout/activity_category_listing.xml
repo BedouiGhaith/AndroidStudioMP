@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:gravity="start"
+        android:id="@+id/linearColumnarrowleft"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_24pxh"
+        android:layout_marginTop="@dimen/_6pxv"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylewhite_A700">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_marginStart="@dimen/_5pxh"
+            android:layout_width="match_parent" app:contentInsetStart="0dp">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearRowarrowleft"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <ImageView android:id="@+id/imageArrowleft"
+                    android:layout_height="@dimen/_14pxh"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_width="@dimen/_14pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_arrowleft"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtDiabetesCare"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_21pxh"
+                    android:layout_weight="0.88"
+                    android:layout_width="0dp" android:singleLine="true"
+                    android:text="@string/lbl_diabetes_care"
+                    style="@style/txtOverpassbold16" tools:text="@string/lbl_diabetes_care"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <androidx.core.widget.NestedScrollView
+            android:clipToPadding="false" android:fillViewport="true"
+            android:id="@+id/scrollViewScrollview"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_22pxv"
+            android:layout_weight="1" android:layout_width="match_parent">
+            <LinearLayout android:gravity="start"
+                android:id="@+id/linearColumnflatlaypills"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_39pxv"
+                android:layout_width="match_parent" android:orientation="vertical">
+                <FrameLayout android:id="@+id/frameStackflatlaypills"
+                    android:layout_height="@dimen/_140pxv"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginStart="@dimen/_1pxh" android:layout_width="@dimen/_326pxh">
+                    <ImageView android:id="@+id/imageFlatlaypills"
+                        android:layout_gravity="start"
+                        android:layout_height="@dimen/_140pxh"
+                        android:layout_width="match_parent"
+                        android:scaleType="fitXY"
+                        cornerRadius="@{@dimen/_10pxh}"
+                        imageRes="@{@drawable/img_flatlaypills}"
+                        tools:ignore="ContentDescription" tools:src="@drawable/img_flatlaypills"/>
+                    <LinearLayout
+                        android:id="@+id/linearColumnsaveextraone"
+                        android:layout_gravity="start"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_32pxv"
+                        android:layout_marginEnd="@dimen/_23pxh"
+                        android:layout_marginStart="@dimen/_23pxh"
+                        android:layout_marginTop="@dimen/_32pxv"
+                        android:layout_width="wrap_content" android:orientation="vertical">
+                        <TextView android:gravity="center_horizontal"
+                            android:id="@+id/txtSaveextraone"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1pxh"
+                            android:layout_width="match_parent"
+                            android:lineSpacingExtra="@dimen/_3pxh"
+                            android:text="@string/msg_save_extra_on"
+                            style="@style/txtOverpassbold18" tools:text="@string/msg_save_extra_on"/>
+                        <TextView android:ellipsize="end"
+                            android:id="@+id/txtDescription"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10pxh"
+                            android:layout_marginTop="@dimen/_22pxv"
+                            android:layout_width="match_parent"
+                            android:singleLine="true"
+                            android:text="@string/lbl_description"
+                            style="@style/txtOverpasslight12" tools:text="@string/lbl_description"/>
+                    </LinearLayout>
+                </FrameLayout>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtDiabeticDiet"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginTop="@dimen/_23pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/lbl_diabetic_diet"
+                    style="@style/txtOverpasssemibold16" tools:text="@string/lbl_diabetic_diet"/>
+                <LinearLayout android:id="@+id/linearRowsugarsubstitut"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_width="match_parent" android:orientation="horizontal">
+                    <LinearLayout
+                        android:id="@+id/linearColumnsugarsubstitut"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:layout_width="0dp"
+                        android:orientation="vertical" style="@style/groupStylegray_101cornerRadius">
+                        <ImageView android:gravity="center_horizontal"
+                            android:id="@+id/imageImage133"
+                            android:layout_height="@dimen/_99pxh"
+                            android:layout_marginEnd="@dimen/_1pxh"
+                            android:layout_width="match_parent"
+                            android:scaleType="fitXY"
+                            cornerRadius="@{@dimen/_10pxh}"
+                            imageRes="@{@drawable/img_image133}"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_image133"/>
+                        <TextView android:gravity="start"
+                            android:id="@+id/txtSugarSubstitut"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_16pxv"
+                            android:layout_marginEnd="@dimen/_17pxh"
+                            android:layout_marginStart="@dimen/_17pxh"
+                            android:layout_marginTop="@dimen/_18pxv"
+                            android:layout_width="match_parent"
+                            android:lineSpacingExtra="@dimen/_5pxh"
+                            android:text="@string/msg_sugar_substitu"
+                            style="@style/txtOverpassregular13" tools:text="@string/msg_sugar_substitu"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linearColumnjuicesvinega"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_weight="0.33"
+                        android:layout_width="0dp"
+                        android:orientation="vertical" style="@style/groupStylegray_101cornerRadius">
+                        <ImageView android:gravity="center_horizontal"
+                            android:id="@+id/imageImage134"
+                            android:layout_height="@dimen/_99pxh"
+                            android:layout_marginEnd="@dimen/_1pxh"
+                            android:layout_width="match_parent"
+                            android:scaleType="fitXY"
+                            cornerRadius="@{@dimen/_10pxh}"
+                            imageRes="@{@drawable/img_image134}"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_image134"/>
+                        <TextView android:id="@+id/txtJuicesVinega"
+                            android:layout_gravity="start"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_13pxv"
+                            android:layout_marginEnd="@dimen/_14pxh"
+                            android:layout_marginStart="@dimen/_14pxh"
+                            android:layout_marginTop="@dimen/_18pxv"
+                            android:layout_width="wrap_content"
+                            android:lineSpacingExtra="@dimen/_5pxh"
+                            android:text="@string/msg_juices_vineg"
+                            style="@style/txtOverpassregular13" tools:text="@string/msg_juices_vineg"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/linearColumnvitaminsmedici"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16pxh"
+                        android:layout_weight="0.33"
+                        android:layout_width="0dp"
+                        android:orientation="vertical" style="@style/groupStylegray_101cornerRadius">
+                        <ImageView android:gravity="center_horizontal"
+                            android:id="@+id/imageImage135"
+                            android:layout_height="@dimen/_99pxh"
+                            android:layout_marginStart="@dimen/_1pxh"
+                            android:layout_width="match_parent"
+                            android:scaleType="fitXY"
+                            cornerRadius="@{@dimen/_10pxh}"
+                            imageRes="@{@drawable/img_image135}"
+                            tools:ignore="ContentDescription" tools:src="@drawable/img_image135"/>
+                        <TextView android:gravity="start"
+                            android:id="@+id/txtVitaminsMedici"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/_16pxv"
+                            android:layout_marginEnd="@dimen/_14pxh"
+                            android:layout_marginStart="@dimen/_14pxh"
+                            android:layout_marginTop="@dimen/_18pxv"
+                            android:layout_width="match_parent"
+                            android:lineSpacingExtra="@dimen/_5pxh"
+                            android:text="@string/msg_vitamins_medic"
+                            style="@style/txtOverpassregular13" tools:text="@string/msg_vitamins_medic"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtAllProducts"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_width="wrap_content"
+                    android:singleLine="true"
+                    android:text="@string/lbl_all_products"
+                    style="@style/txtOverpasssemibold16" tools:text="@string/lbl_all_products"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerListsignal"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginTop="@dimen/_28pxv"
+                    android:layout_width="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    itemSpace="@{@dimen/_14pxh}" tools:itemCount="2" tools:listitem="@layout/row_listsignal"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerListmentos"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_marginTop="@dimen/_16pxv"
+                    android:layout_width="match_parent"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    itemSpace="@{@dimen/_14pxh}" tools:itemCount="2" tools:listitem="@layout/row_listmentos"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>
