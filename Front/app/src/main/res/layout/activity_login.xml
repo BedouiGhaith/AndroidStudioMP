@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
         <LinearLayout android:gravity="start" android:id="@+id/linearLogin"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
@@ -60,7 +62,7 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/username_txt"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -111,7 +113,7 @@
         </LinearLayout>
 
             <EditText
-                android:id="@+id/password_txt"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -137,22 +139,37 @@
 
             <LinearLayout
                 android:id="@+id/linearRowarrowleftOne"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_40pxh"
                 android:layout_marginTop="@dimen/_20pxv"
-                android:layout_marginEnd="@dimen/_82pxh"
-                android:gravity="start"
-                android:orientation="horizontal">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtConfirmation"
+                    android:id="@+id/txtSignup"
                     style="@style/txtAbelregular14"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
                     android:singleLine="false"
                     android:text="@string/msg_don_t_have_an_a"
                     tools:text="@string/msg_don_t_have_an_a" />
+
             </LinearLayout>
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/progBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50sp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:indicatorColor="@color/green_602"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
     </LinearLayout>
 </layout>

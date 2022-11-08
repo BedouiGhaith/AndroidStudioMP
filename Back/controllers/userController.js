@@ -113,10 +113,10 @@ export async function addOnce(req, res) {
             // Our register logic starts here
             try {
                 // Get user input
-                const { username, password } = req.body;
+                const { username, password, email, phone, address } = req.body;
 
                 // Validate user input
-                if (!(username && password)) {
+                if (!(username && password && email && phone && address)) {
                     res.status(400).send("All input is required");
                 }
 
@@ -135,6 +135,10 @@ export async function addOnce(req, res) {
                 const user = await User.create({
                     username: username, // sanitize: convert email to lowercase
                     password: encryptedPassword,
+                    email: email,
+                    phone: phone,
+                    address: address
+
                 });
 
                 // Create token
