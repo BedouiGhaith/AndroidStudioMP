@@ -100,36 +100,14 @@
                 android:textAllCaps="true"
                 style="@style/txtOverpassbold13" tools:text="@string/msg_continue_with_f"/>
         </LinearLayout>
-        <LinearLayout android:gravity="center_vertical"
-            android:id="@+id/linearRowgoogle"
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_up_google"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_32pxh"
             android:layout_marginStart="@dimen/_32pxh"
             android:layout_marginTop="@dimen/_10pxv"
-            android:layout_width="match_parent"
-            android:orientation="horizontal" style="@style/groupStylewhite_A700cornerRadius">
-            <ImageView android:id="@+id/imageGoogle"
-                android:layout_height="@dimen/_18pxh"
-                android:layout_marginBottom="@dimen/_16pxv"
-                android:layout_marginStart="@dimen/_64pxh"
-                android:layout_marginTop="@dimen/_16pxv"
-                android:layout_width="@dimen/_18pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_google"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_google"/>
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtLOGINOne"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_19pxv"
-                android:layout_marginEnd="@dimen/_67pxh"
-                android:layout_marginStart="@dimen/_19pxh"
-                android:layout_marginTop="@dimen/_17pxv"
-                android:layout_weight="0.89" android:layout_width="0dp"
-                android:singleLine="true"
-                android:text="@string/msg_continue_with_g"
-                android:textAllCaps="true"
-                style="@style/txtOverpassbold13" tools:text="@string/msg_continue_with_g"/>
-        </LinearLayout>
+            android:layout_marginEnd="@dimen/_32pxh" />
         <TextView android:ellipsize="end" android:id="@+id/txtLanguage"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
