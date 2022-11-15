@@ -53,6 +53,7 @@
             android:layout_marginEnd="@dimen/_29pxh"
             android:ellipsize="end"
             android:singleLine="true"
+            android:text="Username"
             tools:text="Username" />
 
         <EditText
@@ -129,6 +130,7 @@
             android:layout_marginTop="@dimen/_19pxv"
             android:layout_marginEnd="@dimen/_29pxh"
             android:background="@color/bluegray_900_19"
+            android:inputType="textPassword"
             android:textSize="22sp" />
 
         <EditText
@@ -140,6 +142,7 @@
             android:layout_marginTop="@dimen/_19pxv"
             android:layout_marginEnd="@dimen/_29pxh"
             android:background="@color/bluegray_900_19"
+            android:inputType="textPassword"
             android:textSize="22sp" />
 
         <TextView
@@ -234,7 +237,7 @@
             tools:text="@string/lbl_create_account" />
 
         <TextView
-            android:id="@+id/txtLanguage"
+            android:id="@+id/email_sign_up"
             style="@style/txtAbelregular14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -1,10 +1,12 @@
 package com.androidproject.app.appcomponents.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.androidproject.app.R
@@ -23,6 +25,7 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var phone: EditText
     private lateinit var address: EditText
     private lateinit var validate: AppCompatButton
+    private lateinit var emailSignUp: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +39,14 @@ class SignupActivity : AppCompatActivity() {
         address = findViewById(R.id.r_address)
         validate = findViewById((R.id.btnCreateAccount))
 
+        emailSignUp = findViewById(R.id.email_sign_up)
+
         validate.setOnClickListener { register() }
+
+        emailSignUp.setOnClickListener {
+            val start = Intent(this, EmailActivity::class.java)
+            startActivity(start)
+        }
 
 
 

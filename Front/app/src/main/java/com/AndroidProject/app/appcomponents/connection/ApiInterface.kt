@@ -2,7 +2,6 @@ package com.androidproject.app.appcomponents.connection
 
 import com.androidproject.app.appcomponents.models.User
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -17,7 +16,7 @@ interface ApiInterface {
 
     companion object {
 
-        var BASE_URL = "http://172.24.112.1:9090/"
+        private var BASE_URL = "http://172.16.5.33:9090/"
 
         fun create() : ApiInterface {
 

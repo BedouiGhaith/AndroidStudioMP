@@ -1,17 +1,25 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,6 +32,12 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var loginBtn: AppCompatButton
     private lateinit var progBar: CircularProgressIndicator
     private lateinit var signup: TextView
+
+    lateinit var gso: GoogleSignInOptions
+    lateinit var gsc: GoogleSignInClient
+    lateinit var sign_in_button: SignInButton
+
+    val RC_SIGN_IN = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +52,33 @@ class LoginActivity : AppCompatActivity() {
 
         signup = findViewById(R.id.txtSignup)
 
+        sign_in_button = findViewById(R.id.sign_in_button)
+        sign_in_button.setSize(SignInButton.SIZE_STANDARD)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        sign_in_button.visibility = View.VISIBLE
+        sign_in_button.setOnClickListener{
+            val signInIntent = mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
+        val acct = GoogleSignIn.getLastSignedInAccount(this)
+        if (acct != null) {
+            sign_in_button.visibility = View.VISIBLE
+        }
+
+
+
         signup.setOnClickListener {
             val start = Intent(this, SignupActivity::class.java)
             startActivity(start)
         }
 
         loginBtn.setOnClickListener { login() }
-
-
 
     }
     private fun login(){
@@ -90,6 +123,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+
     }
     private fun validate(): Boolean {
 
@@ -102,5 +136,30 @@ class LoginActivity : AppCompatActivity() {
         }
 
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        }
+    }
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+
+            sign_in_button.visibility = View.GONE
+            Toast.makeText(this@LoginActivity, "Login Success", Toast.LENGTH_SHORT).show()
+
+        } catch (e: ApiException) {
+
+            sign_in_button.visibility = View.VISIBLE
+            println(e.printStackTrace())
+
+        }
+
     }
 }

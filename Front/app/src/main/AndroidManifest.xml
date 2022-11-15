@@ -15,6 +15,12 @@
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".appcomponents.activities.EmailAndAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.EmailActivity"
+            android:exported="false" />
+        <activity
             android:name=".appcomponents.activities.SignupActivity"
             android:exported="false" />
         <activity
