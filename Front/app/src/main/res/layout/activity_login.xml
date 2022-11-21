@@ -162,6 +162,18 @@
                     android:text="@string/msg_don_t_have_an_a"
                     tools:text="@string/msg_don_t_have_an_a" />
 
+                <TextView
+                    android:id="@+id/txtForgotPassword"
+                    style="@style/txtAbelregular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15sp"
+                    android:gravity="center"
+                    android:singleLine="false"
+                    android:text="Forgot Password?"
+                    tools:text="Forgot Password?" />
+
             </LinearLayout>
 
             <com.google.android.material.progressindicator.CircularProgressIndicator
