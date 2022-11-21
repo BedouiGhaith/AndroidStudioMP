@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,11 +19,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
     lateinit var gso: GoogleSignInOptions
     lateinit var gsc: GoogleSignInClient
     lateinit var sign_in_button: SignInButton
+    lateinit var forgotPassword: TextView
+
 
     val RC_SIGN_IN = 123
 
@@ -55,6 +59,9 @@ class LoginActivity : AppCompatActivity() {
         sign_in_button = findViewById(R.id.sign_in_button)
         sign_in_button.setSize(SignInButton.SIZE_STANDARD)
 
+        forgotPassword = findViewById(R.id.txtForgotPassword)
+
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -63,12 +70,19 @@ class LoginActivity : AppCompatActivity() {
 
         sign_in_button.visibility = View.VISIBLE
         sign_in_button.setOnClickListener{
+            mGoogleSignInClient.signOut()
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         if (acct != null) {
             sign_in_button.visibility = View.VISIBLE
+
+        }
+
+        forgotPassword.setOnClickListener {
+            val i = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(i)
         }
 
 
@@ -151,7 +165,7 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
 
-            sign_in_button.visibility = View.GONE
+            //sign_in_button.visibility = View.GONE
             Toast.makeText(this@LoginActivity, "Login Success", Toast.LENGTH_SHORT).show()
 
         } catch (e: ApiException) {

@@ -87,6 +87,9 @@ dependencies {
     implementation 'com.dhiwise:endless-viewpager:1.0.0'
 
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
+
+    implementation 'com.sun.mail:android-mail:1.6.0'
+    implementation 'com.sun.mail:android-activation:1.6.0'
 }
 
 

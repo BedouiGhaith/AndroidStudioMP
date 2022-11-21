@@ -3,6 +3,7 @@ import {validationResult} from 'express-validator';
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import {makeid, sendEmail} from "../utils/confirmEmail.js";
 
 export function getAll(req, res){
     User
@@ -160,3 +161,61 @@ export async function addOnce(req, res) {
             // Our register logic ends here
 
     }
+
+export async function reset(req, res) {
+
+    try {
+
+        const {email}  = req.body;
+
+        console.log(email)
+        if (!(email)) {
+            res.status(400).send("An email is required ");
+        }
+        const login = await User.findOne( {'email':email} );
+
+        if (login ) {
+            let code = makeid(8)
+            await sendEmail(email, code )
+
+            res.status(200).json(code);
+        }
+        else res.status(400).send("Invalid Email");
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export async function validate(req, res) {
+
+    try {
+
+        const {email, password}  = req.body;
+
+        console.log(email)
+        if (!(email)) {
+            res.status(400).send("An email is required ");
+        }
+        const login = await User.findOne( {'email':email} );
+
+        if (login ) {
+
+            let encryptedPassword = await bcrypt.hash(password, 10);
+
+            let myquery = {email: email};
+            let newvalues = {password: encryptedPassword};
+
+            User.updateOne(myquery, newvalues, function(err) {
+                if (err) throw err;
+            })
+
+
+            res.status(200).json('Password updated');
+        }
+        else res.status(400).send("Error");
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+
