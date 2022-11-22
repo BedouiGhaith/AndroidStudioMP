@@ -7,7 +7,7 @@ import multerConfig from "../middlewares/multer-config.js";
 const router =express.Router();
 
 router.route("/login").post(multerConfig, body('username').isLength({min: 5}),
-    body('password').isLength({min : 8}),login)
+    body('password'),login)
 
 router.route("/register").post(multerConfig, body('username').isLength({min: 5}),
     body('password'),body('email').isEmail(),body("phone"),body("address"),register)

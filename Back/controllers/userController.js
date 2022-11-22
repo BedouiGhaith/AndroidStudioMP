@@ -85,7 +85,7 @@ export async function addOnce(req, res) {
             // Validate if user exist in our database
             const login = await User.findOne({username});
 
-            if (username && (await bcrypt.compare(password, login.password))) {
+            if (login && (await bcrypt.compare(password, login.password))) {
                 // Create token
                 // save user token
                const token = jwt.sign(
