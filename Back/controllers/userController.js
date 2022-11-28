@@ -23,7 +23,11 @@ export async function addOnce(req, res) {
         User
             .create({
                 username: req.body.username,
-                password: await bcrypt.hash(req.body.password, 10)
+                password: await bcrypt.hash(req.body.password, 10),
+                email: req.body.email,
+                phone: req.body.phone,
+                address: req.body.address,
+                role: req.body.role
             })
             .then(newUser => {
                 res.status(200).json(newUser);
@@ -114,7 +118,7 @@ export async function addOnce(req, res) {
             // Our register logic starts here
             try {
                 // Get user input
-                const { username, password, email, phone, address } = req.body;
+                const { username, password, email, phone, address, role } = req.body;
 
                 // Validate user input
                 if (!(username && password && email && phone && address)) {
@@ -138,7 +142,8 @@ export async function addOnce(req, res) {
                     password: encryptedPassword,
                     email: email,
                     phone: phone,
-                    address: address
+                    address: address,
+                    role: role
 
                 });
 

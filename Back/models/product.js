@@ -16,10 +16,10 @@ const productSchema = new Schema(
             type: String,
             required: true
         },
-        pharmacy: {
-            type: Pharmacy,
+        pharmacy: [{
+            type: Schema.ObjectId, ref: 'Pharmacy',
             required: true
-        },
+        }],
     },
     {
         timestamps: true

@@ -1,5 +1,7 @@
 package com.androidproject.app.appcomponents.connection
 
+import com.androidproject.app.appcomponents.models.Pharmacy
+import com.androidproject.app.appcomponents.models.Product
 import com.androidproject.app.appcomponents.models.User
 import org.json.JSONObject
 import retrofit2.Call
@@ -22,9 +24,15 @@ interface ApiInterface {
     @POST("user/reset/validate")
     fun validate(@Body map: Map<String, String?>): Call<String>
 
+    @GET("product")
+    fun products(): Call<List<Product>>
+
+    @GET("pharmacy")
+    fun pharmacies(): Call<List<Pharmacy>>
+
     companion object {
 
-        private var BASE_URL = "http://172.30.96.1:9090/"
+        private var BASE_URL = "http://172.19.224.1:9090/"
 
         fun create() : ApiInterface {
 

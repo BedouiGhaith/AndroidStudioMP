@@ -6,7 +6,15 @@ const pharmacySchema = new Schema(
         name: {
             type: String,
             required: true
-        }
+        },
+        address: {
+            type: String,
+            required: true
+        },
+        owner: [{
+            type: Schema.ObjectId, ref: 'User',
+            required: true
+        }]
     },
     {
         timestamps: true
