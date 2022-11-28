@@ -2,8 +2,12 @@ import express from 'express';
 import mongoose from "mongoose";
 import user from "./models/user.js";
 import userRouter from "./routes/userRouter.js";
+import productRouter from "./routes/productRouter.js";
+import pharmacyRouter from "./routes/pharmacyRouter.js";
 import authentificationRouter from "./routes/authentificationRouter.js"
 import auth from "./middlewares/auth.js"
+import product from "./models/product.js";
+import pharmacy from "./models/pharmacy.js";
 const app = express();
 
 const hostname = '127.0.0.1'
@@ -26,6 +30,10 @@ app.use(express.json()); // Pour analyser application/json
 app.use(express.urlencoded({ extended: true })); // Pour analyser application/x-www-form-urlencoded
 
 app.use('/user', userRouter);
+
+app.use('/product', productRouter);
+
+app.use('/pharmacy', pharmacyRouter);
 
 app.post('/register', authentificationRouter);
 

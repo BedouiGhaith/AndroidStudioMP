@@ -1,11 +1,11 @@
 import {validationResult} from 'express-validator';
 
 import Product from "../models/product.js";
-import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 export function getAll(req, res){
     Product
-        .find({})
+        .find({}).populate({path: 'pharmacy', populate: {path: 'owner'}})
         .then(docs => {
             res.status(200).json(docs);
         })
@@ -23,7 +23,7 @@ export async function addOnce(req, res) {
                 name: req.body.name,
                 image: req.body.image,
                 price: req.body.price,
-                pharmacy: req.body.pharmacy
+                pharmacy: mongoose.Types.ObjectId(req.body.pharmacy)
 
             })
             .then(newProduct => {
@@ -36,7 +36,7 @@ export async function addOnce(req, res) {
 }
 
 export function getOnce(req, res) {
-    User
+    Product
         .findOne({ "name": req.params.name })
         .then(doc => {
             res.status(200).json(doc);
@@ -47,7 +47,7 @@ export function getOnce(req, res) {
 }
 
 export function patchOnce(req, res) {
-    User
+    Product
         .findOneAndUpdate({ "name": req.params.name})
         .then(doc => {
             res.status(200).json(doc);

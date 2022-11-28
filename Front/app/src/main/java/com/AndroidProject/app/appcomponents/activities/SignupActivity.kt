@@ -64,7 +64,8 @@ class SignupActivity : AppCompatActivity() {
                 , "password" to password.text.toString()
                 , "email" to email.text.toString()
                 , "phone" to phone.text.toString()
-                , "address" to address.text.toString())
+                , "address" to address.text.toString()
+                , "role" to "user")
 
             apiInterface.signup(requestBody).enqueue(object :
                 Callback<User> {
@@ -72,7 +73,7 @@ class SignupActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
 
                     val user = response.body()
-                    System.out.println(""+response.raw())
+                    println(""+response.raw())
                     if (user != null){
                         Toast.makeText(this@SignupActivity, "Account Created Successfully", Toast.LENGTH_SHORT).show()
                     }else{

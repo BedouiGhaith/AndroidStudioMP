@@ -71,7 +71,8 @@ class EmailAndAddressActivity : AppCompatActivity() {
                 "password" to "isdvfsdvdgsfgdTervgervoevrkvbebeebefbneef",
                 "email" to email,
                 "phone" to phone.text.toString(),
-                "address" to address.text.toString()
+                "address" to address.text.toString(),
+                "role" to "user"
             )
 
             apiInterface.signup(requestBody).enqueue(object :
