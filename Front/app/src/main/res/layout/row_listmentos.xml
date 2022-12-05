@@ -24,7 +24,7 @@
                 imageRes="@{@drawable/img_image22}"
                 tools:ignore="ContentDescription" tools:src="@drawable/img_image22"/>
         </FrameLayout>
-        <TextView android:ellipsize="end" android:id="@+id/txtMentos"
+        <TextView android:ellipsize="end" android:id="@+id/cart_row_name"
             android:layout_gravity="start"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_98pxh"

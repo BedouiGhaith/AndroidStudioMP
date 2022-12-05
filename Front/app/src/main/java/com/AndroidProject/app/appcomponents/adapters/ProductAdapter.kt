@@ -2,36 +2,43 @@ package com.androidproject.app.appcomponents.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
-import com.androidproject.app.appcomponents.activities.ProductInfoActivity
+import com.androidproject.app.appcomponents.activities.ProductDetailsFragment
 import com.androidproject.app.appcomponents.models.Product
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import java.io.Serializable
 
 
-class ProductAdapter (private val dataSet: ArrayList<Product>, val context: Context) :
+class ProductAdapter(
+    private val dataSet: ArrayList<Product>,
+    val context: Context,
+    val supportFragmentManager: FragmentManager,
+) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>()  {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         val name: TextView
-        val image: TextView
+        val image: ImageView
         val price: TextView
-        val pharmacyName: TextView
-        val pharmacyaddress: TextView
+
 
         init {
             // Define click listener for the ViewHolder's View.
-            name = view.findViewById(R.id.product_item_name)
-            image = view.findViewById(R.id.product_item_image)
-            price = view.findViewById(R.id.product_item_price)
-            pharmacyName = view.findViewById(R.id.product_item_pharmacy_name)
-            pharmacyaddress = view.findViewById(R.id.product_item_pharmacy_address)
+            name = view.findViewById(R.id.item_product_name)
+            image = view.findViewById(R.id.item_product_image)
+            price = view.findViewById(R.id.item_product_price)
         }
     }
 
@@ -39,7 +46,7 @@ class ProductAdapter (private val dataSet: ArrayList<Product>, val context: Cont
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.product_item, viewGroup, false)
+            .inflate(R.layout.row_home, viewGroup, false)
 
         return ViewHolder(view)
     }
@@ -50,16 +57,24 @@ class ProductAdapter (private val dataSet: ArrayList<Product>, val context: Cont
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         viewHolder.name.text = dataSet[position].name.toString()
-        viewHolder.image.text = dataSet[position].image.toString()
+        Glide.with(context)
+            .load("https://images.pexels.com/photos/1152359/pexels-photo-1152359.jpeg?auto=compress&cs=tinysrgb&w=600").apply(
+                RequestOptions().override(viewHolder.image.width, viewHolder.image.height))
+            .into(viewHolder.image)
         viewHolder.price.text = dataSet[position].price.toString()
-        viewHolder.pharmacyName.text = dataSet[position].pharmacy?.get(0)?.name.toString()
-        viewHolder.pharmacyaddress.text = dataSet[position].pharmacy?.get(0)?.owner?.get(0)?.email.toString()
+
 
         viewHolder.itemView.setOnClickListener {
             Toast.makeText(context, "Item clicked:$position", Toast.LENGTH_SHORT).show()
-            val intent = Intent(context, ProductInfoActivity::class.java)
+            val intent = Intent(context, ProductDetailsFragment::class.java)
             intent.putExtra("EXTRA_PRODUCT", dataSet[position] as Serializable)
-            context.startActivity(intent)
+            val bundle = Bundle()
+            bundle.putSerializable("EXTRA_PRODUCT", dataSet[position])
+
+            val fragobj : Fragment = ProductDetailsFragment()
+            fragobj.arguments = bundle
+            val fm: FragmentManager = (context as AppCompatActivity).supportFragmentManager
+            fm.beginTransaction().replace(R.id.fragmentContainerView, fragobj).addToBackStack(null).commit()
 
         }
 
