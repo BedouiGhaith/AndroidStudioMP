@@ -1,29 +1,37 @@
 package com.androidproject.app.appcomponents.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.adapters.ProductAdapter
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Product
-import com.androidproject.app.appcomponents.models.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProductsActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_products)
 
-        val recyclerview = findViewById<RecyclerView>(R.id.products_recycler)
+class ProductsFragment : Fragment() {
 
-        recyclerview.layoutManager = LinearLayoutManager(this)
+    lateinit var recyclerview: RecyclerView
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        return inflater.inflate(R.layout.fragment_products, container, false)
+    }
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+
+        recyclerview = view?.findViewById(R.id.p_recycler)!!
+
+
+        recyclerview.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL, false)
 
         val apiInterface = ApiInterface.create()
 
@@ -42,21 +50,23 @@ class ProductsActivity : AppCompatActivity() {
                         data.add(Product(p.id, p.name, p.image, p.price, p.pharmacy))
                     }
 
-                    val adapter = ProductAdapter(data,this@ProductsActivity, supportFragmentManager)
+                    val adapter = ProductAdapter(data,requireActivity(), childFragmentManager)
 
                     recyclerview.adapter = adapter
                 }else{
-                    Toast.makeText(this@ProductsActivity, "Error!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show()
                 }
 
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 println(t.printStackTrace())
-                Toast.makeText(this@ProductsActivity, "Connexion error!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Connexion error!", Toast.LENGTH_SHORT).show()
 
             }
 
         })
+
+
     }
-}
+    }

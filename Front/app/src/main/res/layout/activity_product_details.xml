@@ -90,7 +90,7 @@
                 android:layout_marginTop="@dimen/_22pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <TextView android:ellipsize="end"
-                    android:id="@+id/txtDCounter"
+                    android:id="@+id/item_product_price"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_13pxv"
                     android:layout_weight="0.28"

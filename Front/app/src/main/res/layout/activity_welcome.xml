@@ -70,7 +70,7 @@
             android:layout_marginTop="@dimen/_10pxv"
             android:layout_width="match_parent"
             android:orientation="horizontal" style="@style/groupStylewhite_A700cornerRadius">
-            <FrameLayout android:id="@+id/frameStackvector"
+            <FrameLayout android:id="@+id/cart_row_minus"
                 android:layout_height="@dimen/_18pxv"
                 android:layout_marginBottom="@dimen/_16pxv"
                 android:layout_marginStart="@dimen/_47pxh"

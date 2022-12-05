@@ -1,80 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-    <LinearLayout android:gravity="end"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="4sp">
+
+    <LinearLayout
         android:id="@+id/linearColumnrectangle927"
+        style="@style/groupStylewhite_2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:orientation="vertical" style="@style/groupStylewhite_2">
-        <FrameLayout android:id="@+id/frameStackrectangle927"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/frameStackrectangle927"
+            style="@style/groupStylegray_200cornerRadius"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:layout_height="@dimen/_154pxv"
-            android:layout_marginTop="@dimen/_1pxv"
-            android:layout_width="@dimen/_180pxh" style="@style/groupStylegray_200cornerRadius">
-            <ImageView android:id="@+id/imageRectangle927"
-                android:layout_gravity="center"
-                android:layout_height="@dimen/_134pxh"
-                android:layout_marginBottom="@dimen/_11pxv"
-                android:layout_marginEnd="@dimen/_28pxh"
-                android:layout_marginStart="@dimen/_33pxh"
-                android:layout_marginTop="@dimen/_9pxv"
-                android:layout_width="@dimen/_119pxh"
-                android:scaleType="fitXY" cornerRadius="@{@dimen/_9pxh}"
+            android:layout_marginTop="@dimen/_1pxv">
+
+            <ImageView
+                android:id="@+id/item_product_image"
+                cornerRadius="@{@dimen/_9pxh}"
                 imageRes="@{@drawable/img_rectangle927}"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_rectangle927"/>
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_134pxh"
+                android:layout_gravity="center"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="30sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginBottom="30sp"
+                android:scaleType="fitXY"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_rectangle927" />
         </FrameLayout>
-        <TextView android:gravity="start"
-            android:id="@+id/txtPanadol500mgOne"
+
+        <TextView
+            android:id="@+id/item_product_name"
+            style="@style/txtOverpassregular13"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_70pxh"
             android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_17pxv"
-            android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/_70pxh"
+            android:gravity="start"
             android:lineSpacingExtra="@dimen/_6pxh"
             android:text="@string/msg_panadol_500mg_1"
-            style="@style/txtOverpassregular13" tools:text="@string/msg_panadol_500mg_1"/>
-        <LinearLayout android:gravity="end"
+            tools:text="@string/msg_panadol_500mg_1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearRowdcounter"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_15pxv"
-            android:layout_marginStart="@dimen/_10pxh"
-            android:layout_marginTop="@dimen/_7pxv"
-            android:layout_width="wrap_content" android:orientation="horizontal">
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtDCounter"
+            android:layout_marginLeft="15sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginRight="0sp"
+            android:layout_marginBottom="10sp">
+
+            <TextView
+                android:id="@+id/item_product_price"
+                style="@style/txtOverpassbold16"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_4pxv"
-                android:layout_marginTop="@dimen/_3pxv"
-                android:layout_weight="0.41" android:layout_width="0dp"
-                android:lineSpacingExtra="@dimen/_1pxh"
+                android:layout_marginStart="19dp"
+                android:ellipsize="none"
                 android:singleLine="true"
                 android:text="@string/lbl_10_d"
-                style="@style/txtOverpassbold16" tools:text="@string/lbl_10_d"/>
-            <LinearLayout android:id="@+id/linearRowstar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@string/lbl_10_d" />
+
+            <LinearLayout
+                android:id="@+id/linearRowstar"
+                style="@style/groupStyleamber_A400cornerRadius"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_83pxh"
-                android:layout_weight="0.59" android:layout_width="0dp"
-                android:orientation="horizontal" style="@style/groupStyleamber_A400cornerRadius">
-                <ImageView android:id="@+id/imageStar"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageStar"
+                    android:layout_width="@dimen/_13pxh"
                     android:layout_height="@dimen/_12pxh"
-                    android:layout_marginBottom="@dimen/_6pxv"
                     android:layout_marginStart="@dimen/_7pxh"
                     android:layout_marginTop="@dimen/_6pxv"
-                    android:layout_width="@dimen/_13pxh"
+                    android:layout_marginBottom="@dimen/_6pxv"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_star"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_star"/>
-                <TextView android:ellipsize="end"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_star" />
+
+                <TextView
                     android:id="@+id/txtFortyTwo"
+                    style="@style/txtOverpassromanregular13"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginEnd="@dimen/_6pxh"
                     android:layout_marginStart="@dimen/_3pxh"
                     android:layout_marginTop="@dimen/_2pxv"
+                    android:layout_marginEnd="@dimen/_6pxh"
+                    android:layout_marginBottom="@dimen/_8pxv"
                     android:layout_weight="0.59"
-                    android:layout_width="0dp" android:singleLine="true"
+                    android:ellipsize="end"
+                    android:singleLine="true"
                     android:text="@string/lbl_4_2"
-                    style="@style/txtOverpassromanregular13" tools:text="@string/lbl_4_2"/>
+                    tools:text="@string/lbl_4_2" />
             </LinearLayout>
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-</layout>
+</LinearLayout>

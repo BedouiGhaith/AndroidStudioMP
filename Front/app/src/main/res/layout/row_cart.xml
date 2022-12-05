@@ -3,7 +3,7 @@
     <LinearLayout android:id="@+id/linearRowmentos1"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" android:orientation="horizontal">
-        <ImageView android:id="@+id/imageImage134"
+        <ImageView android:id="@+id/cart_row_image"
             android:layout_height="@dimen/_80pxh"
             android:layout_marginTop="@dimen/_1pxv"
             android:layout_width="@dimen/_70pxh"
@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <TextView android:ellipsize="end"
-                    android:id="@+id/txtMentos"
+                    android:id="@+id/cart_row_name"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_6pxv"
                     android:layout_weight="0.7"
@@ -28,7 +28,7 @@
                     android:singleLine="true"
                     android:text="@string/lbl_mentos"
                     style="@style/txtOverpasssemibold14" tools:text="@string/lbl_mentos"/>
-                <ImageView android:id="@+id/imageClose"
+                <ImageView android:id="@+id/cart_row_remove"
                     android:layout_height="@dimen/_20pxh"
                     android:layout_marginStart="@dimen/_169pxh"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -52,7 +52,7 @@
                 android:layout_marginTop="@dimen/_10pxv"
                 android:layout_width="match_parent" android:orientation="horizontal">
                 <TextView android:ellipsize="end"
-                    android:id="@+id/txtPrice"
+                    android:id="@+id/cart_row_price"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_2pxv"
                     android:layout_marginTop="@dimen/_12pxv"
@@ -68,7 +68,7 @@
                     android:layout_weight="0.74"
                     android:layout_width="0dp"
                     android:orientation="horizontal" style="@style/groupStylegray_51cornerRadius">
-                    <FrameLayout android:id="@+id/frameStackvector"
+                    <FrameLayout android:id="@+id/cart_row_minus"
                         android:layout_height="@dimen/_32pxv"
                         android:layout_width="@dimen/_32pxh" style="@style/groupStylegreen_50cornerRadius">
                         <ImageView android:id="@+id/imageVector"
@@ -84,7 +84,7 @@
                             tools:ignore="ContentDescription" tools:src="@drawable/img_vector_green_a700"/>
                     </FrameLayout>
                     <TextView android:ellipsize="end"
-                        android:id="@+id/txtOne"
+                        android:id="@+id/cart_row_quantity"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_10pxv"
                         android:layout_marginStart="@dimen/_11pxh"
@@ -95,7 +95,7 @@
                         android:singleLine="true"
                         android:text="@string/lbl_1"
                         style="@style/txtAbelregular16" tools:text="@string/lbl_1"/>
-                    <FrameLayout android:id="@+id/frameStackplus"
+                    <FrameLayout android:id="@+id/cart_row_plus"
                         android:layout_height="@dimen/_32pxv"
                         android:layout_marginStart="@dimen/_11pxh"
                         android:layout_width="@dimen/_32pxh" style="@style/groupStylegreen_A200cornerRadius">

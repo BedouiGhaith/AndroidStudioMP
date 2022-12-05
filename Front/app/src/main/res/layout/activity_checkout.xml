@@ -73,7 +73,7 @@
                         style="@style/txtOverpassromanregular13_2" tools:text="@string/lbl_total2"/>
                     <TextView android:ellipsize="end"
                         android:gravity="start"
-                        android:id="@+id/txtPrice"
+                        android:id="@+id/cart_row_price"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_8pxv"
                         android:layout_width="match_parent"

@@ -136,7 +136,7 @@
                         android:layout_width="0dp"
                         android:orientation="vertical" style="@style/groupStylegray_101cornerRadius">
                         <ImageView android:gravity="center_horizontal"
-                            android:id="@+id/imageImage134"
+                            android:id="@+id/cart_row_image"
                             android:layout_height="@dimen/_99pxh"
                             android:layout_marginEnd="@dimen/_1pxh"
                             android:layout_width="match_parent"
