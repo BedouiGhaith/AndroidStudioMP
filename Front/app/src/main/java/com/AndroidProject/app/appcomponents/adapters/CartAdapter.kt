@@ -19,7 +19,10 @@ import com.androidproject.app.appcomponents.activities.ProductDetailsFragment
 import com.androidproject.app.appcomponents.models.Product
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import java.io.Serializable
+import java.lang.reflect.Type
 
 class CartAdapter (private val dataSet: ArrayList<Product>,
                    private val Quantity: ArrayList<Int>,
@@ -63,6 +66,76 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
             .into(viewHolder.image)
         viewHolder.price.text = dataSet[position].price.toString()
         viewHolder.quantity.text = Quantity[position].toString()
+
+        val sharedPreferences = context.getSharedPreferences("shared preferences",
+            Context.MODE_PRIVATE
+        )
+
+        val gson = Gson()
+
+        var jsonProduct = sharedPreferences.getString("products", null)
+        var jsonQuantity = sharedPreferences.getString("quantity", null)
+
+        val typeProduct: Type = object : TypeToken<ArrayList<Product?>?>() {}.type
+        val typeQuantity: Type = object : TypeToken<ArrayList<Int?>?>() {}.type
+
+        val productList = gson.fromJson<Any>(jsonProduct, typeProduct) as ArrayList<Product>
+        val quantityList = gson.fromJson<Int>(jsonQuantity, typeQuantity) as ArrayList<Int>
+
+        viewHolder.minus.setOnClickListener {
+            if(Quantity[position] > 1){
+                quantityList[position] = quantityList[position]-1
+                Quantity[position]= Quantity[position]-1
+
+
+                val editor = sharedPreferences.edit()
+
+                val jsonQuanutity: String = gson.toJson(quantityList)
+
+                editor.putString("quantity", jsonQuanutity)
+                editor.apply()
+
+                notifyItemChanged(position)
+            }
+        }
+        viewHolder.plus.setOnClickListener {
+            Quantity[position]= Quantity[position]+1
+            quantityList[position]= quantityList[position]+(1)
+
+            val editor = sharedPreferences.edit()
+
+            val jsonQuantity: String = gson.toJson(quantityList)
+
+            editor.putString("quantity", jsonQuantity)
+            editor.apply()
+
+            notifyItemChanged(position)
+
+        }
+        viewHolder.remove.setOnClickListener {
+            productList.removeAt(position)
+            quantityList.removeAt(position)
+            dataSet.removeAt(position)
+            Quantity.removeAt(position)
+
+            val editor = sharedPreferences.edit()
+
+
+            val jsonProduct: String = gson.toJson(productList)
+            val jsonQuanutity: String = gson.toJson(quantityList)
+
+            editor.putString("products", jsonProduct)
+            editor.apply()
+
+            editor.putString("quantity", jsonQuanutity)
+            editor.apply()
+
+            Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show()
+
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position,dataSet.size)
+
+        }
 
     }
 

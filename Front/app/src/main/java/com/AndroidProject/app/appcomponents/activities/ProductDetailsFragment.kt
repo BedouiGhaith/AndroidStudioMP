@@ -76,7 +76,7 @@ class ProductDetailsFragment : Fragment() {
 
             // below line is to get the type of our array list.
             val typeProduct: Type = object : TypeToken<ArrayList<Product?>?>() {}.type
-            val typeQuantity: Type = object : TypeToken<ArrayList<Product?>?>() {}.type
+            val typeQuantity: Type = object : TypeToken<ArrayList<Int?>?>() {}.type
 
 
             // in below line we are getting data from gson

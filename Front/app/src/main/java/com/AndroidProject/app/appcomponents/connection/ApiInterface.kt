@@ -1,5 +1,6 @@
 package com.androidproject.app.appcomponents.connection
 
+import com.androidproject.app.appcomponents.models.Order
 import com.androidproject.app.appcomponents.models.Pharmacy
 import com.androidproject.app.appcomponents.models.Product
 import com.androidproject.app.appcomponents.models.User
@@ -30,9 +31,21 @@ interface ApiInterface {
     @GET("pharmacy")
     fun pharmacies(): Call<List<Pharmacy>>
 
+    @GET("orders")
+    fun commandes(): Call<List<Order>>
+
+    @GET("orders/myorders")
+    fun commandesUser(@Body map: Map<String, String>): Call<List<Order>>
+
+    @POST("orders/add")
+    fun commandesAdd(@Body map: Map<String, String>): Call<List<Order>>
+
+    @POST("orders/status")
+    fun commandesStatus(@Body map: Map<String, String>): Call<List<Order>>
+
     companion object {
 
-        private var BASE_URL = "http://172.26.48.1:9090/"
+        private var BASE_URL = "http://172.20.240.1:9090/"
 
         fun create() : ApiInterface {
 

@@ -1,8 +1,10 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.annotation.SuppressLint
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
@@ -17,10 +19,19 @@ class FragmentContainerActivity : AppCompatActivity() {
     var productList: ArrayList<Product> = ArrayList()
     var quantityList: ArrayList<Int> = ArrayList()
 
-    @SuppressLint("CommitPrefEdits")
+    lateinit var home: ImageView
+    lateinit var notifs: ImageView
+    lateinit var cart: ImageView
+    lateinit var profile: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment_container)
+
+        home= findViewById(R.id.imageHome)
+        notifs = findViewById(R.id.imageNotification)
+        cart = findViewById(R.id.imageBag)
+        profile = findViewById(R.id.imageUser)
 
         val sharedPreferences = getSharedPreferences("shared preferences", MODE_PRIVATE)
 
@@ -38,6 +49,15 @@ class FragmentContainerActivity : AppCompatActivity() {
         editor.apply()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ProductsFragment()).commit()
+
+        home.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ProductsFragment()).addToBackStack(null).commit()
+        }
+        notifs.setOnClickListener {  }
+        cart.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, CartFragment()).addToBackStack(null).commit()
+        }
+        profile.setOnClickListener {  }
 
     }
 }
