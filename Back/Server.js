@@ -8,6 +8,7 @@ import authentificationRouter from "./routes/authentificationRouter.js"
 import auth from "./middlewares/auth.js"
 import product from "./models/product.js";
 import pharmacy from "./models/pharmacy.js";
+import orderRouter from "./routes/orderRouter.js";
 const app = express();
 
 const hostname = '127.0.0.1'
@@ -34,6 +35,8 @@ app.use('/user', userRouter);
 app.use('/product', productRouter);
 
 app.use('/pharmacy', pharmacyRouter);
+
+app.use('/orders', orderRouter);
 
 app.post('/register', authentificationRouter);
 

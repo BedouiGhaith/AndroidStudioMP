@@ -77,10 +77,7 @@ class EmailVerify : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
-
                     }
-
                     override fun onFailure(call: Call<String>, t: Throwable) {
                         println(t.printStackTrace())
                         Toast.makeText(
