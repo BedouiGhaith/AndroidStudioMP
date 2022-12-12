@@ -6,20 +6,19 @@ const {Schema, model} = mongoose
 const orderSchema = new Schema(
     {
         user: {
-            type: User,
-            required: true
+            type: Schema.ObjectId, ref: "User",
         },
         product: [{
-            type: Product,
-            required: true
+            type: Schema.ObjectId, ref: 'Product',
         }],
+        quantity: {
+            type: [Number] ,
+        },
         status: {
             type: String,
-            required: true
         },
         responder: {
-            type: User,
-            required: false
+            type: Schema.ObjectId, ref: "User",
         }
     },
     {

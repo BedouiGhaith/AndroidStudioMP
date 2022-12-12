@@ -24,7 +24,7 @@ router.route("/status")
     .post(multerConfig, body(['id','status']),updateStatus)
 
 router.route("/add")
-    .get(multerConfig, body(['id','status']),addOnce)
+    .post(body(['user','product','quantity','status','responder']),addOnce)
 
 
 export default router;

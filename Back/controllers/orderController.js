@@ -1,11 +1,10 @@
 import {validationResult} from 'express-validator';
 
-import mongoose from "mongoose";
 import Order from "../models/order.js";
 
 export function getAll(req, res){
     Order
-        .find({})
+        .find({}).populate('product')
         .then(docs => {
             res.status(200).json(docs);
         })
@@ -20,15 +19,14 @@ export async function addOnce(req, res) {
     } else {
         Order
             .create({
-                user: mongoose.Types.ObjectId(req.body.user),
-                product: mongoose.Types.ObjectId(req.body.product),
+                user: req.body.user,
+                product: req.body.product,
+                quantity: req.body.quantity,
                 status: req.body.status,
-                responder: mongoose.Types.ObjectId(req.body.responder)
-
-
+                responder: req.body.responder
             })
-            .then(newPharmacy => {
-                res.status(200).json(newPharmacy);
+            .then(async newOrder => {
+                res.status(200).json(await newOrder.populate('product','product.pharmacy'));
             })
             .catch(err => {
                 res.status(500).json({error: err});

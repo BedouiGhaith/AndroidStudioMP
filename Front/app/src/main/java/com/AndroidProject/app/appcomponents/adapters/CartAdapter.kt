@@ -95,7 +95,7 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
                 editor.putString("quantity", jsonQuanutity)
                 editor.apply()
 
-                notifyItemChanged(position)
+                notifyDataSetChanged()
             }
         }
         viewHolder.plus.setOnClickListener {
@@ -109,8 +109,7 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
             editor.putString("quantity", jsonQuantity)
             editor.apply()
 
-            notifyItemChanged(position)
-
+            notifyDataSetChanged()
         }
         viewHolder.remove.setOnClickListener {
             productList.removeAt(position)
@@ -132,7 +131,7 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
 
             Toast.makeText(context, ""+position, Toast.LENGTH_SHORT).show()
 
-            notifyItemRemoved(position)
+            notifyDataSetChanged()
             notifyItemRangeChanged(position,dataSet.size)
 
         }
