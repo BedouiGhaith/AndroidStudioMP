@@ -13,13 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.adapters.CartAdapter
-import com.androidproject.app.appcomponents.adapters.ProductAdapter
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Order
 import com.androidproject.app.appcomponents.models.Product
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -100,7 +98,8 @@ class CartFragment : Fragment() {
             })
 
             order.setOnClickListener {
-                val myOrder = Order(id = null, user = null, productList, quantityList,"Pending", responder = null)
+                val myOrder = Order(id = null,
+                    (this.activity as FragmentContainerActivity?)?.getLogin(), productList, quantityList,"Pending", responder = null)
                 orderProducts(myOrder)
             }
 

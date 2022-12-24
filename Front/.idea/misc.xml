@@ -10,6 +10,7 @@
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2325" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/rectangle_gradient_s_teal_a400_e_teal_a700_radius_24.xml" value="0.2325" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/space_medium.xml" value="0.124" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_admin_fragment_container.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_cart.xml" value="0.2825520833333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_cart_empty_state.xml" value="0.264" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_category_listing.xml" value="0.2" />
@@ -19,12 +20,14 @@
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_email_verify.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_forgot_password.xml" value="0.2" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_fragment_container.xml" value="0.20244565217391305" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_fragment_container_admin.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_login_success.xml" value="0.264" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_my_profile.xml" value="0.2" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_no_internet_empty_state.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_notification.xml" value="0.264" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_order_fragment_container.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_product_details.xml" value="0.2" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_product_info.xml" value="0.20244565217391305" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_products.xml" value="0.20244565217391305" />
@@ -36,11 +39,20 @@
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_walkthrough_three.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_walkthrough_two.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/activity_welcome.xml" value="0.2" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_admin_orders.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_admin_products.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_admin_user.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_all_orders.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_cart.xml" value="0.4" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_order.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_orders.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_pending_orders.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_prducts.xml" value="0.20244565217391305" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_product_details.xml" value="0.2108843537414966" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_products.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/layout_progress_dialog.xml" value="0.11302083333333333" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/order_row.xml" value="0.2006340579710145" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/pending_order_row.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/pharmacy_item.xml" value="0.20244565217391305" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/product_item.xml" value="0.1526639344262295" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/product_row.xml" value="0.20244565217391305" />

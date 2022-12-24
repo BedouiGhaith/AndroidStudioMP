@@ -10,6 +10,7 @@ import androidx.fragment.app.add
 import androidx.fragment.app.commit
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.models.Product
+import com.androidproject.app.appcomponents.models.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -23,6 +24,20 @@ class FragmentContainerActivity : AppCompatActivity() {
     lateinit var notifs: ImageView
     lateinit var cart: ImageView
     lateinit var profile: ImageView
+
+    val sharedPreferencesL = getSharedPreferences("login", MODE_PRIVATE)
+
+    val jsonUser = sharedPreferencesL.getString("user", null)
+
+    val typeUser: Type = object : TypeToken<User?>() {}.type
+
+    val gson = Gson()
+
+    val user = gson.fromJson<Any>(jsonUser, typeUser) as User
+
+    fun getLogin():User{
+        return user
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,4 +75,6 @@ class FragmentContainerActivity : AppCompatActivity() {
         profile.setOnClickListener {  }
 
     }
+
+
 }

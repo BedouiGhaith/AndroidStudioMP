@@ -1,10 +1,10 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
@@ -19,12 +19,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.Type
 
 
 class LoginActivity : AppCompatActivity() {
@@ -46,6 +48,8 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        val sharedPreferences = this.getSharedPreferences("login", MODE_PRIVATE)
 
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
@@ -92,10 +96,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(start)
         }
 
-        loginBtn.setOnClickListener { login() }
+        loginBtn.setOnClickListener { login(sharedPreferences) }
 
     }
-    private fun login(){
+    private fun login(sharedPreferences: SharedPreferences) {
         if (validate()){
             val apiInterface = ApiInterface.create()
             progBar.visibility = View.VISIBLE
@@ -117,6 +121,20 @@ class LoginActivity : AppCompatActivity() {
                     println(""+response.raw())
                     if (user != null){
                         Toast.makeText(this@LoginActivity, "Login Success", Toast.LENGTH_SHORT).show()
+
+                        val gson = Gson()
+
+                        val editor = sharedPreferences.edit()
+
+                        val jsonUser: String = gson.toJson(user)
+
+                        editor.putString("user", jsonUser)
+
+                        editor.apply()
+
+                        val intent= Intent(this@LoginActivity, FragmentContainerActivity::class.java)
+                        startActivity(intent)
+
                     }else{
                         Toast.makeText(this@LoginActivity, "User not found", Toast.LENGTH_SHORT).show()
                     }
