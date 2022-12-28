@@ -1,16 +1,17 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -19,12 +20,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.Type
 
 
 class LoginActivity : AppCompatActivity() {
@@ -46,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
 
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
@@ -95,7 +99,7 @@ class LoginActivity : AppCompatActivity() {
         loginBtn.setOnClickListener { login() }
 
     }
-    private fun login(){
+    private fun login() {
         if (validate()){
             val apiInterface = ApiInterface.create()
             progBar.visibility = View.VISIBLE
@@ -117,6 +121,30 @@ class LoginActivity : AppCompatActivity() {
                     println(""+response.raw())
                     if (user != null){
                         Toast.makeText(this@LoginActivity, "Login Success", Toast.LENGTH_SHORT).show()
+
+                        val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
+
+                        val gson = Gson()
+
+                        val editor = sharedPreferences.edit()
+
+                        val jsonUser: String = gson.toJson(user)
+
+                        editor.putString("user", jsonUser)
+
+                        editor.apply()
+
+                        if(user.role == "user") {
+                            val intent =
+                                Intent(this@LoginActivity, FragmentContainerActivity::class.java)
+                            startActivity(intent)
+                        }
+                        if(user.role == "transporter") {
+                            val intent =
+                                Intent(this@LoginActivity, OrderFragmentContainer::class.java)
+                            startActivity(intent)
+                        }
+
                     }else{
                         Toast.makeText(this@LoginActivity, "User not found", Toast.LENGTH_SHORT).show()
                     }

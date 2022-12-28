@@ -35,19 +35,22 @@ interface ApiInterface {
     @GET("orders")
     fun commandes(): Call<List<Order>>
 
-    @GET("orders/myorders")
-    fun commandesUser(@Body map: Map<String, String>): Call<List<Order>>
+    @GET("orders/myorders/{id}")
+    fun commandesUser(@Path("id") id:String): Call<List<Order>>
 
     @Headers("Content-Type: application/json")
     @POST("orders/add")
     fun commandesAdd(@Body order: Order): Call<Order>
 
-    @POST("orders/status")
-    fun commandesStatus(@Body map: Map<String, String>): Call<List<Order>>
+    @GET("orders/transporter/{status}")
+    fun commandesStatus(@Path("status") status: String): Call<List<Order>>
+
+    @POST("orders/transporter/accept")
+    fun commandeAccept(@Body order: Order): Call<Order>
 
     companion object {
 
-        private var BASE_URL = "http://192.168.1.4:9090/"
+        private var BASE_URL = "http://192.168.1.3:9090/"
 
         fun create() : ApiInterface {
 

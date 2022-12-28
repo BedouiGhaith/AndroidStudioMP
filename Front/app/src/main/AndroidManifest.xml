@@ -12,16 +12,35 @@
         android:roundIcon="@mipmap/add_to_cart_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:dataExtractionRules="@xml/data_extraction_rules">
+        <activity
+            android:name=".appcomponents.activities.MyOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.admin.AdminFragmentContainer"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.admin.AdminOrdersFragment"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.admin.AdminProductsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.admin.AdminUserFragment"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.transporter.OrderFragmentContainer"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.transporter.AllOrdersFragment"
+            android:exported="false" />
+        <activity
+            android:name=".appcomponents.activities.transporter.PendingOrdersFragment"
+            android:exported="false" />
         <activity
             android:name=".appcomponents.activities.FragmentContainerActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".appcomponents.activities.ProductInfoActivity"
             android:exported="false" />
@@ -30,7 +49,7 @@
             android:exported="false" />
         <activity
             android:name=".appcomponents.activities.ProductsActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".appcomponents.activities.EmailVerify"
             android:exported="false" />
@@ -51,7 +70,13 @@
             android:exported="false" />
         <activity
             android:name=".appcomponents.activities.SplashActivity"
-            android:exported="true"/>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -62,8 +87,7 @@
 
         <activity
             android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">

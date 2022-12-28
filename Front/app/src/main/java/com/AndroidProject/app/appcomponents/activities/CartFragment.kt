@@ -8,18 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.adapters.CartAdapter
-import com.androidproject.app.appcomponents.adapters.ProductAdapter
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Order
 import com.androidproject.app.appcomponents.models.Product
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,6 +30,9 @@ import java.text.DecimalFormat
 class CartFragment : Fragment() {
 
 
+    var price = 0F
+    var productList: ArrayList<Product> = ArrayList()
+    var quantityList: ArrayList<Int> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,30 +50,15 @@ class CartFragment : Fragment() {
         val typeProduct: Type = object : TypeToken<ArrayList<Product?>?>() {}.type
         val typeQuantity: Type = object : TypeToken<ArrayList<Int?>?>() {}.type
 
-        val productList = gson.fromJson<Any>(jsonProduct, typeProduct) as ArrayList<Product>
-        val quantityList = gson.fromJson<Int>(jsonQuantity, typeQuantity) as ArrayList<Int>
+        productList = gson.fromJson<Any>(jsonProduct, typeProduct) as ArrayList<Product>
+        quantityList = gson.fromJson<Int>(jsonQuantity, typeQuantity) as ArrayList<Int>
         return if(productList.isNotEmpty())
             inflater.inflate(R.layout.fragment_cart, container, false)
         else inflater.inflate(R.layout.activity_cart_empty_state,container,false)
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
-        val sharedPreferences= requireActivity().getSharedPreferences("shared preferences",
-            Context.MODE_PRIVATE)
-
-        val gson = Gson()
-
-        val jsonProduct = sharedPreferences.getString("products", null)
-        val jsonQuantity = sharedPreferences.getString("quantity", null)
-
-        val typeProduct: Type = object : TypeToken<ArrayList<Product?>?>() {}.type
-        val typeQuantity: Type = object : TypeToken<ArrayList<Int?>?>() {}.type
-
-        val productList = gson.fromJson<Any>(jsonProduct, typeProduct) as ArrayList<Product>
-        val quantityList = gson.fromJson<Int>(jsonQuantity, typeQuantity) as ArrayList<Int>
-
-        if(productList.isNotEmpty()){
-
+        if (productList.isNotEmpty()){
             val recyclerview: RecyclerView = view?.findViewById(R.id.cart_recycler)!!
 
             val orderTxt: TextView = view?.findViewById(R.id.order_txt)!!
@@ -95,18 +83,20 @@ class CartFragment : Fragment() {
 
             adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
                 override fun onChanged() {
-                    calculate(orderTxt, totalTxt, productList, quantityList)
+                    if (productList.isEmpty()){
+                        requireActivity().onBackPressed()
+                    }
+                    price= calculate(orderTxt, totalTxt, productList, quantityList)
                 }
             })
 
             order.setOnClickListener {
-                val myOrder = Order(id = null, user = null, productList, quantityList,"Pending", responder = null)
+                val myOrder = Order(id = null,
+                    (this.activity as FragmentContainerActivity?)?.getLogin(), productList, quantityList,"Pending",price, responder = null)
                 orderProducts(myOrder)
+
             }
-
-
-        }else requireActivity().onBackPressed()
-
+        }
     }
 
     private fun orderProducts(myOrder: Order) {
@@ -119,6 +109,9 @@ class CartFragment : Fragment() {
                 if (response.body() != null){
 
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
+                    val fm: FragmentManager = (context as AppCompatActivity).supportFragmentManager
+                    fm.beginTransaction().replace(R.id.fragmentContainerView, OrdersFragment()).addToBackStack(null).commit()
+
 
                 }else{
 
@@ -138,7 +131,7 @@ class CartFragment : Fragment() {
 
     }
 
-    fun calculate(orderTxt: TextView, totalTxt: TextView, productList:ArrayList<Product>, quantityList: ArrayList<Int>) {
+    fun calculate(orderTxt: TextView, totalTxt: TextView, productList:ArrayList<Product>, quantityList: ArrayList<Int>): Float {
         var total = 0F
         val dec = DecimalFormat("#,###.00")
         var i = 0
@@ -151,5 +144,6 @@ class CartFragment : Fragment() {
         total=+2F
         totalF = dec.format(total)
         totalTxt.text = totalF.toString()
+        return total
     }
 }

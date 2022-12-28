@@ -47,7 +47,7 @@ class ProductDetailsFragment : Fragment() {
 
         }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
-        val product = requireArguments().getSerializable("EXTRA_PRODUCT") as Product
+        val product: Product = requireArguments().getSerializable("EXTRA_PRODUCT") as Product
 
         name = view?.findViewById(R.id.name_cmd)!!
         price = view?.findViewById(R.id.price_cmd)!!

@@ -14,6 +14,8 @@ data class Order(
     var quantity: ArrayList<Int>? = null,
     @SerializedName("status")
     var status: String? = null,
+    @SerializedName("price")
+    var price: Float? = null,
     @SerializedName("responder")
     var responder: User?= null
 ):Serializable

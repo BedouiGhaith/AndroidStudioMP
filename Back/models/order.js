@@ -17,6 +17,9 @@ const orderSchema = new Schema(
         status: {
             type: String,
         },
+        price: {
+            type: Number,
+        },
         responder: {
             type: Schema.ObjectId, ref: "User",
         }
