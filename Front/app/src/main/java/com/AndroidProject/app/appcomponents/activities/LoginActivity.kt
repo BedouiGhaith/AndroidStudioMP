@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -49,7 +50,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val sharedPreferences = this.getSharedPreferences("login", MODE_PRIVATE)
 
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
@@ -96,10 +96,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(start)
         }
 
-        loginBtn.setOnClickListener { login(sharedPreferences) }
+        loginBtn.setOnClickListener { login() }
 
     }
-    private fun login(sharedPreferences: SharedPreferences) {
+    private fun login() {
         if (validate()){
             val apiInterface = ApiInterface.create()
             progBar.visibility = View.VISIBLE
@@ -122,6 +122,8 @@ class LoginActivity : AppCompatActivity() {
                     if (user != null){
                         Toast.makeText(this@LoginActivity, "Login Success", Toast.LENGTH_SHORT).show()
 
+                        val sharedPreferences = getSharedPreferences("login", MODE_PRIVATE)
+
                         val gson = Gson()
 
                         val editor = sharedPreferences.edit()
@@ -132,8 +134,16 @@ class LoginActivity : AppCompatActivity() {
 
                         editor.apply()
 
-                        val intent= Intent(this@LoginActivity, FragmentContainerActivity::class.java)
-                        startActivity(intent)
+                        if(user.role == "user") {
+                            val intent =
+                                Intent(this@LoginActivity, FragmentContainerActivity::class.java)
+                            startActivity(intent)
+                        }
+                        if(user.role == "transporter") {
+                            val intent =
+                                Intent(this@LoginActivity, OrderFragmentContainer::class.java)
+                            startActivity(intent)
+                        }
 
                     }else{
                         Toast.makeText(this@LoginActivity, "User not found", Toast.LENGTH_SHORT).show()

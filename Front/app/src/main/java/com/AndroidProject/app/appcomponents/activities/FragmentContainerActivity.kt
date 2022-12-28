@@ -5,6 +5,7 @@ import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
@@ -20,31 +21,19 @@ class FragmentContainerActivity : AppCompatActivity() {
     var productList: ArrayList<Product> = ArrayList()
     var quantityList: ArrayList<Int> = ArrayList()
 
-    lateinit var home: ImageView
-    lateinit var notifs: ImageView
-    lateinit var cart: ImageView
-    lateinit var profile: ImageView
+    lateinit var home: LinearLayout
+    lateinit var orders: LinearLayout
+    lateinit var cart: LinearLayout
+    lateinit var profile: LinearLayout
 
-    val sharedPreferencesL = getSharedPreferences("login", MODE_PRIVATE)
-
-    val jsonUser = sharedPreferencesL.getString("user", null)
-
-    val typeUser: Type = object : TypeToken<User?>() {}.type
-
-    val gson = Gson()
-
-    val user = gson.fromJson<Any>(jsonUser, typeUser) as User
-
-    fun getLogin():User{
-        return user
-    }
+    lateinit var user:User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fragment_container)
 
         home= findViewById(R.id.imageHome)
-        notifs = findViewById(R.id.imageNotification)
+        orders = findViewById(R.id.imageNotification)
         cart = findViewById(R.id.imageBag)
         profile = findViewById(R.id.imageUser)
 
@@ -63,18 +52,33 @@ class FragmentContainerActivity : AppCompatActivity() {
         editor.putString("quantity", jsonQuanutity)
         editor.apply()
 
+        val sharedPreferencesL = getSharedPreferences("login", MODE_PRIVATE)
+
+        val jsonUser = sharedPreferencesL.getString("user", null)
+
+        val typeUser: Type = object : TypeToken<User?>() {}.type
+
+        user = gson.fromJson<Any>(jsonUser, typeUser) as User
+
         supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, ProductsFragment()).commit()
 
         home.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ProductsFragment()).addToBackStack(null).commit()
         }
-        notifs.setOnClickListener {  }
+        orders.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, OrdersFragment()).addToBackStack(null).commit()
+
+        }
         cart.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, CartFragment()).addToBackStack(null).commit()
         }
-        profile.setOnClickListener {  }
+        profile.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ProfileFragment()).addToBackStack(null).commit()
+        }
 
     }
 
-
+    fun getLogin():User{
+        return user
+    }
 }

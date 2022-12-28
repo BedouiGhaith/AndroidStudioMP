@@ -35,27 +35,18 @@ class ProductAdapter(
 
 
         init {
-            // Define click listener for the ViewHolder's View.
             name = view.findViewById(R.id.item_product_name)
             image = view.findViewById(R.id.item_product_image)
             price = view.findViewById(R.id.item_product_price)
         }
     }
-
-    // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.row_home, viewGroup, false)
-
         return ViewHolder(view)
     }
-
-    // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
-        // Get element from your dataset at this position and replace the
-        // contents of the view with that element
         viewHolder.name.text = dataSet[position].name.toString()
         Glide.with(context)
             .load("https://images.pexels.com/photos/1152359/pexels-photo-1152359.jpeg?auto=compress&cs=tinysrgb&w=600").apply(
@@ -65,7 +56,6 @@ class ProductAdapter(
 
 
         viewHolder.itemView.setOnClickListener {
-            Toast.makeText(context, "Item clicked:$position", Toast.LENGTH_SHORT).show()
             val intent = Intent(context, ProductDetailsFragment::class.java)
             intent.putExtra("EXTRA_PRODUCT", dataSet[position] as Serializable)
             val bundle = Bundle()
@@ -80,8 +70,6 @@ class ProductAdapter(
 
 
     }
-
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
 
 }

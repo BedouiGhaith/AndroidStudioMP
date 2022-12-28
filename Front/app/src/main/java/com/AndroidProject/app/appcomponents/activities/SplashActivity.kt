@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
 import com.androidproject.app.appcomponents.models.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -17,20 +18,50 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_one)
+        val sharedPreferences= getSharedPreferences("login",
+            Context.MODE_PRIVATE)
+
         Handler().postDelayed({
 
-            val sharedPreferences= this.getSharedPreferences("login",
-                Context.MODE_PRIVATE)
+        if(sharedPreferences != null) {
+            if (sharedPreferences.contains("user")) {
 
-            if (sharedPreferences.contains("user")){
-                val start = Intent(this, FragmentContainerActivity::class.java)
-                startActivity(start)
-                finish()
-            }else{
+                val sharedPreferencesL = getSharedPreferences("login", MODE_PRIVATE)
+
+                val jsonUser = sharedPreferencesL.getString("user", null)
+
+                val gson = Gson()
+
+                val typeUser: Type = object : TypeToken<User?>() {}.type
+
+                val user = gson.fromJson<Any>(jsonUser, typeUser) as User
+
+                when (user.role) {
+                    "user" -> {
+                        val start = Intent(this, FragmentContainerActivity::class.java)
+                        startActivity(start)
+                        finish()
+                    }
+                    "transporter" -> {
+                        val start = Intent(this, OrderFragmentContainer::class.java)
+                        startActivity(start)
+                        finish()
+                    }
+                    else -> {
+                        val start = Intent(this, LoginActivity::class.java)
+                        startActivity(start)
+                        finish()
+                    }
+                }
+            } else {
                 val start = Intent(this, LoginActivity::class.java)
                 startActivity(start)
                 finish()
             }
+            }else {
+            val start = Intent(this, LoginActivity::class.java)
+            startActivity(start)
+            finish()}
         }, 3000)
     }
 }

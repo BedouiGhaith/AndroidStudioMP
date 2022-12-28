@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appcomponents.OrdersFragment">
+    tools:context=".appcomponents.activities.transporter.TransporterProfileFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/f_orders_rv"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:nestedScrollingEnabled="true" />
+        android:text="@string/hello_blank_fragment" />
+
 </FrameLayout>
