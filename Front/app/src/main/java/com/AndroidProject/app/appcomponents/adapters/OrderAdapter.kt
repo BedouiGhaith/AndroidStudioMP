@@ -90,17 +90,17 @@ class OrderAdapter(
             val view: Int
             if (user.role=="transporter") {
                 val intent = Intent(context, OrderDetailsFragment::class.java)
-                intent.putExtra("EXTRA_ORDER", dataSet[position] as Serializable)
+                intent.putExtra("EXTRA_ORDER", dataSet[holder.layoutPosition] as Serializable)
                 bundle = Bundle()
-                bundle.putSerializable("EXTRA_ORDER", dataSet[position])
+                bundle.putSerializable("EXTRA_ORDER", dataSet[holder.layoutPosition])
                 fragobj = OrderDetailsFragment()
                 view = R.id.fragmentContainerView3
 
             }else {
                 val intent = Intent(context, MyOrderFragment::class.java)
-                intent.putExtra("EXTRA_ORDER", dataSet[position] as Serializable)
+                intent.putExtra("EXTRA_ORDER", dataSet[holder.layoutPosition] as Serializable)
                 bundle = Bundle()
-                bundle.putSerializable("EXTRA_ORDER", dataSet[position])
+                bundle.putSerializable("EXTRA_ORDER", dataSet[holder.layoutPosition])
                 fragobj = MyOrderFragment()
                 view = R.id.fragmentContainerView
             }

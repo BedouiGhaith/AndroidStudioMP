@@ -21,6 +21,8 @@ class OrderFragmentContainer : AppCompatActivity() {
         val pending = findViewById<LinearLayout>(R.id.transpo_pending)
         val finished = findViewById<LinearLayout>(R.id.transpo_finished)
         val profile = findViewById<LinearLayout>(R.id.imageTranspo)
+        val enroute = findViewById<LinearLayout>(R.id.transpo_enroute)
+
 
 
         val sharedPreferencesL = getSharedPreferences("login", MODE_PRIVATE)
@@ -38,12 +40,14 @@ class OrderFragmentContainer : AppCompatActivity() {
         pending.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, PendingOrdersFragment()).addToBackStack(null).commit()
         }
-
         finished.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, AllOrdersFragment()).addToBackStack(null).commit()
         }
         profile.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, TransporterProfileFragment()).addToBackStack(null).commit()
+        }
+        enroute.setOnClickListener {
+            supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView3, OrdersTakenFragment()).addToBackStack(null).commit()
         }
 
     }

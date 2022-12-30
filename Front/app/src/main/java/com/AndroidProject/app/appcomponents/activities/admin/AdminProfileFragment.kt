@@ -1,4 +1,4 @@
-package com.androidproject.app.appcomponents.activities.transporter
+package com.androidproject.app.appcomponents.activities.admin
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -17,8 +17,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.androidproject.app.R
-import com.androidproject.app.appcomponents.activities.FragmentContainerActivity
 import com.androidproject.app.appcomponents.activities.LoginActivity
+import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
 import com.google.android.material.textfield.TextInputEditText
@@ -28,7 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class TransporterProfileFragment : Fragment() {
+class AdminProfileFragment : Fragment() {
 
     lateinit var logout: LinearLayout
 
@@ -52,40 +52,40 @@ class TransporterProfileFragment : Fragment() {
 
     lateinit var edit: Button
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_admin_profile, container, false)
+
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        logout = view.findViewById(R.id.logout_btn)
+        logout = view.findViewById(R.id.logout_btn_admin)
 
-        emailEdit = view.findViewById(R.id.email_edit_p)
-        emailLayout = view.findViewById(R.id.email_layout_edit_p)
+        emailEdit = view.findViewById(R.id.email_edit_p_admin)
+        emailLayout = view.findViewById(R.id.email_layout_edit_p_admin)
 
-        usernameEdit = view.findViewById(R.id.username_edit_p)
-        usernameLayout = view.findViewById(R.id.username_layout_edit_p)
+        usernameEdit = view.findViewById(R.id.username_edit_p_admin)
+        usernameLayout = view.findViewById(R.id.username_layout_edit_p_admin)
 
-        passwordEdit = view.findViewById(R.id.password_edit_p)
-        passwordLayout = view.findViewById(R.id.password_layout_edit_p)
+        passwordEdit = view.findViewById(R.id.password_edit_p_admin)
+        passwordLayout = view.findViewById(R.id.password_layout_edit_p_admin)
 
-        confirmEdit = view.findViewById(R.id.confirmP_edit_p)
-        confirmLayout = view.findViewById(R.id.confirmP_layout_edit_p)
+        confirmEdit = view.findViewById(R.id.confirmP_edit_p_admin)
+        confirmLayout = view.findViewById(R.id.confirmP_layout_edit_p_admin)
 
-        addressEdit = view.findViewById(R.id.address_edit_p)
-        addressLayout = view.findViewById(R.id.address_layout_edit_p)
+        addressEdit = view.findViewById(R.id.address_edit_p_admin)
+        addressLayout = view.findViewById(R.id.address_layout_edit_p_admin)
 
-        phoneEdit = view.findViewById(R.id.phone_edit_p)
-        phoneLayout = view.findViewById(R.id.phone_layout_edit_p)
+        phoneEdit = view.findViewById(R.id.phone_edit_p_admin)
+        phoneLayout = view.findViewById(R.id.phone_layout_edit_p_admin)
 
-        edit = view.findViewById(R.id.btn_edit_p)
+        edit = view.findViewById(R.id.btn_edit_p_admin)
 
 
-        val user: User = ((this.activity as OrderFragmentContainer).getLogin())
+        val user: User = ((this.activity as AdminFragmentContainer).getLogin())
 
         emailEdit.setText(user.email)
         usernameEdit.setText(user.username)

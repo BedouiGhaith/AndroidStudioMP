@@ -18,7 +18,6 @@ const productSchema = new Schema(
         },
         pharmacy: [{
             type: Schema.ObjectId, ref: 'Pharmacy',
-            required: true
         }],
     },
     {

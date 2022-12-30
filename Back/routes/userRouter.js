@@ -1,16 +1,20 @@
 import express from 'express';
 import { body } from 'express-validator';
 
-import {getAll, addOnce, getOnce, patchOnce, deleteOnce, login, reset, validate} from "../controllers/userController.js";
+import {getAll, addOnce, getOnce, patchOnce, deleteOnce, login, reset, validate, editProfile} from "../controllers/userController.js";
 import multerConfig from "../middlewares/multer-config.js";
 
 const router =express.Router();
 
 router.route('/')
-    .get(getAll)
-    .post(multerConfig, body('username').isLength({min: 5}),
-    body('password').isNumeric(),
+    .post(body('username').isLength({min: 5}),
+    body('password'),
     addOnce);
+
+router.route('/users').post(body(['_id']),getAll)
+
+router.route('/edit')
+    .post(body(['_id','username','password','email','phone','address','role']),editProfile)
 
 router.route("/:username")
     .get(getOnce)

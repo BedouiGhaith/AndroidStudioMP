@@ -20,6 +20,12 @@ interface ApiInterface {
     @POST("register")
     fun signup(@Body map: Map<String,String> ): Call<User>
 
+    @POST("user/users")
+    fun users(@Body user: User): Call<List<User>>
+
+    @POST("user/edit")
+    fun edit(@Body user: User ): Call<User>
+
     @POST("user/reset")
     fun reset(@Body map: Map<String,String>): Call<String>
 
@@ -28,6 +34,15 @@ interface ApiInterface {
 
     @GET("product")
     fun products(): Call<List<Product>>
+
+    @POST("product")
+    fun addProducts(@Body product: Product): Call<Product>
+
+    @POST("product/modify")
+    fun modifyProducts(@Body product: Product): Call<Product>
+
+    @POST("product/delete")
+    fun deleteProducts(@Body product: Product): Call<Product>
 
     @GET("pharmacy")
     fun pharmacies(): Call<List<Pharmacy>>
@@ -47,6 +62,12 @@ interface ApiInterface {
 
     @POST("orders/transporter/accept")
     fun commandeAccept(@Body order: Order): Call<Order>
+
+    @GET("orders/transporter/onroute/{id}")
+    fun commandesOnRoute(@Path("id") id:String): Call<List<Order>>
+
+    @GET("orders/transporter/finished/{id}")
+    fun commandesFinished(@Path("id") id:String): Call<List<Order>>
 
     companion object {
 

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.activities.admin.AdminFragmentContainer
 import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
@@ -142,6 +143,11 @@ class LoginActivity : AppCompatActivity() {
                         if(user.role == "transporter") {
                             val intent =
                                 Intent(this@LoginActivity, OrderFragmentContainer::class.java)
+                            startActivity(intent)
+                        }
+                        if(user.role == "admin") {
+                            val intent =
+                                Intent(this@LoginActivity, AdminFragmentContainer::class.java)
                             startActivity(intent)
                         }
 

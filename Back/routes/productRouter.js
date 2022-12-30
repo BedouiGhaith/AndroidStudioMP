@@ -9,11 +9,22 @@ const router =express.Router();
 
 router.route('/')
     .get(getAll)
-    .post(multerConfig ,body(['name','image', 'price', 'pharmacy']), addOnce)
+    .post(body(['name','image', 'price', 'pharmacy']), addOnce)
+
+router.route('/modify')
+    .post(body(['_id','name','image', 'price', 'pharmacy']), patchOnce)
+
+router.route('/delete')
+    .post(body(['_id','name','image', 'price', 'pharmacy']), deleteOnce)
+
+
+router.route('/')
+    .get(getAll)
+    .post(body(['name','image', 'price', 'pharmacy']), addOnce)
+
 
 router.route("/:name")
     .get(getOnce)
-    .patch(patchOnce)
     .delete(deleteOnce)
 
 export default router;

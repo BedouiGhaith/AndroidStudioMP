@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +14,13 @@ import com.androidproject.app.R
 import com.androidproject.app.appcomponents.adapters.ProductAdapter
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Product
+import com.androidproject.app.appcomponents.models.User
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.reflect.Type
 
 
 class ProductsFragment : Fragment() {
@@ -29,6 +34,17 @@ class ProductsFragment : Fragment() {
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
         recyclerview = view?.findViewById(R.id.p_recycler)!!
+
+        val sharedPreferencesL = requireActivity().getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
+
+        val gson = Gson()
+
+        val jsonUser = sharedPreferencesL.getString("user", null)
+
+        val typeUser: Type = object : TypeToken<User?>() {}.type
+
+        val user = gson.fromJson<Any>(jsonUser, typeUser) as User
+
 
 
         recyclerview.layoutManager = GridLayoutManager(requireContext(),2, GridLayoutManager.VERTICAL, false)
@@ -50,7 +66,7 @@ class ProductsFragment : Fragment() {
                         data.add(Product(p.id, p.name, p.image, p.price, p.pharmacy))
                     }
 
-                    val adapter = ProductAdapter(data,requireActivity(), childFragmentManager)
+                    val adapter = ProductAdapter(data,requireActivity(), user)
 
                     recyclerview.adapter = adapter
                 }else{

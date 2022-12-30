@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules">
         <activity
-            android:name=".appcomponents.activities.MyOrderActivity"
+            android:name=".appcomponents.activities.MyOrderFragment"
             android:exported="false" />
         <activity
             android:name=".appcomponents.activities.admin.AdminFragmentContainer"
@@ -46,9 +46,6 @@
             android:exported="false" />
         <activity
             android:name=".appcomponents.activities.ProductsFragment"
-            android:exported="false" />
-        <activity
-            android:name=".appcomponents.activities.ProductsActivity"
             android:exported="false" />
         <activity
             android:name=".appcomponents.activities.EmailVerify"

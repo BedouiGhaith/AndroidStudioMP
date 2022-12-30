@@ -1,5 +1,6 @@
 package com.androidproject.app.appcomponents.activities
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -7,16 +8,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ProfileFragment : Fragment() {
@@ -75,19 +82,73 @@ class ProfileFragment : Fragment() {
         edit = view.findViewById(R.id.btn_edit_p)
 
 
-        var user:User = ((this.activity as FragmentContainerActivity).getLogin())
+        val user:User = ((this.activity as FragmentContainerActivity).getLogin())
+
+        emailEdit.setText(user.email)
+        usernameEdit.setText(user.username)
+        addressEdit.setText(user.address)
+        phoneEdit.setText(user.phone)
 
         logout.setOnClickListener { showAlertDialog() }
+
+        edit.setOnClickListener {
+
+            val newUser = User(id=user.id,
+                username = usernameEdit.text.toString(),
+                password = passwordEdit.text.toString(),
+                email = emailEdit.text.toString(),
+                address = addressEdit.text.toString(),
+                phone = phoneEdit.text.toString(),
+                role = user.role,
+                token = user.token)
+
+            val requestBody = mapOf("email" to emailEdit.text.toString())
+
+            val apiInterface = ApiInterface.create()
+
+            apiInterface.reset(requestBody).enqueue(object : Callback<String> {
+
+                override fun onResponse(call: Call<String>, response: Response<String>) {
+                    val code = response.body()
+                    println("" + response.raw())
+                    if (code != null) {
+                        Toast.makeText(
+                            requireActivity(),
+                            "Code Sent Successfully, check your Email!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        showAlertWithTextInputLayout(requireContext(),requireActivity(), newUser, code)
+
+                    } else {
+                        Toast.makeText(
+                            requireActivity(),
+                            "No Such Email Exist",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<String>, t: Throwable) {
+                    println(t.printStackTrace())
+                    Toast.makeText(
+                        requireActivity(),
+                        "Connexion error!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+
+                }
+            })
+        }
 
     }
     private fun showAlertDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
-        alertDialog.setTitle("AlertDialog")
-        alertDialog.setMessage("Do you wanna close this Dialog?")
+        alertDialog.setTitle("Logout")
+        alertDialog.setMessage("Do you want end this session?")
         alertDialog.setPositiveButton(
             "yes"
         ) { _, _ ->
-            Toast.makeText(requireContext(), "Alert dialog closed.", Toast.LENGTH_LONG).show()
             var sharedPreferences = requireActivity().getSharedPreferences("shared preferences",
                 AppCompatActivity.MODE_PRIVATE
             )
@@ -106,9 +167,9 @@ class ProfileFragment : Fragment() {
         alert.setCanceledOnTouchOutside(true)
         alert.show()
     }
-    private fun showAlertWithTextInputLayout(context: Context) {
+    private fun showAlertWithTextInputLayout(context: Context,activity: Activity,user: User, code: String) {
         val textInputLayout = TextInputLayout(context)
-        //textInputLayout.setPadding(resources.getDimensionPixelOffset(R.dimen.dp_19), // if you look at android alert_dialog.xml, you will see the message textview have margin 14dp and padding 5dp. This is the reason why I use 19 here 0, resources.getDimensionPixelOffset(R.dimen.dp_19), 0)
+        textInputLayout.setPadding(resources.getDimensionPixelOffset(R.dimen._19sp)) // if you look at android alert_dialog.xml, you will see the message textview have margin 14dp and padding 5dp. This is the reason why I use 19 here 0, resources.getDimensionPixelOffset(R.dimen.dp_19), 0)
         val input = EditText(context)
         textInputLayout.hint = "Email"
         textInputLayout.addView(input)
@@ -118,13 +179,51 @@ class ProfileFragment : Fragment() {
             .setView(textInputLayout)
             .setMessage("Please enter the code sent to your Email")
             .setPositiveButton("Submit") { dialog, _ ->
-                // do some thing with input.text
-                dialog.cancel()
+                if(input.text.toString()==code){
+                    register(activity,user)
+                    dialog.cancel()
+                }else{
+                    Toast.makeText(activity, "Wrong code! Check your email...", Toast.LENGTH_SHORT).show()
+                }
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.cancel()
             }.create()
 
         alert.show()
+    }
+    private fun register(activity: Activity, user: User){
+
+            val apiInterface = ApiInterface.create()
+
+        activity.window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+
+            apiInterface.edit(user).enqueue(object :
+                Callback<User> {
+
+                override fun onResponse(call: Call<User>, response: Response<User>) {
+
+                    val result = response.body()
+                    println(""+response.raw())
+                    if (result != null){
+                        Toast.makeText(activity, "Account Edited Successfully", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(activity, "Error!", Toast.LENGTH_SHORT).show()
+                    }
+
+                    activity.window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                }
+
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    Toast.makeText(activity, "Connexion error!", Toast.LENGTH_SHORT).show()
+
+                    activity.window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                }
+
+            })
+
     }
 }
