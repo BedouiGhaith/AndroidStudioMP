@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.activities.admin.AdminFragmentContainer
 import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
 import com.androidproject.app.appcomponents.models.User
 import com.google.gson.Gson
@@ -44,6 +45,11 @@ class SplashActivity : AppCompatActivity() {
                     }
                     "transporter" -> {
                         val start = Intent(this, OrderFragmentContainer::class.java)
+                        startActivity(start)
+                        finish()
+                    }
+                    "admin" -> {
+                        val start = Intent(this, AdminFragmentContainer::class.java)
                         startActivity(start)
                         finish()
                     }

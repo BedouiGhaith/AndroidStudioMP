@@ -4,7 +4,7 @@ import Order from "../models/order.js";
 
 export function getAll(req, res){
     Order
-        .find({}).populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'}])
+        .find({}).populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
         .then(docs => {
             res.status(200).json(docs);
         })
@@ -48,7 +48,31 @@ export function getOnce(req, res) {
 
 export function getByUserId(req, res) {
     Order
-        .find({ "order.user._id": req.params._id }).populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'}])
+        .find({ "order.user._id": req.params._id }).populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
+        .then(doc => {
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            res.status(500).json({ error: err });
+        });
+}
+
+export function getPending(req, res) {
+    Order
+        .find({ responder: req.params._id, status : "On Route" })
+        .populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
+        .then(doc => {
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            res.status(500).json({ error: err });
+        });
+}
+
+export function getFinished(req, res) {
+    Order
+        .find({ "order.responder._id": req.params._id, "order.status" : 'Finished' })
+        .populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
         .then(doc => {
             res.status(200).json(doc);
         })
@@ -59,7 +83,8 @@ export function getByUserId(req, res) {
 
 export function getByStatus(req, res) {
     Order
-        .find({ "order.status": req.params.status }).populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'}])
+        .find({ "order.status": req.params.status })
+        .populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
         .then(doc => {
             res.status(200).json(doc);
         })
@@ -69,14 +94,14 @@ export function getByStatus(req, res) {
 }
 
 export function patchOnce(req, res) {
+    console.log(req.body._id)
     Order
-        .findOneAndUpdate(req.body._id,{ "status": req.body.status, "responder":req.body.responder})
-        .then(async doc => {
-            res.status(200).json(await doc.populate([{
-                path: 'product',
-                populate: {path: 'pharmacy', populate: {path: 'owner'}}
-            }, {path: 'user'}]));
-        })
+        .findOneAndUpdate({_id: req.body._id},{"status": req.body.status, "responder" : req.body.responder}).populate([{
+        path: 'product',
+        populate: {path: 'pharmacy', populate: {path: 'owner'}}
+    }, {path: 'user'},{path: 'responder'}])
+        .then( doc => {
+            res.status(200).json(doc);})
         .catch(err => {
             res.status(500).json({ error: err });
         });
@@ -84,7 +109,7 @@ export function patchOnce(req, res) {
 
 export function updateStatus(req, res) {
     Order
-        .findOneAndUpdate({ "_id": req.params._id},{"status": req.params.status})
+        .findOneAndUpdate({ order: req.params._id})
         .then(doc => {
             res.status(200).json(doc);
         })
@@ -95,7 +120,7 @@ export function updateStatus(req, res) {
 
 export function deleteOnce(req, res) {
     Order
-        .findOneAndRemove({ "_id": req.params._id })
+        .findOneAndRemove({ order: req.params._id })
         .then(doc => {
             res.status(200).json(doc);
         })

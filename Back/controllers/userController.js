@@ -5,15 +5,24 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {makeid, sendEmail} from "../utils/confirmEmail.js";
 
-export function getAll(req, res){
-    User
-        .find({})
-        .then(docs => {
-            res.status(200).json(docs);
-        })
-        .catch(err => {
-            res.status(500).json({ error: err });
-        });
+export async function getAll(req, res) {
+    let id = req.body._id
+    console.log(id)
+    let u = await User.findById(id)
+    console.log(u)
+    if (u != null)
+        if (u.role === 'admin') {
+            User
+                .find({})
+                .then(docs => {
+                    res.status(200).json(docs);
+                })
+                .catch(err => {
+                    res.status(500).json({error: err});
+                });
+        } else {
+            res.status(404).json(id);
+        }
 }
 
 export async function addOnce(req, res) {
@@ -60,6 +69,21 @@ export async function addOnce(req, res) {
                 res.status(500).json({ error: err });
             });
     }
+export async function editProfile(req, res) {
+    User
+        .findOneAndUpdate({id: req.body._id}, {username:req.body.username,
+            password: await bcrypt.hash(req.body.password, 10)
+            , email: req.body.email
+            , phone: req.body.email
+            , address: req.body.address
+            , role: req.body.role})
+        .then(doc => {
+            res.status(200).json(doc);
+        })
+        .catch(err => {
+            res.status(500).json({error: err});
+        });
+}
 
     export function deleteOnce(req, res) {
         User

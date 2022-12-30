@@ -9,6 +9,7 @@ import auth from "./middlewares/auth.js"
 import product from "./models/product.js";
 import pharmacy from "./models/pharmacy.js";
 import orderRouter from "./routes/orderRouter.js";
+import bodyParser from 'body-parser'
 const app = express();
 
 const hostname = '127.0.0.1'
@@ -27,6 +28,8 @@ mongoose
         console.log(err);
     });
 
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 app.use(express.json()); // Pour analyser application/json
 app.use(express.urlencoded({ extended: true })); // Pour analyser application/x-www-form-urlencoded
 

@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".appcomponents.activities.admin.AdminUserFragment">
+    tools:context=".appcomponents.activities.transporter.OrdersTakenFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/admin_user_rv"
+        android:id="@+id/taken_orders_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>

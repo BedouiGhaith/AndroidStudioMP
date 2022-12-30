@@ -15,29 +15,25 @@ export function getAll(req, res){
 }
 
 export async function addOnce(req, res) {
-    if (!validationResult(req).isEmpty()) {
-        res.status(400).json({errors: validationResult(req).array()});
-    } else {
-        Product
+        (await Product
             .create({
                 name: req.body.name,
                 image: req.body.image,
                 price: req.body.price,
                 pharmacy: mongoose.Types.ObjectId(req.body.pharmacy)
 
-            })
+            })).populate({path: 'pharmacy', populate: {path: 'owner'}})
             .then(newProduct => {
                 res.status(200).json(newProduct);
             })
             .catch(err => {
                 res.status(500).json({error: err});
             });
-    }
 }
 
 export function getOnce(req, res) {
     Product
-        .findOne({ "name": req.params.name })
+        .findOne({ "name": req.params.name }).populate({path: 'pharmacy', populate: {path: 'owner'}})
         .then(doc => {
             res.status(200).json(doc);
         })
@@ -48,7 +44,7 @@ export function getOnce(req, res) {
 
 export function patchOnce(req, res) {
     Product
-        .findOneAndUpdate({ "name": req.params.name})
+        .findOneAndUpdate({ id: req.body._id},{name:req.body.name, price: req.body.price, image: req.body.image}).populate({path: 'pharmacy', populate: {path: 'owner'}})
         .then(doc => {
             res.status(200).json(doc);
         })
@@ -59,7 +55,7 @@ export function patchOnce(req, res) {
 
 export function deleteOnce(req, res) {
     Product
-        .findOneAndRemove({ "name": req.params.name })
+        .findOneAndRemove({ "_id": req.body._id }).populate({path: 'pharmacy', populate: {path: 'owner'}})
         .then(doc => {
             res.status(200).json(doc);
         })
