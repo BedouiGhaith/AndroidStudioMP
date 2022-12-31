@@ -16,6 +16,7 @@
             android:layout_height="140dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
+            android:background="@drawable/corner_radius_no_padding"
             android:src="@android:drawable/ic_menu_report_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,6 +38,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="100dp"
+            android:hint="Name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/preview_product_admin">
@@ -44,8 +46,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/prod_name_admin_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -55,6 +56,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="100dp"
+            android:hint="Price"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/prod_name_admin">
@@ -62,8 +64,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/prod_price_admin_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

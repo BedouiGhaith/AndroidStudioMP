@@ -22,13 +22,10 @@ class OrdersTakenFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_orders_taken, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val user = (this.activity as OrderFragmentContainer?)?.getLogin()
-
 
         val rv = view.findViewById<RecyclerView>(R.id.taken_orders_rv)
         rv.layoutManager = LinearLayoutManager(requireActivity())
@@ -51,12 +48,9 @@ class OrdersTakenFragment : Fragment() {
                     rv.adapter = adapter
 
                 }else{
-
-                    Toast.makeText(requireContext(), "Your first order is yet to be made!", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(requireContext(), "No Orders Yet!", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<List<Order>>, t: Throwable) {
 
                 println(t.printStackTrace())

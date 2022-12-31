@@ -1,5 +1,6 @@
 package com.androidproject.app.appcomponents.activities.transporter
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.androidproject.app.R
-import com.androidproject.app.appcomponents.adapters.OrderAdapter
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Order
 import retrofit2.Call
@@ -18,15 +18,13 @@ import retrofit2.Response
 
 
 class OrderDetailsFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_order_details, container, false)
     }
-
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val orderId = view.findViewById<TextView>(R.id.pending_order_id)
@@ -34,6 +32,8 @@ class OrderDetailsFragment : Fragment() {
         val orderPrice = view.findViewById<TextView>(R.id.price_of_order)
         val orderAddress = view.findViewById<TextView>(R.id.address_of_order)
         val orderPhone = view.findViewById<TextView>(R.id.phone_of_order)
+        val orderResponderPhone = view.findViewById<TextView>(R.id.responder_phone_order)
+
 
         val accept = view.findViewById<Button>(R.id.accept_pending_order)
         val cancel = view.findViewById<Button>(R.id.cancel_pending_order)
@@ -49,6 +49,9 @@ class OrderDetailsFragment : Fragment() {
         orderPrice.text= order.price.toString()
         orderAddress.text= order.user?.address
         orderPhone.text = order.user?.phone
+        if (order.status != "Pending")
+        orderResponderPhone.text= order.responder?.phone.toString()
+        else orderResponderPhone.text = "Waiting..."
 
 
         val apiInterface  = ApiInterface.create()
@@ -56,6 +59,7 @@ class OrderDetailsFragment : Fragment() {
 
         cancel.setOnClickListener {
             order.status="Pending"
+            order.responder = null
             apiInterface.commandeAccept(order).enqueue(object :
                 Callback<Order> {
                 override fun onResponse(call: Call<Order>, response: Response<Order>) {
@@ -65,11 +69,12 @@ class OrderDetailsFragment : Fragment() {
                     if (response.body() != null){
 
                         result = response.body()!!
-                        Toast.makeText(requireContext(), "Engaged " + result.id!!, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Canceled! " + result.id!!, Toast.LENGTH_SHORT).show()
+                        orderResponderPhone.text = "Waiting..."
 
                     }else{
 
-                        Toast.makeText(requireContext(), "Try Again", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Try Again!", Toast.LENGTH_SHORT).show()
 
                     }
                 }
@@ -97,6 +102,7 @@ class OrderDetailsFragment : Fragment() {
 
                         result = response.body()!!
                         Toast.makeText(requireContext(), "Engaged " + result.id!!, Toast.LENGTH_SHORT).show()
+                        orderResponderPhone.text= order.responder?.phone.toString()
 
                     }else{
 
@@ -128,6 +134,7 @@ class OrderDetailsFragment : Fragment() {
 
                         result = response.body()!!
                         Toast.makeText(requireContext(), "Engaged " + result.id!!, Toast.LENGTH_SHORT).show()
+                        orderResponderPhone.text= order.responder?.phone.toString()
 
                     }else{
 

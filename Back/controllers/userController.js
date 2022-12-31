@@ -4,6 +4,7 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import {makeid, sendEmail} from "../utils/confirmEmail.js";
+import Order from "../models/order.js";
 
 export async function getAll(req, res) {
     let id = req.body._id
@@ -23,6 +24,25 @@ export async function getAll(req, res) {
         } else {
             res.status(404).json(id);
         }
+}
+
+export function checkUsername(req, res) {
+    User.count({username: req.params.username})
+        .then(docs => {
+        res.status(200).json(docs);
+        })
+        .catch(err => {
+            res.status(500).json({error: err});
+        });
+}
+export function checkEmail(req, res) {
+    User.count({email: req.params.email})
+        .then(docs => {
+            res.status(200).json(docs);
+        })
+        .catch(err => {
+            res.status(500).json({error: err});
+        });
 }
 
 export async function addOnce(req, res) {
@@ -70,11 +90,13 @@ export async function addOnce(req, res) {
             });
     }
 export async function editProfile(req, res) {
+    console.log(req.body._id)
     User
-        .findOneAndUpdate({id: req.body._id}, {username:req.body.username,
+        .findByIdAndUpdate(req.body._id,
+            {username:req.body.username,
             password: await bcrypt.hash(req.body.password, 10)
             , email: req.body.email
-            , phone: req.body.email
+            , phone: req.body.phone
             , address: req.body.address
             , role: req.body.role})
         .then(doc => {

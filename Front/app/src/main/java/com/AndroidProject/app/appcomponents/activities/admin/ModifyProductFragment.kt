@@ -17,6 +17,7 @@ import androidx.core.graphics.drawable.toBitmap
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Product
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,18 +34,15 @@ class ModifyProductFragment : Fragment() {
     private lateinit var delete:Button
 
     private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        uri?.let { previewImage.setImageURI(uri) }
+        uri?.let { Glide.with(requireContext()).load(uri).into(previewImage) }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_modify_product, container, false)
-
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         val product: Product = requireArguments().getSerializable("EXTRA_PRODUCT") as Product
@@ -93,44 +91,55 @@ class ModifyProductFragment : Fragment() {
         }
 
         modify.setOnClickListener {
-            try {
-                price.text.toString().toFloat()
-                val apiInterface = ApiInterface.create()
 
-                val bitmap = previewImage.drawable.toBitmap()
-                val newProduct= Product(id=product.id, name=name.text.toString(), price = price.text.toString(), image = BitMapToString(bitmap))
+            if(previewImage.drawable != null || name.text.toString().isNotEmpty()) {
+                try {
+                    price.text.toString().toFloat()
+                    val apiInterface = ApiInterface.create()
 
+                    val bitmap = previewImage.drawable.toBitmap()
+                    val newProduct = Product(
+                        id = product.id,
+                        name = name.text.toString(),
+                        price = price.text.toString(),
+                        image = bitMapToString(bitmap)
+                    )
 
+                    apiInterface.modifyProducts(newProduct).enqueue(object : Callback<Product> {
+                        override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                            val result = response.body()
+                            if (result != null) {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Product Added " + result.id!!,
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                                previewImage.setImageResource(android.R.color.transparent)
+                                name.setText("")
+                                price.setText("")
+                            } else {
+                                Toast.makeText(requireContext(), "Error ", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
 
-                apiInterface.modifyProducts(newProduct).enqueue(object : Callback<Product> {
-                    override fun onResponse(call: Call<Product>, response: Response<Product>) {
-                        val result= response.body()
-                        if (result != null) {
-                            Toast.makeText(requireContext(), "Product Added " + result.id!!, Toast.LENGTH_SHORT).show()
-                            previewImage.setImageResource(android.R.color.transparent);
-                            name.setText("")
-                            price.setText("")
-                        }else{
-                            Toast.makeText(requireContext(), "Error ", Toast.LENGTH_SHORT).show()
                         }
 
-                    }
+                        override fun onFailure(call: Call<Product>, t: Throwable) {
+                            Toast.makeText(requireContext(), "Error Server", Toast.LENGTH_SHORT)
+                                .show()
+                        }
 
-                    override fun onFailure(call: Call<Product>, t: Throwable) {
-                        Toast.makeText(requireContext(), "Error Server", Toast.LENGTH_SHORT).show()
-                    }
-
-                })
-            }catch (e: NumberFormatException) {
-                Toast.makeText(requireContext(), "Input Error", Toast.LENGTH_SHORT).show()
-            }
+                    })
+                } catch (e: NumberFormatException) {
+                    Toast.makeText(requireContext(), "Input Error", Toast.LENGTH_SHORT).show()
+                }
+            }else Toast.makeText(requireContext(), "Input Error", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
-    fun BitMapToString(bitmap: Bitmap): String {
+    fun bitMapToString(bitmap: Bitmap): String {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b = baos.toByteArray()

@@ -1,5 +1,6 @@
 package com.androidproject.app.appcomponents.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -41,7 +42,6 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
 
 
         init {
-            // Define click listener for the ViewHolder's View.
             name = view.findViewById(R.id.cart_row_name)
             image = view.findViewById(R.id.cart_row_image)
             price = view.findViewById(R.id.cart_row_price)
@@ -58,12 +58,10 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
         return ViewHolder(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.name.text = dataSet[position].name.toString()
-        Glide.with(context)
-            .load("https://images.pexels.com/photos/1152359/pexels-photo-1152359.jpeg?auto=compress&cs=tinysrgb&w=600").apply(
-                RequestOptions().override(viewHolder.image.width, viewHolder.image.height))
-            .into(viewHolder.image)
+
         viewHolder.price.text = dataSet[position].price.toString()
         viewHolder.quantity.text = Quantity[position].toString()
 
@@ -73,8 +71,8 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
 
         val gson = Gson()
 
-        var jsonProduct = sharedPreferences.getString("products", null)
-        var jsonQuantity = sharedPreferences.getString("quantity", null)
+        val jsonProduct = sharedPreferences.getString("products", null)
+        val jsonQuantity = sharedPreferences.getString("quantity", null)
 
         val typeProduct: Type = object : TypeToken<ArrayList<Product?>?>() {}.type
         val typeQuantity: Type = object : TypeToken<ArrayList<Int?>?>() {}.type
@@ -86,7 +84,6 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
             if(Quantity[position] > 1){
                 quantityList[position] = quantityList[position]-1
                 Quantity[position]= Quantity[position]-1
-
 
                 val editor = sharedPreferences.edit()
 

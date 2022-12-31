@@ -33,7 +33,7 @@ class AdminFragmentContainer : AppCompatActivity() {
         user = gson.fromJson<Any>(jsonUser, typeUser) as User
 
 
-        //supportFragmentManager.beginTransaction().add(R.id.admin_fc, AdminProductsFragment()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.admin_fc, AdminProductsFragment()).commit()
 
         productsbb.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.admin_fc, AdminProductsFragment()).addToBackStack(null).commit()

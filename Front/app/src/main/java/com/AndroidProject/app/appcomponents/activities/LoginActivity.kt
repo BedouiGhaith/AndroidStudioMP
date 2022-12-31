@@ -23,6 +23,8 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import retrofit2.Call
@@ -33,8 +35,10 @@ import java.lang.reflect.Type
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var username: EditText
-    private lateinit var password: EditText
+    private lateinit var username: TextInputEditText
+    private lateinit var password: TextInputEditText
+    private lateinit var usernameLayout: TextInputLayout
+    private lateinit var passwordLayout: TextInputLayout
     private lateinit var loginBtn: AppCompatButton
     private lateinit var progBar: CircularProgressIndicator
     private lateinit var signup: TextView
@@ -51,9 +55,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
+
+        usernameLayout = findViewById(R.id.layout_username)
+        passwordLayout = findViewById(R.id.layout_password)
 
         loginBtn = findViewById(R.id.btnLogin)
 

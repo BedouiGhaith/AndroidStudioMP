@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.models.Order
-import com.androidproject.app.appcomponents.models.Product
 
 class MyOrderFragment : Fragment() {
 
@@ -15,7 +14,6 @@ class MyOrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_my_order, container, false)
     }
 

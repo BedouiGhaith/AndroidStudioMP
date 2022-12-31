@@ -27,6 +27,7 @@ import java.lang.reflect.Type
 import java.text.DecimalFormat
 
 
+@Suppress("UNCHECKED_CAST", "CAST_NEVER_SUCCEEDS")
 class CartFragment : Fragment() {
 
 
@@ -38,12 +39,9 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val sharedPreferences= requireActivity().getSharedPreferences("shared preferences",
             Context.MODE_PRIVATE)
-
         val gson = Gson()
-
         val jsonProduct = sharedPreferences.getString("products", null)
         val jsonQuantity = sharedPreferences.getString("quantity", null)
 
@@ -63,22 +61,21 @@ class CartFragment : Fragment() {
 
             val orderTxt: TextView = view?.findViewById(R.id.order_txt)!!
             val totalTxt: TextView = view?.findViewById(R.id.total_txt)!!
+            val shippingTxt: TextView = view?.findViewById(R.id.shipping_txt)!!
 
             val order:Button = view?.findViewById(R.id.validate_cart)!!
-            var clear:Button = view?.findViewById(R.id.clear_cart)!!
-
+            val clear:Button = view?.findViewById(R.id.clear_cart)!!
 
             recyclerview.layoutManager = LinearLayoutManager(requireActivity())
-
 
             val adapter = CartAdapter(productList, quantityList,requireContext(),childFragmentManager)
 
             recyclerview.adapter = adapter
 
-            calculate(orderTxt, totalTxt, productList, quantityList)
+            calculate(orderTxt, totalTxt,shippingTxt, productList, quantityList)
 
-            recyclerview.setOnClickListener() {
-                calculate(orderTxt, totalTxt, productList, quantityList)
+            recyclerview.setOnClickListener {
+                calculate(orderTxt, totalTxt,shippingTxt, productList, quantityList)
             }
 
             adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
@@ -86,7 +83,7 @@ class CartFragment : Fragment() {
                     if (productList.isEmpty()){
                         requireActivity().onBackPressed()
                     }
-                    price= calculate(orderTxt, totalTxt, productList, quantityList)
+                    price= calculate(orderTxt, totalTxt,shippingTxt, productList, quantityList)
                 }
             })
 
@@ -94,6 +91,28 @@ class CartFragment : Fragment() {
                 val myOrder = Order(id = null,
                     (this.activity as FragmentContainerActivity?)?.getLogin(), productList, quantityList,"Pending",price, responder = null)
                 orderProducts(myOrder)
+            }
+            clear.setOnClickListener {
+                productList.clear()
+                quantityList.clear()
+
+
+                val editor =  requireActivity().getSharedPreferences("shared preferences",
+                    Context.MODE_PRIVATE).edit()
+
+                val gson = Gson()
+
+
+                val jsonProduct: String = gson.toJson(productList)
+                val jsonQuanutity: String = gson.toJson(quantityList)
+
+                editor.putString("products", jsonProduct)
+                editor.apply()
+
+                editor.putString("quantity", jsonQuanutity)
+                editor.apply()
+
+                requireActivity().onBackPressed()
 
             }
         }
@@ -131,8 +150,9 @@ class CartFragment : Fragment() {
 
     }
 
-    fun calculate(orderTxt: TextView, totalTxt: TextView, productList:ArrayList<Product>, quantityList: ArrayList<Int>): Float {
+    fun calculate(orderTxt: TextView, totalTxt: TextView,shippingTxt: TextView, productList:ArrayList<Product>, quantityList: ArrayList<Int>): Float {
         var total = 0F
+        val shipping = 2F
         val dec = DecimalFormat("#,###.00")
         var i = 0
         productList.forEach { p ->
@@ -141,7 +161,9 @@ class CartFragment : Fragment() {
         }
         var totalF = dec.format(total)
         orderTxt.text=totalF.toString()
-        total=+2F
+        total += shipping
+        val shippingF = dec.format(shipping)
+        shippingTxt.text= shippingF
         totalF = dec.format(total)
         totalTxt.text = totalF.toString()
         return total

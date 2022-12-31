@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.Product
+import com.bumptech.glide.Glide
 import com.google.android.material.textfield.TextInputEditText
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,17 +33,16 @@ class AddProductFragment : Fragment() {
     private lateinit var add:Button
 
     private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        uri?.let { previewImage.setImageURI(uri) }
+        uri?.let { Glide.with(requireContext()).load(uri).into(previewImage) }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_product, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         previewImage = view.findViewById(R.id.preview_product_admin)
@@ -61,7 +61,7 @@ class AddProductFragment : Fragment() {
                 val apiInterface = ApiInterface.create()
 
                 val bitmap = previewImage.drawable.toBitmap()
-                val product= Product(id=null, name=name.text.toString(), price = price.text.toString(), image = BitMapToString(bitmap))
+                val product= Product(id=null, name=name.text.toString(), price = price.text.toString(), image = bitMapToString(bitmap))
 
 
 
@@ -70,7 +70,7 @@ class AddProductFragment : Fragment() {
                         val result= response.body()
                         if (result != null) {
                             Toast.makeText(requireContext(), "Product Added " + result.id!!, Toast.LENGTH_SHORT).show()
-                            previewImage.setImageResource(android.R.color.transparent);
+                            previewImage.setImageResource(android.R.color.transparent)
                             name.setText("")
                             price.setText("")
                         }else{
@@ -93,7 +93,7 @@ class AddProductFragment : Fragment() {
 
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
-    fun BitMapToString(bitmap: Bitmap): String {
+    private fun bitMapToString(bitmap: Bitmap): String {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b = baos.toByteArray()

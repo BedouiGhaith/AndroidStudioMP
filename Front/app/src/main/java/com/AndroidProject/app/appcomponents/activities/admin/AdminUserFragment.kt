@@ -1,19 +1,16 @@
 package com.androidproject.app.appcomponents.activities.admin
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
-import com.androidproject.app.appcomponents.activities.transporter.OrderFragmentContainer
-import com.androidproject.app.appcomponents.adapters.OrderAdapter
 import com.androidproject.app.appcomponents.adapters.UserAdapter
 import com.androidproject.app.appcomponents.connection.ApiInterface
-import com.androidproject.app.appcomponents.models.Order
 import com.androidproject.app.appcomponents.models.User
 import retrofit2.Call
 import retrofit2.Callback

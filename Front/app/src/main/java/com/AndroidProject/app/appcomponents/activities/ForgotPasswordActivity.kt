@@ -37,7 +37,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private fun validateInput(): Boolean {
 
-        if (etEmail.text.toString().equals("")) {
+        if (etEmail.text.toString() == "") {
             etEmail.error = "Please Enter Email"
             return false
         }

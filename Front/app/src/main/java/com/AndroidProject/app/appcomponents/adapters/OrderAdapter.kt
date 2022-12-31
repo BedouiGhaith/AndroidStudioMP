@@ -27,8 +27,6 @@ class OrderAdapter(
     val context: Context,
     val user: User): RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
 
-
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
 
         val name: TextView
@@ -75,6 +73,7 @@ class OrderAdapter(
             android.R.layout.simple_list_item_2, arrayOf("line1", "line2"), intArrayOf(android.R.id.text1, android.R.id.text2)
         )
         holder.productsList.adapter = sa
+        if(!dataSet[position].product?.isEmpty()!!)
         holder.productsList.post {
             if (willMyListScroll(holder.productsList)) {
                 holder.productsList.setOnTouchListener { v, _ ->
@@ -95,20 +94,22 @@ class OrderAdapter(
                 bundle.putSerializable("EXTRA_ORDER", dataSet[holder.layoutPosition])
                 fragobj = OrderDetailsFragment()
                 view = R.id.fragmentContainerView3
+                fragobj.arguments = bundle
+                val fm: FragmentManager = (context as AppCompatActivity).supportFragmentManager
+                fm.beginTransaction().replace(view, fragobj).addToBackStack(null).commit()
 
-            }else {
+            }else if (user.role=="user") {
                 val intent = Intent(context, MyOrderFragment::class.java)
                 intent.putExtra("EXTRA_ORDER", dataSet[holder.layoutPosition] as Serializable)
                 bundle = Bundle()
                 bundle.putSerializable("EXTRA_ORDER", dataSet[holder.layoutPosition])
                 fragobj = MyOrderFragment()
                 view = R.id.fragmentContainerView
+                fragobj.arguments = bundle
+                val fm: FragmentManager = (context as AppCompatActivity).supportFragmentManager
+                fm.beginTransaction().replace(view, fragobj).addToBackStack(null).commit()
             }
 
-
-            fragobj.arguments = bundle
-            val fm: FragmentManager = (context as AppCompatActivity).supportFragmentManager
-            fm.beginTransaction().replace(view, fragobj).addToBackStack(null).commit()
         }
     }
 
