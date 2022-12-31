@@ -12,17 +12,15 @@ import orderRouter from "./routes/orderRouter.js";
 import bodyParser from 'body-parser'
 const app = express();
 
-const hostname = '127.0.0.1'
 const port = process.env.PORT || 9090;
-const databaseName = 'AndroidMP';
 
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 
 mongoose
-    .connect(`mongodb://localhost:27017/${databaseName}`)
+    .connect('mongodb+srv://medtech:Kc7VUeSYoeZ7LTjM@atlascluster.qb2ht6o.mongodb.net/?retryWrites=true&w=majority')
     .then(() => {
-        console.log(`Connected to aaaa ${databaseName}`);
+        console.log(`Connected to DataBase`);
     })
     .catch(err => {
         console.log(err);
