@@ -22,7 +22,7 @@ mongoose.Promise = global.Promise;
 mongoose
     .connect(`mongodb://localhost:27017/${databaseName}`)
     .then(() => {
-        console.log(`Connected to ${databaseName}`);
+        console.log(`Connected to aaaa ${databaseName}`);
     })
     .catch(err => {
         console.log(err);
