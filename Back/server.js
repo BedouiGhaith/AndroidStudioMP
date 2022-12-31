@@ -10,6 +10,7 @@ import product from "./models/product.js";
 import pharmacy from "./models/pharmacy.js";
 import orderRouter from "./routes/orderRouter.js";
 import bodyParser from 'body-parser'
+import exp from "constants";
 const app = express();
 
 const port = process.env.PORT || 9090;
@@ -52,5 +53,3 @@ app.get("/welcome", auth, (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
   });
-
-export default app;
