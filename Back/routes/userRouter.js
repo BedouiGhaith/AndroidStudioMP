@@ -7,7 +7,7 @@ import multerConfig from "../middlewares/multer-config.js";
 const router =express.Router();
 
 router.route('/')
-    .post(body('username').isLength({min: 5}),
+    .post(body('username'),
     body('password'),
     addOnce);
 
