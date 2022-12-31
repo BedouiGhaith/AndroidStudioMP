@@ -4,8 +4,6 @@ import com.androidproject.app.appcomponents.models.Order
 import com.androidproject.app.appcomponents.models.Pharmacy
 import com.androidproject.app.appcomponents.models.Product
 import com.androidproject.app.appcomponents.models.User
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -28,6 +26,12 @@ interface ApiInterface {
 
     @POST("user/reset")
     fun reset(@Body map: Map<String,String>): Call<String>
+
+    @GET("user/checkUsername/{username}")
+    fun checkUsername(@Path("username") username:String): Call<Int>
+
+    @GET("user/checkEmail/{email}")
+    fun checkEmail(@Path("email") email:String): Call<Int>
 
     @POST("user/reset/validate")
     fun validate(@Body map: Map<String, String?>): Call<String>
@@ -57,8 +61,8 @@ interface ApiInterface {
     @POST("orders/add")
     fun commandesAdd(@Body order: Order): Call<Order>
 
-    @GET("orders/transporter/{status}")
-    fun commandesStatus(@Path("status") status: String): Call<List<Order>>
+    @GET("orders/transporter/{status}/{id}")
+    fun commandesStatus(@Path("status") status: String, @Path("id") id: String): Call<List<Order>>
 
     @POST("orders/transporter/accept")
     fun commandeAccept(@Body order: Order): Call<Order>

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
 import com.androidproject.app.R
-import com.androidproject.app.appcomponents.activities.ProductsFragment
 import com.androidproject.app.appcomponents.models.User
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

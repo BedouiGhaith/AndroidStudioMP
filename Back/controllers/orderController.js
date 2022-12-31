@@ -46,18 +46,25 @@ export function getOnce(req, res) {
         });
 }
 
-export function getByUserId(req, res) {
+export async function getByUserId(req, res) {
+    console.log(req.params.id)
     Order
-        .find({ "order.user._id": req.params._id }).populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
+        .find({user: req.params.id}).populate([{
+            path: 'product',
+            populate: {path: 'pharmacy', populate: {path: 'owner'}}
+        }, {path: 'user'}, {path: 'responder'}])
         .then(doc => {
             res.status(200).json(doc);
+            console.log(doc)
         })
         .catch(err => {
-            res.status(500).json({ error: err });
+            res.status(500).json({error: err});
         });
 }
 
 export function getPending(req, res) {
+    console.log("route")
+
     Order
         .find({ responder: req.params._id, status : "On Route" })
         .populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
@@ -70,8 +77,10 @@ export function getPending(req, res) {
 }
 
 export function getFinished(req, res) {
+    console.log("finished")
+
     Order
-        .find({ "order.responder._id": req.params._id, "order.status" : 'Finished' })
+        .find({ responder: req.params._id, status : "Finished" })
         .populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
         .then(doc => {
             res.status(200).json(doc);
@@ -82,8 +91,10 @@ export function getFinished(req, res) {
 }
 
 export function getByStatus(req, res) {
+    console.log("status")
+
     Order
-        .find({ "order.status": req.params.status })
+        .find({ status: req.params.status })
         .populate([{path: 'product', populate: {path: 'pharmacy', populate: {path: 'owner'}}},{path: 'user'},{path: 'responder'}])
         .then(doc => {
             res.status(200).json(doc);

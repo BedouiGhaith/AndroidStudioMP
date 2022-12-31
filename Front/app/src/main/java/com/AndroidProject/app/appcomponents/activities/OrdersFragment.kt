@@ -20,8 +20,6 @@ import retrofit2.Response
 class OrdersFragment : Fragment() {
 
     lateinit var  rv: RecyclerView
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,10 +30,8 @@ class OrdersFragment : Fragment() {
 
         val user = (this.activity as FragmentContainerActivity).getLogin()
 
-
         rv = view?.findViewById(R.id.f_orders_rv)!!
         rv.layoutManager = LinearLayoutManager(requireActivity())
-
 
         val apiInterface  = ApiInterface.create()
         var orders: List<Order>
@@ -43,31 +39,18 @@ class OrdersFragment : Fragment() {
         apiInterface.commandesUser(user.id!!).enqueue(object :
             Callback<List<Order>> {
             override fun onResponse(call: Call<List<Order>>, response: Response<List<Order>>) {
-
-                println("retrofit "+response.raw())
-
                 if (response.body() != null){
-
                     orders = response.body()!!
-                    Toast.makeText(requireContext(), "My Orders.", Toast.LENGTH_SHORT).show()
-
                     val adapter = OrderAdapter(orders.asReversed(),requireActivity(),user)
                     rv.adapter = adapter
-
                 }else{
-
-                    Toast.makeText(requireContext(), "Your first order is yet to be made!", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(requireContext(), "Empty!", Toast.LENGTH_SHORT).show()
                 }
             }
-
             override fun onFailure(call: Call<List<Order>>, t: Throwable) {
-
                 println(t.printStackTrace())
                 Toast.makeText(requireContext(), "Connexion error!", Toast.LENGTH_SHORT).show()
-
             }
-
         })
     }
 }

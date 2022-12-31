@@ -16,6 +16,7 @@
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/add_to_cart_background.xml" value="0.124" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/card_radius.xml" value="0.2325" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/corner_radius.xml" value="0.2315" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/corner_radius_no_padding.xml" value="0.2315" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2325" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/logout.xml" value="0.123" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/drawable/rectangle_bg_amber_a400_radius_tl_20_bl_20.xml" value="0.124" />
@@ -59,6 +60,7 @@
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_all_orders.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_cart.xml" value="0.4" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_modify_product.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_my_order.xml" value="0.11145833333333334" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_order.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_order_details.xml" value="0.264" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_orders.xml" value="0.2006340579710145" />
@@ -68,6 +70,7 @@
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_product_details.xml" value="0.2108843537414966" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_products.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
+        <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/fragment_user_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/layout_progress_dialog.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/order_row.xml" value="0.2006340579710145" />
         <entry key="..\:/Users/bedou/OneDrive/Documents/GitHub/AndroidStudioMP/Front/app/src/main/res/layout/pending_order_row.xml" value="0.2006340579710145" />

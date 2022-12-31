@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.text.isDigitsOnly
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.androidproject.app.R
@@ -56,7 +58,6 @@ class ProfileFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_profile, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         logout = view.findViewById(R.id.logout_btn)
@@ -92,55 +93,71 @@ class ProfileFragment : Fragment() {
         logout.setOnClickListener { showAlertDialog() }
 
         edit.setOnClickListener {
+            if (validator(
+                    emailEdit, emailLayout,
+                    usernameEdit, usernameLayout,
+                    passwordEdit, passwordLayout,
+                    confirmEdit, confirmLayout,
+                    addressEdit, addressLayout,
+                    phoneEdit, phoneLayout
+                )
+            ) {
 
-            val newUser = User(id=user.id,
-                username = usernameEdit.text.toString(),
-                password = passwordEdit.text.toString(),
-                email = emailEdit.text.toString(),
-                address = addressEdit.text.toString(),
-                phone = phoneEdit.text.toString(),
-                role = user.role,
-                token = user.token)
+                val newUser = User(
+                    id = user.id,
+                    username = usernameEdit.text.toString(),
+                    password = passwordEdit.text.toString(),
+                    email = emailEdit.text.toString(),
+                    address = addressEdit.text.toString(),
+                    phone = phoneEdit.text.toString(),
+                    role = user.role,
+                    token = user.token
+                )
 
-            val requestBody = mapOf("email" to emailEdit.text.toString())
+                val requestBody = mapOf("email" to emailEdit.text.toString())
 
-            val apiInterface = ApiInterface.create()
+                val apiInterface = ApiInterface.create()
 
-            apiInterface.reset(requestBody).enqueue(object : Callback<String> {
+                apiInterface.reset(requestBody).enqueue(object : Callback<String> {
 
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    val code = response.body()
-                    println("" + response.raw())
-                    if (code != null) {
-                        Toast.makeText(
-                            requireActivity(),
-                            "Code Sent Successfully, check your Email!",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        showAlertWithTextInputLayout(requireContext(),requireActivity(), newUser, code)
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        val code = response.body()
+                        println("" + response.raw())
+                        if (code != null) {
+                            Toast.makeText(
+                                requireActivity(),
+                                "Code Sent Successfully, check your Email!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            showAlertWithTextInputLayout(
+                                requireContext(),
+                                requireActivity(),
+                                newUser,
+                                code
+                            )
 
-                    } else {
-                        Toast.makeText(
-                            requireActivity(),
-                            "No Such Email Exist",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        } else {
+                            Toast.makeText(
+                                requireActivity(),
+                                "No Such Email Exist",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    println(t.printStackTrace())
-                    Toast.makeText(
-                        requireActivity(),
-                        "Connexion error!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        println(t.printStackTrace())
+                        Toast.makeText(
+                            requireActivity(),
+                            "Connexion error!",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
 
-                }
-            })
+                    }
+                })
+            }
         }
-
     }
     private fun showAlertDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
@@ -169,7 +186,7 @@ class ProfileFragment : Fragment() {
     }
     private fun showAlertWithTextInputLayout(context: Context,activity: Activity,user: User, code: String) {
         val textInputLayout = TextInputLayout(context)
-        textInputLayout.setPadding(resources.getDimensionPixelOffset(R.dimen._19sp)) // if you look at android alert_dialog.xml, you will see the message textview have margin 14dp and padding 5dp. This is the reason why I use 19 here 0, resources.getDimensionPixelOffset(R.dimen.dp_19), 0)
+        textInputLayout.setPadding(resources.getDimensionPixelOffset(R.dimen._19sp))
         val input = EditText(context)
         textInputLayout.hint = "Email"
         textInputLayout.addView(input)
@@ -225,5 +242,63 @@ class ProfileFragment : Fragment() {
 
             })
 
+    }
+    private fun validator(
+        emailEdit: TextInputEditText,
+        emailLayout: TextInputLayout,
+        usernameEdit: TextInputEditText,
+        usernameLayout: TextInputLayout,
+        passwordEdit: TextInputEditText,
+        passwordLayout: TextInputLayout,
+        confirmEdit: TextInputEditText,
+        confirmLayout: TextInputLayout,
+        addressEdit: TextInputEditText,
+        addressLayout: TextInputLayout,
+        phoneEdit: TextInputEditText,
+        phoneLayout: TextInputLayout
+    ): Boolean {
+
+        var result = true
+
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailEdit.text.toString()).matches()|| emailEdit.text.toString().isEmpty()) {
+            emailLayout.error= "Email not valid!"
+            result = false
+        }/*else if{}*/else emailLayout.isErrorEnabled= false
+        if(usernameEdit.text.toString().length<5 ) {
+            usernameLayout.isErrorEnabled= false
+            result = false
+        }else
+            if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
+                usernameLayout.error = "Username must be only digits and numbers!"
+                result = false
+            }/*else if{}*/else usernameLayout.isErrorEnabled= false
+        if (isValidPassword(passwordEdit.text.toString())!= "valid"){
+            passwordLayout.error= isValidPassword(passwordEdit.text.toString())
+            result = false
+        }else passwordLayout.isErrorEnabled= false
+        if(confirmEdit.text.toString()!=passwordEdit.text.toString()){
+            confirmLayout.error = "Entry is different from the entered Password!"
+            result = false
+        }else confirmLayout.isErrorEnabled= false
+        if(addressEdit.text.toString().isEmpty()){
+            addressLayout.error = "Enter Address!"
+            result = false
+        }else addressLayout.isErrorEnabled= false
+        if(phoneEdit.text.toString().isEmpty()||!phoneEdit.text.toString().isDigitsOnly()){
+            phoneLayout.error = "Enter a valid phone number!"
+            result = false
+        }else phoneLayout.isErrorEnabled= false
+        return result
+    }
+
+    private fun isValidPassword(password: String): String {
+        println("password $password")
+        if (password.length < 8) return "Password must be at least 8 characters!"
+        if (password.firstOrNull { it.isDigit() } == null) return "It must have at least 1 digit!"
+        if (password.filter { it.isLetter() }.firstOrNull { it.isUpperCase() } == null) return "Password must have at least 1 uppercase letter!"
+        if (password.filter { it.isLetter() }.firstOrNull { it.isLowerCase() } == null) return "Password must have at least 1 lowercase letter!"
+        if (password.firstOrNull { !it.isLetterOrDigit() } != null) return "Password must only have letters and digits!"
+
+        return "valid"
     }
 }

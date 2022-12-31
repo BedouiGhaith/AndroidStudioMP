@@ -13,6 +13,7 @@ import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
+
 class EmailActivity: AppCompatActivity() {
 
     val RC_SIGN_IN = 123
@@ -30,9 +31,10 @@ class EmailActivity: AppCompatActivity() {
             .requestEmail()
             .build()
 
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         sign_in_google.visibility = View.VISIBLE
+
 
         sign_in_google.setOnClickListener{
             val signInIntent = mGoogleSignInClient.signInIntent
@@ -45,6 +47,7 @@ class EmailActivity: AppCompatActivity() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -61,10 +64,10 @@ class EmailActivity: AppCompatActivity() {
             sign_in_google.visibility = View.GONE
 
             val mIntent = Intent(this, EmailAndAddressActivity::class.java)
-            mIntent.putExtra("email", account.email);
-            mIntent.putExtra("idToken", account.idToken);
-            mIntent.putExtra("serverAuthCode", account.serverAuthCode);
-            startActivity(mIntent);
+            mIntent.putExtra("email", account.email)
+            mIntent.putExtra("idToken", account.idToken)
+            mIntent.putExtra("serverAuthCode", account.serverAuthCode)
+            startActivity(mIntent)
 
 
 

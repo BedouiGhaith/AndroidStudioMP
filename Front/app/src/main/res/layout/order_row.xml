@@ -69,7 +69,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="100dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/corner_radius"
+            android:background="@drawable/corner_radius_no_padding"
             android:cacheColorHint="#FFFFFF"
             android:nestedScrollingEnabled="false"
             android:transcriptMode="alwaysScroll"

@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.adapters.ProductAdapter
@@ -57,8 +56,6 @@ class ProductsFragment : Fragment() {
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
 
                 val products = response.body()
-
-                println(""+response.raw())
                 if (products != null){
                     val data = ArrayList<Product>()
 
