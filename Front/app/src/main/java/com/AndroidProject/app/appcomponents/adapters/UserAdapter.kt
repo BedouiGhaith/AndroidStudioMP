@@ -19,15 +19,11 @@ import java.io.Serializable
 class UserAdapter(private val dataSet: List<User>,
                   val context: Context,
                   val user: User,
-) :
-    RecyclerView.Adapter<UserAdapter.ViewHolder>()  {
-
+) : RecyclerView.Adapter<UserAdapter.ViewHolder>()  {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         val username: TextView
         val email: TextView
         val id: TextView
-
-
         init {
             username = view.findViewById(R.id.admin_users_username)
             email = view.findViewById(R.id.admin_users_email)

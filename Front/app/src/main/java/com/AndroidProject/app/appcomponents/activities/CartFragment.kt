@@ -68,7 +68,7 @@ class CartFragment : Fragment() {
 
             recyclerview.layoutManager = LinearLayoutManager(requireActivity())
 
-            val adapter = CartAdapter(productList, quantityList,requireContext(),childFragmentManager)
+            val adapter = CartAdapter(productList, quantityList,requireContext())
 
             recyclerview.adapter = adapter
 

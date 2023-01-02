@@ -8,19 +8,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.connection.ApiInterface
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class EmailVerify : AppCompatActivity() {
 
-    lateinit var reset: Button
-    lateinit var codeText : EditText
+    private lateinit var reset: Button
+    private lateinit var codeText : EditText
     lateinit var password : EditText
-    lateinit var passwordv : EditText
-
-
+    private lateinit var passwordv : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +42,6 @@ class EmailVerify : AppCompatActivity() {
             Toast.makeText(this, code, Toast.LENGTH_SHORT).show()
 
 
-            var email = if (extras == null) {
-                "email_verif"
-            } else {
-                extras.getString("email_verif")
-            }
 
             if (validateInput(codeText.text.toString(),code)) {
 

@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from "mongoose";
 import user from "./models/user.js";
 import userRouter from "./routes/userRouter.js";
+import serverless from 'serverless-http';
+
 import productRouter from "./routes/productRouter.js";
 import pharmacyRouter from "./routes/pharmacyRouter.js";
 import authentificationRouter from "./routes/authentificationRouter.js"
@@ -53,3 +55,5 @@ app.get("/welcome", auth, (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
   });
+
+export default serverless(app)

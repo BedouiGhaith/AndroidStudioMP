@@ -1,7 +1,6 @@
 package com.androidproject.app.appcomponents.connection
 
 import com.androidproject.app.appcomponents.models.Order
-import com.androidproject.app.appcomponents.models.Pharmacy
 import com.androidproject.app.appcomponents.models.Product
 import com.androidproject.app.appcomponents.models.User
 import retrofit2.Call
@@ -48,9 +47,6 @@ interface ApiInterface {
     @POST("product/delete")
     fun deleteProducts(@Body product: Product): Call<Product>
 
-    @GET("pharmacy")
-    fun pharmacies(): Call<List<Pharmacy>>
-
     @GET("orders")
     fun commandes(): Call<List<Order>>
 
@@ -75,7 +71,7 @@ interface ApiInterface {
 
     companion object {
 
-        private var BASE_URL = "http://192.168.1.3:9090/"
+        private var BASE_URL = "https://medtech-service-web.onrender.com"
 
         fun create() : ApiInterface {
 

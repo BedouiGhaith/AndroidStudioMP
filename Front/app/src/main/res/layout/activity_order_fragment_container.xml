@@ -40,7 +40,9 @@
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_pending_order_green" />
+                app:srcCompat="@drawable/ic_pending_order_green"
+                tools:ignore="ImageContrastCheck"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -62,14 +64,15 @@
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_enroute_green" />
+                app:srcCompat="@drawable/ic_enroute_green"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Pending" />
+                android:text="On Route" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +87,8 @@
                 android:layout_width="20sp"
                 android:layout_height="20sp"
                 android:layout_gravity="center"
-                app:srcCompat="@drawable/ic_done_order_green" />
+                app:srcCompat="@drawable/ic_done_order_green"
+                tools:ignore="ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView9"
@@ -110,7 +114,7 @@
                 android:foregroundGravity="center"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_user_green"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,ImageContrastCheck" />
 
             <TextView
                 android:id="@+id/textView15"

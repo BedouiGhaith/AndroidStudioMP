@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.SearchView
+import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -25,6 +28,8 @@ import java.lang.reflect.Type
 class ProductsFragment : Fragment() {
 
     lateinit var recyclerview: RecyclerView
+    private lateinit var search: SearchView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -32,7 +37,8 @@ class ProductsFragment : Fragment() {
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
-        recyclerview = view?.findViewById(R.id.p_recycler)!!
+        recyclerview = itemView.findViewById(R.id.p_recycler)
+        search = itemView.findViewById(R.id.search_view)
 
         val sharedPreferencesL = requireActivity().getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
 
@@ -66,6 +72,27 @@ class ProductsFragment : Fragment() {
                     val adapter = ProductAdapter(data,requireActivity(), user)
 
                     recyclerview.adapter = adapter
+
+                    search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                        override fun onQueryTextSubmit(p0: String?): Boolean {
+                            return false
+                        }
+
+                        override fun onQueryTextChange(msg: String): Boolean {
+                            val filteredlist: ArrayList<Product> = ArrayList()
+                            for (item in products) {
+                                if (item.name!!.lowercase().contains(search.query.toString().lowercase())) {
+                                    filteredlist.add(item)
+                                }
+                            }
+                            if (filteredlist.isEmpty()) {
+                                Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
+                            } else {
+                                adapter.filterList(filteredlist)
+                            }
+                            return false
+                        }
+                    })
                 }else{
                     Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show()
                 }
@@ -80,6 +107,28 @@ class ProductsFragment : Fragment() {
 
         })
 
+    }
+    private fun filter(text: String, product: ArrayList<Product>,rv: ProductAdapter) {
+        // creating a new array list to filter our data.
+        val filteredlist: ArrayList<Product> = ArrayList()
 
+        // running a for loop to compare elements.
+        for (item in product) {
+            // checking if the entered string matched with any item of our recycler view.
+            if (item.name!!.lowercase().contains(text.lowercase())) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item)
+            }
+        }
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            rv.filterList(filteredlist)
+        }
     }
-    }
+}

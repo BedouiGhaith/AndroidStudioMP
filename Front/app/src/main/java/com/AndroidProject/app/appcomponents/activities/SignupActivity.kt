@@ -110,11 +110,6 @@ class SignupActivity : AppCompatActivity() {
                     }
                 })
 
-                emailSignUp.setOnClickListener {
-                    val start = Intent(this, EmailActivity::class.java)
-                    startActivity(start)
-                }
-
             }
 
         }

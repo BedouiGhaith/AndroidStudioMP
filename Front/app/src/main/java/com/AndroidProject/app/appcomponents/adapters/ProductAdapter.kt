@@ -1,5 +1,6 @@
 package com.androidproject.app.appcomponents.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -23,27 +24,27 @@ import java.io.Serializable
 
 
 class ProductAdapter(
-    private val dataSet: ArrayList<Product>,
+    private var dataSet: ArrayList<Product>,
     val context: Context,
     val user: User,
 ) :
     RecyclerView.Adapter<ProductAdapter.ViewHolder>()  {
-
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         val name: TextView
         val image: ImageView
         val price: TextView
-
-
         init {
             name = view.findViewById(R.id.item_product_name)
             image = view.findViewById(R.id.item_product_image)
             price = view.findViewById(R.id.item_product_price)
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.row_home, viewGroup, false)
+
+
         return ViewHolder(view)
     }
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
@@ -87,5 +88,10 @@ class ProductAdapter(
         }
     }
     override fun getItemCount() = dataSet.size
+
+    fun filterList(filterlist: ArrayList<Product>) {
+        dataSet = filterlist
+        notifyDataSetChanged()
+    }
 
 }

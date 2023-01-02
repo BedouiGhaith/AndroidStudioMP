@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
+import com.androidproject.app.appcomponents.utils.UserAndEmailCheck
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
@@ -144,15 +145,23 @@ class UserDetailsFragment : Fragment() {
         if(!Patterns.EMAIL_ADDRESS.matcher(emailEdit.text.toString()).matches()|| emailEdit.text.toString().isEmpty()) {
             emailLayout.error= "Email not valid!"
             result = false
-        }/*else if{}*/else emailLayout.isErrorEnabled= false
+        }else{
+            UserAndEmailCheck().checkEmail(emailEdit.text.toString(),emailLayout)
+            if(emailLayout.isErrorEnabled){
+                result=  false
+            }}
         if(usernameEdit.text.toString().length<5 ) {
-            usernameLayout.isErrorEnabled= false
+            usernameLayout.error = "Username is too short!"
             result = false
-        }else
-        if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
+        } else if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
             usernameLayout.error = "Username must be only digits and numbers!"
             result = false
-        }/*else if{}*/else usernameLayout.isErrorEnabled= false
+        }else {
+            UserAndEmailCheck().checkUsername(usernameEdit.text.toString(), usernameLayout)
+            if(usernameLayout.isErrorEnabled){
+                result = false
+            }
+        }
         if (isValidPassword(passwordEdit.text.toString())!= "valid"){
             passwordLayout.error= isValidPassword(passwordEdit.text.toString())
             result = false

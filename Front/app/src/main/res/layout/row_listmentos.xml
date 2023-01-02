@@ -22,7 +22,6 @@
 
             <ImageView
                 android:id="@+id/imageImageTwentyTwo"
-                imageRes="@{@drawable/img_image22}"
                 android:layout_width="@dimen/_127pxh"
                 android:layout_height="@dimen/_129pxh"
                 android:layout_gravity="center"

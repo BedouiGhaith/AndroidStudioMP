@@ -30,7 +30,7 @@ import retrofit2.Response
 
 class ProfileFragment : Fragment() {
 
-    lateinit var logout:LinearLayout
+    private lateinit var logout:LinearLayout
 
     private lateinit var emailEdit:TextInputEditText
     private lateinit var emailLayout: TextInputLayout
@@ -41,16 +41,16 @@ class ProfileFragment : Fragment() {
     private lateinit var passwordEdit:TextInputEditText
     private lateinit var passwordLayout: TextInputLayout
 
-    lateinit var confirmEdit:TextInputEditText
-    lateinit var confirmLayout: TextInputLayout
+    private lateinit var confirmEdit:TextInputEditText
+    private lateinit var confirmLayout: TextInputLayout
 
-    lateinit var addressEdit:TextInputEditText
-    lateinit var addressLayout: TextInputLayout
+    private lateinit var addressEdit:TextInputEditText
+    private lateinit var addressLayout: TextInputLayout
 
-    lateinit var phoneEdit:TextInputEditText
-    lateinit var phoneLayout: TextInputLayout
+    private lateinit var phoneEdit:TextInputEditText
+    private lateinit var phoneLayout: TextInputLayout
 
-    lateinit var edit:Button
+    private lateinit var edit:Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -51,14 +51,10 @@ class EmailAndAddressActivity : AppCompatActivity() {
             val apiInterface = ApiInterface.create()
 
             val email: String
-            val idToken: String
-            val serverAuthCode: String
 
             val extras = intent.extras
             if (extras != null) {
                 email = extras.getString("email").toString()
-                idToken = extras.getString("idToken").toString()
-                serverAuthCode = extras.getString("serverAuthCode").toString()
             } else return
 
             window.setFlags(

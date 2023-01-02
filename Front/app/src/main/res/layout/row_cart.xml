@@ -15,11 +15,9 @@
 
         <ImageView
             android:id="@+id/cart_row_image"
-            cornerRadius="@{@dimen/_6pxh}"
-            imageRes="@{@drawable/img_image134_80x70}"
             android:layout_width="@dimen/_70pxh"
             android:layout_height="match_parent"
-            android:layout_marginStart="16px"
+            android:layout_marginStart="16dp"
             android:scaleType="fitXY"
             tools:ignore="ContentDescription"
             tools:src="@drawable/img_image134_80x70" />
@@ -88,7 +86,7 @@
                 <TextView
                     android:id="@+id/cart_row_price"
                     style="@style/txtOverpassbold18_1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:ellipsize="end"
@@ -102,7 +100,7 @@
                     style="@style/groupStylegray_51cornerRadius"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="0sp"
+                    android:layout_marginEnd="0sp"
                     android:orientation="horizontal">
 
                     <FrameLayout

@@ -1,11 +1,9 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,23 +14,19 @@ import com.androidproject.app.appcomponents.activities.transporter.OrderFragment
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.Task
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.reflect.Type
 
 
+@Suppress("DEPRECATION")
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var username: TextInputEditText
@@ -43,13 +37,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var progBar: CircularProgressIndicator
     private lateinit var signup: TextView
 
-    lateinit var gso: GoogleSignInOptions
-    lateinit var gsc: GoogleSignInClient
-    lateinit var sign_in_button: SignInButton
+    lateinit var signInButton: SignInButton
     lateinit var forgotPassword: TextView
 
-
-    val RC_SIGN_IN = 123
+    private val rcSignIn = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,8 +58,8 @@ class LoginActivity : AppCompatActivity() {
 
         signup = findViewById(R.id.txtSignup)
 
-        sign_in_button = findViewById(R.id.sign_in_button)
-        sign_in_button.setSize(SignInButton.SIZE_STANDARD)
+        signInButton = findViewById(R.id.sign_in_button)
+        signInButton.setSize(SignInButton.SIZE_STANDARD)
 
         forgotPassword = findViewById(R.id.txtForgotPassword)
 
@@ -77,17 +68,17 @@ class LoginActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        sign_in_button.visibility = View.VISIBLE
-        sign_in_button.setOnClickListener{
+        signInButton.visibility = View.VISIBLE
+        signInButton.setOnClickListener{
             mGoogleSignInClient.signOut()
             val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+            startActivityForResult(signInIntent, rcSignIn)
         }
         val acct = GoogleSignIn.getLastSignedInAccount(this)
         if (acct != null) {
-            sign_in_button.visibility = View.VISIBLE
+            signInButton.visibility = View.VISIBLE
 
         }
 
@@ -192,25 +183,22 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == rcSignIn) {
 
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleSignInResult(task)
+            handleSignInResult()
         }
     }
-    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+    private fun handleSignInResult() {
         try {
-            val account = completedTask.getResult(ApiException::class.java)
-
-            //sign_in_button.visibility = View.GONE
             Toast.makeText(this@LoginActivity, "Login Success", Toast.LENGTH_SHORT).show()
 
         } catch (e: ApiException) {
 
-            sign_in_button.visibility = View.VISIBLE
+            signInButton.visibility = View.VISIBLE
             println(e.printStackTrace())
 
         }
