@@ -2,6 +2,7 @@ package com.androidproject.app.appcomponents.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -47,10 +48,17 @@ class EmailVerify : AppCompatActivity() {
 
                 val requestBody = mapOf("email" to (extras?.getString("email_verif")), "password" to password.text.toString())
 
+                window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                )
 
                 apiInterface.validate(requestBody).enqueue(object : Callback<String> {
 
+
                     override fun onResponse(call: Call<String>, response: Response<String>) {
+                        window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         val res = response.body()
                         println("" + response.raw())
                         if (res != null) {
@@ -71,6 +79,8 @@ class EmailVerify : AppCompatActivity() {
                         }
                     }
                     override fun onFailure(call: Call<String>, t: Throwable) {
+                        window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         println(t.printStackTrace())
                         Toast.makeText(
                             this@EmailVerify,

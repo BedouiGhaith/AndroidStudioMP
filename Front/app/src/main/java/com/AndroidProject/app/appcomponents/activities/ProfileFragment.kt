@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -19,10 +21,13 @@ import androidx.core.text.isDigitsOnly
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.androidproject.app.R
+import com.androidproject.app.appcomponents.activities.admin.AdminFragmentContainer
 import com.androidproject.app.appcomponents.connection.ApiInterface
 import com.androidproject.app.appcomponents.models.User
+import com.androidproject.app.appcomponents.utils.UserAndEmailCheck
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -92,6 +97,31 @@ class ProfileFragment : Fragment() {
 
         logout.setOnClickListener { showAlertDialog() }
 
+        emailEdit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (emailEdit.text.toString()!=user.email)
+                    UserAndEmailCheck().checkEmail(emailEdit.text.toString(),emailLayout)
+            }
+        })
+        usernameEdit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (usernameEdit.text.toString()!=user.username)
+                    UserAndEmailCheck().checkUsername(usernameEdit.text.toString(),usernameLayout)
+            }
+        })
+
         edit.setOnClickListener {
             if (validator(
                     emailEdit, emailLayout,
@@ -102,7 +132,6 @@ class ProfileFragment : Fragment() {
                     phoneEdit, phoneLayout
                 )
             ) {
-
                 val newUser = User(
                     id = user.id,
                     username = usernameEdit.text.toString(),
@@ -118,9 +147,16 @@ class ProfileFragment : Fragment() {
 
                 val apiInterface = ApiInterface.create()
 
+                requireActivity().window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                )
+
                 apiInterface.reset(requestBody).enqueue(object : Callback<String> {
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
+                        requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         val code = response.body()
                         println("" + response.raw())
                         if (code != null) {
@@ -146,6 +182,8 @@ class ProfileFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<String>, t: Throwable) {
+                        requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         println(t.printStackTrace())
                         Toast.makeText(
                             requireActivity(),
@@ -162,7 +200,7 @@ class ProfileFragment : Fragment() {
     private fun showAlertDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alertDialog.setTitle("Logout")
-        alertDialog.setMessage("Do you want end this session?")
+        alertDialog.setMessage("Do you want to end this session?")
         alertDialog.setPositiveButton(
             "yes"
         ) { _, _ ->
@@ -184,7 +222,7 @@ class ProfileFragment : Fragment() {
         alert.setCanceledOnTouchOutside(true)
         alert.show()
     }
-    private fun showAlertWithTextInputLayout(context: Context,activity: Activity,user: User, code: String) {
+    private fun showAlertWithTextInputLayout(context: Context, activity: Activity, user: User, code: String) {
         val textInputLayout = TextInputLayout(context)
         textInputLayout.setPadding(resources.getDimensionPixelOffset(R.dimen._19sp))
         val input = EditText(context)
@@ -211,36 +249,51 @@ class ProfileFragment : Fragment() {
     }
     private fun register(activity: Activity, user: User){
 
-            val apiInterface = ApiInterface.create()
+        val apiInterface = ApiInterface.create()
 
         activity.window.setFlags(
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
-            )
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
 
-            apiInterface.edit(user).enqueue(object :
-                Callback<User> {
+        apiInterface.edit(user).enqueue(object :
+            Callback<User> {
 
-                override fun onResponse(call: Call<User>, response: Response<User>) {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
 
-                    val result = response.body()
-                    println(""+response.raw())
-                    if (result != null){
-                        Toast.makeText(activity, "Account Edited Successfully", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(activity, "Error!", Toast.LENGTH_SHORT).show()
-                    }
+                val result = response.body()
+                println(""+response.raw())
+                if (result != null){
+                    Toast.makeText(activity, "Account Edited Successfully", Toast.LENGTH_SHORT).show()
+                    val sharedPreferences = requireActivity().getSharedPreferences("login",
+                        AppCompatActivity.MODE_PRIVATE
+                    )
+                    val gson = Gson()
 
-                    activity.window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                    val editor = sharedPreferences.edit()
+
+                    val jsonUser: String = gson.toJson(user)
+
+                    editor.putString("user", jsonUser)
+
+                    editor.apply()
+
+                    (requireActivity() as FragmentContainerActivity).setLogin(user)
+
+                }else{
+                    Toast.makeText(activity, "Error!", Toast.LENGTH_SHORT).show()
                 }
 
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                    Toast.makeText(activity, "Connexion error!", Toast.LENGTH_SHORT).show()
+                activity.window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+            }
 
-                    activity.window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
-                }
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                Toast.makeText(activity, "Connexion error!", Toast.LENGTH_SHORT).show()
 
-            })
+                activity.window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+            }
+
+        })
 
     }
     private fun validator(
@@ -263,15 +316,21 @@ class ProfileFragment : Fragment() {
         if(!Patterns.EMAIL_ADDRESS.matcher(emailEdit.text.toString()).matches()|| emailEdit.text.toString().isEmpty()) {
             emailLayout.error= "Email not valid!"
             result = false
-        }/*else if{}*/else emailLayout.isErrorEnabled= false
+        }else{
+            if(emailLayout.isErrorEnabled){
+                result=  false
+            }}
         if(usernameEdit.text.toString().length<5 ) {
-            usernameLayout.isErrorEnabled= false
+            usernameLayout.error = "Username is too short!"
             result = false
-        }else
-            if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
-                usernameLayout.error = "Username must be only digits and numbers!"
+        } else if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
+            usernameLayout.error = "Username must be only digits and numbers!"
+            result = false
+        }else {
+            if(usernameLayout.isErrorEnabled){
                 result = false
-            }/*else if{}*/else usernameLayout.isErrorEnabled= false
+            }
+        }
         if (isValidPassword(passwordEdit.text.toString())!= "valid"){
             passwordLayout.error= isValidPassword(passwordEdit.text.toString())
             result = false
@@ -290,7 +349,6 @@ class ProfileFragment : Fragment() {
         }else phoneLayout.isErrorEnabled= false
         return result
     }
-
     private fun isValidPassword(password: String): String {
         println("password $password")
         if (password.length < 8) return "Password must be at least 8 characters!"

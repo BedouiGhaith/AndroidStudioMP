@@ -77,6 +77,11 @@ class SignupActivity : AppCompatActivity() {
 
                 val apiInterface = ApiInterface.create()
 
+                window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                )
+
                 apiInterface.reset(requestBody).enqueue(object : Callback<String> {
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
@@ -96,6 +101,7 @@ class SignupActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+                        window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     }
 
                     override fun onFailure(call: Call<String>, t: Throwable) {
@@ -105,13 +111,10 @@ class SignupActivity : AppCompatActivity() {
                             "Connexion error!",
                             Toast.LENGTH_SHORT
                         ).show()
-
-
+                        window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     }
                 })
-
             }
-
         }
     }
     private fun register(){

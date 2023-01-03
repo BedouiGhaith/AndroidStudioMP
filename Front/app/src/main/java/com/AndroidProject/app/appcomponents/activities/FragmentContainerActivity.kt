@@ -18,7 +18,7 @@ class FragmentContainerActivity : AppCompatActivity() {
     private lateinit var home: LinearLayout
     lateinit var orders: LinearLayout
     private lateinit var cart: LinearLayout
-    lateinit var profile: LinearLayout
+    private lateinit var profile: LinearLayout
 
     lateinit var user:User
 
@@ -72,5 +72,8 @@ class FragmentContainerActivity : AppCompatActivity() {
     }
     fun getLogin():User{
         return user
+    }
+    fun setLogin(user: User){
+        this.user = user
     }
 }

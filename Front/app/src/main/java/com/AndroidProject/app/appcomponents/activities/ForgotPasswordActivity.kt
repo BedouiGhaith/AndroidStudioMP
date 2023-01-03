@@ -3,6 +3,7 @@ package com.androidproject.app.appcomponents.activities
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns.*
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -51,10 +52,17 @@ class ForgotPasswordActivity : AppCompatActivity() {
     private val apiInterface = ApiInterface.create()
 
     fun performForgetPassword () {
+
         if (validateInput()) {
+            window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
             val requestBody = mapOf("email" to etEmail.text.toString())
             apiInterface.reset(requestBody).enqueue(object : Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
+                    window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     val code = response.body()
                     println(""+response.raw())
                     if (code != null){
@@ -68,6 +76,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                     }
                 }
                 override fun onFailure(call: Call<String>, t: Throwable) {
+                    window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     println(t.printStackTrace())
                     Toast.makeText(this@ForgotPasswordActivity, "Connexion error!", Toast.LENGTH_SHORT).show()
 

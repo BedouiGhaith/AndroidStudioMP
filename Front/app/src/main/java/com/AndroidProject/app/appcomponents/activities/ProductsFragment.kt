@@ -1,15 +1,15 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
+import android.view.WindowManager
 import android.widget.SearchView
 import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
@@ -56,6 +56,11 @@ class ProductsFragment : Fragment() {
 
         val apiInterface = ApiInterface.create()
 
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+
         apiInterface.products().enqueue(object :
             Callback<List<Product>> {
 
@@ -73,7 +78,7 @@ class ProductsFragment : Fragment() {
 
                     recyclerview.adapter = adapter
 
-                    search.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                    search.setOnQueryTextListener(object : OnQueryTextListener{
                         override fun onQueryTextSubmit(p0: String?): Boolean {
                             return false
                         }
@@ -96,39 +101,17 @@ class ProductsFragment : Fragment() {
                 }else{
                     Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show()
                 }
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 println(t.printStackTrace())
                 Toast.makeText(context, "Connexion error!", Toast.LENGTH_SHORT).show()
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
         })
-
-    }
-    private fun filter(text: String, product: ArrayList<Product>,rv: ProductAdapter) {
-        // creating a new array list to filter our data.
-        val filteredlist: ArrayList<Product> = ArrayList()
-
-        // running a for loop to compare elements.
-        for (item in product) {
-            // checking if the entered string matched with any item of our recycler view.
-            if (item.name!!.lowercase().contains(text.lowercase())) {
-                // if the item is matched we are
-                // adding it to our filtered list.
-                filteredlist.add(item)
-            }
-        }
-        if (filteredlist.isEmpty()) {
-            // if no item is added in filtered list we are
-            // displaying a toast message as no data found.
-            Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
-        } else {
-            // at last we are passing that filtered
-            // list to our adapter class.
-            rv.filterList(filteredlist)
-        }
     }
 }

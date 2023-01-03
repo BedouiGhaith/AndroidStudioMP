@@ -37,8 +37,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var progBar: CircularProgressIndicator
     private lateinit var signup: TextView
 
-    lateinit var signInButton: SignInButton
-    lateinit var forgotPassword: TextView
+    private lateinit var signInButton: SignInButton
+    private lateinit var forgotPassword: TextView
 
     private val rcSignIn = 123
 

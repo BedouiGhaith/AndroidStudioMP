@@ -7,6 +7,7 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -66,7 +67,6 @@ class ProductDetailsFragment : Fragment() {
                 (this.activity as FragmentContainerActivity?)?.getLogin(),products ,quantity,"Pending",
                 product.price?.toFloat(), responder = null)
             orderProducts(myOrder)
-            orderProducts(myOrder)
         }
         cmdFAD.setOnClickListener {
             val sharedPreferences = requireActivity().getSharedPreferences("shared preferences", MODE_PRIVATE)
@@ -104,12 +104,17 @@ class ProductDetailsFragment : Fragment() {
         }
     }
     private fun orderProducts(myOrder: Order) {
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
         val apiInterface  = ApiInterface.create()
         apiInterface.commandesAdd(myOrder).enqueue(object :
             Callback<Order> {
 
             override fun onResponse(call: Call<Order>, response: Response<Order>) {
                 if (response.body() != null){
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     Toast.makeText(requireContext(), "Success!", Toast.LENGTH_SHORT).show()
                     val fm: FragmentManager = (context as AppCompatActivity).supportFragmentManager
@@ -124,6 +129,7 @@ class ProductDetailsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<Order>, t: Throwable) {
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                 println(t.printStackTrace())
                 Toast.makeText(requireContext(), "Connexion error!", Toast.LENGTH_SHORT).show()

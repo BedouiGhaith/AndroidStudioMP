@@ -7,6 +7,7 @@ import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -59,7 +60,10 @@ class AddProductFragment : Fragment() {
             try {
                 price.text.toString().toFloat()
                 val apiInterface = ApiInterface.create()
-
+                requireActivity().window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                )
                 val bitmap = previewImage.drawable.toBitmap()
                 val product= Product(id=null, name=name.text.toString(), price = price.text.toString(), image = bitMapToString(bitmap))
 
@@ -67,6 +71,8 @@ class AddProductFragment : Fragment() {
 
                 apiInterface.addProducts(product).enqueue(object : Callback<Product>{
                     override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                        requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         val result= response.body()
                         if (result != null) {
                             Toast.makeText(requireContext(), "Product Added " + result.id!!, Toast.LENGTH_SHORT).show()
@@ -80,6 +86,8 @@ class AddProductFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<Product>, t: Throwable) {
+                        requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         Toast.makeText(requireContext(), "Error Server", Toast.LENGTH_SHORT).show()
                     }
 

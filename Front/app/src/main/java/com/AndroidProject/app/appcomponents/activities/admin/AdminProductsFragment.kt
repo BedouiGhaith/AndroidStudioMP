@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -46,10 +47,16 @@ class AdminProductsFragment : Fragment() {
 
         val apiInterface = ApiInterface.create()
 
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+
         apiInterface.products().enqueue(object :
             Callback<List<Product>> {
 
                 override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     val products = response.body()
 
@@ -71,6 +78,8 @@ class AdminProductsFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     println(t.printStackTrace())
                     Toast.makeText(context, "Connexion error!", Toast.LENGTH_SHORT).show()
 

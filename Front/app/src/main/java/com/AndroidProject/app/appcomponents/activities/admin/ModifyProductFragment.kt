@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -69,9 +70,16 @@ class ModifyProductFragment : Fragment() {
 
         delete.setOnClickListener{
 
+            requireActivity().window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
+
             val apiInterface = ApiInterface.create()
             apiInterface.deleteProducts(product).enqueue(object : Callback<Product> {
                 override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     val result= response.body()
                     if (result != null) {
                         Toast.makeText(requireContext(), "Product Deleted!" , Toast.LENGTH_SHORT).show()
@@ -83,6 +91,8 @@ class ModifyProductFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<Product>, t: Throwable) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                     Toast.makeText(requireContext(), "Error Server", Toast.LENGTH_SHORT).show()
                 }
 
@@ -105,8 +115,15 @@ class ModifyProductFragment : Fragment() {
                         image = bitMapToString(bitmap)
                     )
 
+                    requireActivity().window.setFlags(
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                    )
+
                     apiInterface.modifyProducts(newProduct).enqueue(object : Callback<Product> {
                         override fun onResponse(call: Call<Product>, response: Response<Product>) {
+                            requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                             val result = response.body()
                             if (result != null) {
                                 Toast.makeText(
@@ -125,6 +142,8 @@ class ModifyProductFragment : Fragment() {
                         }
 
                         override fun onFailure(call: Call<Product>, t: Throwable) {
+                            requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                             Toast.makeText(requireContext(), "Error Server", Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -139,7 +158,7 @@ class ModifyProductFragment : Fragment() {
 
     private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
-    fun bitMapToString(bitmap: Bitmap): String {
+    private fun bitMapToString(bitmap: Bitmap): String {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
         val b = baos.toByteArray()
