@@ -2,25 +2,23 @@ package com.androidproject.app.appcomponents.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.connection.ApiInterface
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class EmailVerify : AppCompatActivity() {
 
-    lateinit var reset: Button
-    lateinit var codeText : EditText
+    private lateinit var reset: Button
+    private lateinit var codeText : EditText
     lateinit var password : EditText
-    lateinit var passwordv : EditText
-
-
+    private lateinit var passwordv : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,20 +43,22 @@ class EmailVerify : AppCompatActivity() {
             Toast.makeText(this, code, Toast.LENGTH_SHORT).show()
 
 
-            var email = if (extras == null) {
-                "email_verif"
-            } else {
-                extras.getString("email_verif")
-            }
 
             if (validateInput(codeText.text.toString(),code)) {
 
                 val requestBody = mapOf("email" to (extras?.getString("email_verif")), "password" to password.text.toString())
 
+                window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                )
 
                 apiInterface.validate(requestBody).enqueue(object : Callback<String> {
 
+
                     override fun onResponse(call: Call<String>, response: Response<String>) {
+                        window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         val res = response.body()
                         println("" + response.raw())
                         if (res != null) {
@@ -79,6 +79,8 @@ class EmailVerify : AppCompatActivity() {
                         }
                     }
                     override fun onFailure(call: Call<String>, t: Throwable) {
+                        window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         println(t.printStackTrace())
                         Toast.makeText(
                             this@EmailVerify,

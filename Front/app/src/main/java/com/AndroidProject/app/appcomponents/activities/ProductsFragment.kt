@@ -1,12 +1,15 @@
 package com.androidproject.app.appcomponents.activities
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.SearchView
+import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
@@ -25,6 +28,8 @@ import java.lang.reflect.Type
 class ProductsFragment : Fragment() {
 
     lateinit var recyclerview: RecyclerView
+    private lateinit var search: SearchView
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -32,7 +37,8 @@ class ProductsFragment : Fragment() {
     }
     override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
 
-        recyclerview = view?.findViewById(R.id.p_recycler)!!
+        recyclerview = itemView.findViewById(R.id.p_recycler)
+        search = itemView.findViewById(R.id.search_view)
 
         val sharedPreferencesL = requireActivity().getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
 
@@ -50,6 +56,11 @@ class ProductsFragment : Fragment() {
 
         val apiInterface = ApiInterface.create()
 
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+
         apiInterface.products().enqueue(object :
             Callback<List<Product>> {
 
@@ -66,20 +77,41 @@ class ProductsFragment : Fragment() {
                     val adapter = ProductAdapter(data,requireActivity(), user)
 
                     recyclerview.adapter = adapter
+
+                    search.setOnQueryTextListener(object : OnQueryTextListener{
+                        override fun onQueryTextSubmit(p0: String?): Boolean {
+                            return false
+                        }
+
+                        override fun onQueryTextChange(msg: String): Boolean {
+                            val filteredlist: ArrayList<Product> = ArrayList()
+                            for (item in products) {
+                                if (item.name!!.lowercase().contains(search.query.toString().lowercase())) {
+                                    filteredlist.add(item)
+                                }
+                            }
+                            if (filteredlist.isEmpty()) {
+                                Toast.makeText(requireContext(), "No Data Found..", Toast.LENGTH_SHORT).show()
+                            } else {
+                                adapter.filterList(filteredlist)
+                            }
+                            return false
+                        }
+                    })
                 }else{
                     Toast.makeText(context, "Error!", Toast.LENGTH_SHORT).show()
                 }
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
             override fun onFailure(call: Call<List<Product>>, t: Throwable) {
                 println(t.printStackTrace())
                 Toast.makeText(context, "Connexion error!", Toast.LENGTH_SHORT).show()
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
             }
 
         })
-
-
     }
-    }
+}

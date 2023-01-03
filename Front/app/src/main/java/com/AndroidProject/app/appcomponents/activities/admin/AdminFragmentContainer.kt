@@ -53,4 +53,7 @@ class AdminFragmentContainer : AppCompatActivity() {
     fun getLogin():User {
         return user
     }
+    fun setLogin(user: User){
+        this.user = user
+    }
 }

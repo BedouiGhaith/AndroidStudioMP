@@ -1,14 +1,8 @@
 package com.androidproject.app.appcomponents.activities
 
-import android.annotation.SuppressLint
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.core.os.bundleOf
-import androidx.fragment.app.add
-import androidx.fragment.app.commit
+import androidx.appcompat.app.AppCompatActivity
 import com.androidproject.app.R
 import com.androidproject.app.appcomponents.models.Product
 import com.androidproject.app.appcomponents.models.User
@@ -18,13 +12,13 @@ import java.lang.reflect.Type
 
 class FragmentContainerActivity : AppCompatActivity() {
 
-    var productList: ArrayList<Product> = ArrayList()
-    var quantityList: ArrayList<Int> = ArrayList()
+    private var productList: ArrayList<Product> = ArrayList()
+    private var quantityList: ArrayList<Int> = ArrayList()
 
-    lateinit var home: LinearLayout
+    private lateinit var home: LinearLayout
     lateinit var orders: LinearLayout
-    lateinit var cart: LinearLayout
-    lateinit var profile: LinearLayout
+    private lateinit var cart: LinearLayout
+    private lateinit var profile: LinearLayout
 
     lateinit var user:User
 
@@ -75,10 +69,11 @@ class FragmentContainerActivity : AppCompatActivity() {
         profile.setOnClickListener {
             supportFragmentManager.beginTransaction().replace(R.id.fragmentContainerView, ProfileFragment()).addToBackStack(null).commit()
         }
-
     }
-
     fun getLogin():User{
         return user
+    }
+    fun setLogin(user: User){
+        this.user = user
     }
 }

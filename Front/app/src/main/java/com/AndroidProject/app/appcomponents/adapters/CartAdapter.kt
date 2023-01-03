@@ -2,8 +2,8 @@ package com.androidproject.app.appcomponents.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.os.Bundle
+import android.graphics.BitmapFactory
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,24 +11,17 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.androidproject.app.R
-import com.androidproject.app.appcomponents.activities.ProductDetailsFragment
 import com.androidproject.app.appcomponents.models.Product
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.Serializable
 import java.lang.reflect.Type
 
+@Suppress("UNCHECKED_CAST", "CAST_NEVER_SUCCEEDS", "NAME_SHADOWING")
 class CartAdapter (private val dataSet: ArrayList<Product>,
                    private val Quantity: ArrayList<Int>,
-                   val context: Context,
-                   val supportFragmentManager: FragmentManager) :
+                   val context: Context) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -60,8 +53,12 @@ class CartAdapter (private val dataSet: ArrayList<Product>,
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.name.text = dataSet[position].name.toString()
 
+        val imageBytes = Base64.decode(dataSet[position].image, 0)
+        val image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+        viewHolder.name.text = dataSet[position].name.toString()
+        viewHolder.image.setImageBitmap(image)
         viewHolder.price.text = dataSet[position].price.toString()
         viewHolder.quantity.text = Quantity[position].toString()
 

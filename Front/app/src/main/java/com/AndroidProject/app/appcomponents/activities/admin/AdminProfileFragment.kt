@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,6 +27,7 @@ import com.androidproject.app.appcomponents.models.User
 import com.androidproject.app.appcomponents.utils.UserAndEmailCheck
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -93,6 +96,31 @@ class AdminProfileFragment : Fragment() {
         addressEdit.setText(user.address)
         phoneEdit.setText(user.phone)
 
+        emailEdit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (emailEdit.text.toString()!=user.email)
+                UserAndEmailCheck().checkEmail(emailEdit.text.toString(),emailLayout)
+            }
+        })
+        usernameEdit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (usernameEdit.text.toString()!=user.username)
+                UserAndEmailCheck().checkUsername(usernameEdit.text.toString(),usernameLayout)
+            }
+        })
+
         logout.setOnClickListener { showAlertDialog() }
 
         edit.setOnClickListener {
@@ -120,9 +148,16 @@ class AdminProfileFragment : Fragment() {
 
                 val apiInterface = ApiInterface.create()
 
+                requireActivity().window.setFlags(
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                )
+
                 apiInterface.reset(requestBody).enqueue(object : Callback<String> {
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
+                        requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         val code = response.body()
                         println("" + response.raw())
                         if (code != null) {
@@ -148,6 +183,8 @@ class AdminProfileFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<String>, t: Throwable) {
+                        requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                         println(t.printStackTrace())
                         Toast.makeText(
                             requireActivity(),
@@ -229,6 +266,21 @@ class AdminProfileFragment : Fragment() {
                 println(""+response.raw())
                 if (result != null){
                     Toast.makeText(activity, "Account Edited Successfully", Toast.LENGTH_SHORT).show()
+                    val sharedPreferences = requireActivity().getSharedPreferences("login",
+                        AppCompatActivity.MODE_PRIVATE
+                    )
+
+                    val gson = Gson()
+
+                    val editor = sharedPreferences.edit()
+
+                    val jsonUser: String = gson.toJson(user)
+
+                    editor.putString("user", jsonUser)
+
+                    editor.apply()
+
+                    (requireActivity() as AdminFragmentContainer).setLogin(user)
                 }else{
                     Toast.makeText(activity, "Error!", Toast.LENGTH_SHORT).show()
                 }
@@ -265,15 +317,21 @@ class AdminProfileFragment : Fragment() {
         if(!Patterns.EMAIL_ADDRESS.matcher(emailEdit.text.toString()).matches()|| emailEdit.text.toString().isEmpty()) {
             emailLayout.error= "Email not valid!"
             result = false
-        }else emailLayout.isErrorEnabled= false
+        }else{
+            if(emailLayout.isErrorEnabled){
+                result=  false
+            }}
         if(usernameEdit.text.toString().length<5 ) {
-            usernameLayout.isErrorEnabled= false
+            usernameLayout.error = "Username is too short!"
             result = false
-        }else
-            if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
-                usernameLayout.error = "Username must be only digits and numbers!"
+        } else if(!usernameEdit.text.toString().matches(Regex("^[a-zA-Z0-9]+$"))) {
+            usernameLayout.error = "Username must be only digits and numbers!"
+            result = false
+        }else {
+            if(usernameLayout.isErrorEnabled){
                 result = false
-            }/*else if{}*/else usernameLayout.isErrorEnabled= false
+            }
+        }
         if (isValidPassword(passwordEdit.text.toString())!= "valid"){
             passwordLayout.error= isValidPassword(passwordEdit.text.toString())
             result = false
@@ -292,7 +350,6 @@ class AdminProfileFragment : Fragment() {
         }else phoneLayout.isErrorEnabled= false
         return result
     }
-
     private fun isValidPassword(password: String): String {
         println("password $password")
         if (password.length < 8) return "Password must be at least 8 characters!"

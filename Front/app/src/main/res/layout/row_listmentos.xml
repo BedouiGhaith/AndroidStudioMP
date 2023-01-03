@@ -22,7 +22,6 @@
 
             <ImageView
                 android:id="@+id/imageImageTwentyTwo"
-                imageRes="@{@drawable/img_image22}"
                 android:layout_width="@dimen/_127pxh"
                 android:layout_height="@dimen/_129pxh"
                 android:layout_gravity="center"
@@ -53,11 +52,8 @@
             android:id="@+id/linearRowdcounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16pxh"
             android:layout_marginTop="@dimen/_8pxv"
-            android:layout_marginEnd="@dimen/_1pxh"
             android:layout_marginBottom="@dimen/_15pxv"
-            android:gravity="end"
             android:orientation="horizontal">
 
             <TextView
@@ -74,42 +70,6 @@
                 android:text="@string/lbl_2_d"
                 tools:text="@string/lbl_2_d" />
 
-            <LinearLayout
-                android:id="@+id/linearRowstarTwo"
-                style="@style/groupStyleamber_A400cornerRadius"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_67pxh"
-                android:layout_weight="0.66"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/imageStarTwo"
-                    android:layout_width="@dimen/_13pxh"
-                    android:layout_height="@dimen/_12pxh"
-                    android:layout_marginStart="@dimen/_7pxh"
-                    android:layout_marginTop="@dimen/_6pxv"
-                    android:layout_marginBottom="@dimen/_6pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_star"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_star" />
-
-                <TextView
-                    android:id="@+id/txtFortyTwoTwo"
-                    style="@style/txtOverpassbold13_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_3pxh"
-                    android:layout_marginTop="@dimen/_2pxv"
-                    android:layout_marginEnd="@dimen/_5pxh"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_weight="0.61"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_4_2"
-                    tools:text="@string/lbl_4_2" />
-            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </layout>

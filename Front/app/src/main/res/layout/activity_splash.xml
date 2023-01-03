@@ -9,8 +9,7 @@
             android:layout_height="@dimen/_526pxv"
             android:layout_marginTop="@dimen/_10pxv"
             android:layout_width="match_parent"
-            android:scaleType="fitXY" cornerRadius="@{@dimen/_40pxh}"
-            imageRes="@{@drawable/img_group_526x375}"
+            android:scaleType="fitXY"
             tools:ignore="ContentDescription" tools:src="@drawable/img_group_526x375"/>
 
         <LinearLayout

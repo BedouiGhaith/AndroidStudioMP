@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,9 +40,15 @@ class AdminUserFragment : Fragment() {
         val apiInterface  = ApiInterface.create()
         var users: List<User>
 
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+        )
+
         apiInterface.users(user).enqueue(object :
             Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                 println("retrofit "+response.raw())
 
@@ -61,6 +68,7 @@ class AdminUserFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                 println(t.printStackTrace())
                 Toast.makeText(requireContext(), "Connexion error!", Toast.LENGTH_SHORT).show()

@@ -51,14 +51,10 @@ class EmailAndAddressActivity : AppCompatActivity() {
             val apiInterface = ApiInterface.create()
 
             val email: String
-            val idToken: String
-            val serverAuthCode: String
 
             val extras = intent.extras
             if (extras != null) {
                 email = extras.getString("email").toString()
-                idToken = extras.getString("idToken").toString()
-                serverAuthCode = extras.getString("serverAuthCode").toString()
             } else return
 
             window.setFlags(
@@ -81,7 +77,7 @@ class EmailAndAddressActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
 
                     val user = response.body()
-                    System.out.println("" + response.raw())
+                    println("" + response.raw())
                     if (user != null) {
                         Toast.makeText(
                             this@EmailAndAddressActivity,
@@ -97,7 +93,7 @@ class EmailAndAddressActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<User>, t: Throwable) {
-                    System.out.println(t.printStackTrace())
+                    println(t.printStackTrace())
                     Toast.makeText(
                         this@EmailAndAddressActivity,
                         "Connexion error!",

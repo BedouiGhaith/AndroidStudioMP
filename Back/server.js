@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from "mongoose";
 import user from "./models/user.js";
 import userRouter from "./routes/userRouter.js";
+import serverless from 'serverless-http';
+
 import productRouter from "./routes/productRouter.js";
 import pharmacyRouter from "./routes/pharmacyRouter.js";
 import authentificationRouter from "./routes/authentificationRouter.js"
@@ -10,6 +12,7 @@ import product from "./models/product.js";
 import pharmacy from "./models/pharmacy.js";
 import orderRouter from "./routes/orderRouter.js";
 import bodyParser from 'body-parser'
+import exp from "constants";
 const app = express();
 
 const port = process.env.PORT || 9090;
@@ -53,4 +56,4 @@ app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
   });
 
-export default app;
+export default serverless(app)

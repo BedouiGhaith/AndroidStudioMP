@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -60,9 +61,14 @@ class OrderDetailsFragment : Fragment() {
         cancel.setOnClickListener {
             order.status="Pending"
             order.responder = null
+            requireActivity().window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
             apiInterface.commandeAccept(order).enqueue(object :
                 Callback<Order> {
                 override fun onResponse(call: Call<Order>, response: Response<Order>) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     println("retrofit "+response.raw())
 
@@ -80,21 +86,26 @@ class OrderDetailsFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<Order>, t: Throwable) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     println(t.printStackTrace())
                     Toast.makeText(requireContext(), "Connexion error!", Toast.LENGTH_SHORT).show()
 
                 }
-
             })
-
         }
 
         finish.setOnClickListener {
+            order.responder = user
             order.status="Finished"
+            requireActivity().window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
             apiInterface.commandeAccept(order).enqueue(object :
                 Callback<Order> {
                 override fun onResponse(call: Call<Order>, response: Response<Order>) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     println("retrofit "+response.raw())
 
@@ -112,6 +123,7 @@ class OrderDetailsFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<Order>, t: Throwable) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     println(t.printStackTrace())
                     Toast.makeText(requireContext(), "Connexion error!", Toast.LENGTH_SHORT).show()
@@ -124,9 +136,15 @@ class OrderDetailsFragment : Fragment() {
         accept.setOnClickListener {
             order.responder = user
             order.status="On Route"
+
+            requireActivity().window.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+            )
             apiInterface.commandeAccept(order).enqueue(object :
                 Callback<Order> {
                 override fun onResponse(call: Call<Order>, response: Response<Order>) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     println("retrofit "+response.raw())
 
@@ -144,6 +162,7 @@ class OrderDetailsFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<Order>, t: Throwable) {
+                    requireActivity().window.clearFlags( WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
 
                     println(t.printStackTrace())
                     Toast.makeText(requireContext(), "Connexion error!", Toast.LENGTH_SHORT).show()
