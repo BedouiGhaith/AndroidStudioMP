@@ -25,8 +25,8 @@ export async function sendEmail(email, code) {// Use Smtp Protocol to send Email
     const mail = {
         from: "MedTech@gmail.com>",
         to: email,
-        subject: "Password reset",
-        text: "You are resetting your password: " + code,
+        subject: "Action Confirmation",
+        text: "Your code is: " + code,
     };
 
     smtpTransport.sendMail(mail, function (error, response) {

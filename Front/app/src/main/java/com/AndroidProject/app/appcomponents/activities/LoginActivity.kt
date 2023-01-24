@@ -70,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
 
         val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        signInButton.visibility = View.VISIBLE
+        signInButton.visibility = View.INVISIBLE
         signInButton.setOnClickListener{
             mGoogleSignInClient.signOut()
             val signInIntent = mGoogleSignInClient.signInIntent

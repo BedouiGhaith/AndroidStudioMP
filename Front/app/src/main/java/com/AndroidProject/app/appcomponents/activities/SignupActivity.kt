@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Patterns
 import android.view.WindowManager
 import android.widget.EditText
@@ -64,6 +66,29 @@ class SignupActivity : AppCompatActivity() {
 
 
         emailSignUp = findViewById(R.id.email_sign_up)
+
+        email.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    UserAndEmailCheck().checkEmail(email.text.toString(),emailLayout)
+            }
+        })
+        username.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    UserAndEmailCheck().checkUsername(username.text.toString(),usernameLayout)
+            }
+        })
 
         validate.setOnClickListener {
             if(validator(email,emailLayout,
