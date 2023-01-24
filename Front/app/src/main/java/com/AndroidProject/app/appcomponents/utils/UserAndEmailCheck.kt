@@ -32,22 +32,25 @@ class UserAndEmailCheck {
             }
         })
     }
-    fun checkEmail(email: String, layout: TextInputLayout): Int{
-        var result = -1
+
+
+    fun checkEmail(email: String, layout: TextInputLayout){
         val apiInterface = ApiInterface.create()
 
         apiInterface.checkEmail(email).enqueue(object :
             Callback<Int> {
             override fun onResponse(call: Call<Int>, response: Response<Int>) {
                 if (response.body() != null){
-                    result = response.body()!!
-                    layout.error= "Username Already Exists!"
+                    if (response.body()!! >0){
+                        layout.error= "Email Already Exists!"
+                    }else{
+                        layout.isErrorEnabled= false
+                    }
                 }
             }
             override fun onFailure(call: Call<Int>, t: Throwable) {
 
             }
         })
-        return result
     }
 }

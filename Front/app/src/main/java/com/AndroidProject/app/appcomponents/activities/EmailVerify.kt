@@ -40,11 +40,9 @@ class EmailVerify : AppCompatActivity() {
             } else {
                 extras.getString("verif_code")
             }
-            Toast.makeText(this, code, Toast.LENGTH_SHORT).show()
 
-
-
-            if (validateInput(codeText.text.toString(),code)) {
+            if(password.text.toString()==passwordv.text.toString()){
+            if (validateInput(codeText.text.toString(),code,password.text.toString())) {
 
                 val requestBody = mapOf("email" to (extras?.getString("email_verif")), "password" to password.text.toString())
 
@@ -64,7 +62,7 @@ class EmailVerify : AppCompatActivity() {
                         if (res != null) {
                             Toast.makeText(
                                 this@EmailVerify,
-                                res.toString(),
+                                "Successful!",
                                 Toast.LENGTH_SHORT
                             ).show()
                             val intent =
@@ -94,15 +92,40 @@ class EmailVerify : AppCompatActivity() {
                 })
 
 
-            }}
+            }}else Toast.makeText(
+                this@EmailVerify,
+                "Confirm Password!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
 
     }
 
-    private fun validateInput(c: String, verif: String?): Boolean {
+    private fun validateInput(c: String, verif: String?,password: String): Boolean {
+        if (isValidPassword(password)!="valid") {
+            Toast.makeText(
+                this@EmailVerify,
+                isValidPassword(c),
+                Toast.LENGTH_SHORT
+            ).show()
+            return false
+
+
+        }
         if(verif == c)
         return true
 
         return false
 
+    }
+    private fun isValidPassword(password: String): String {
+        println("password $password")
+        if (password.length < 8) return "Password must be at least 8 characters!"
+        if (password.firstOrNull { it.isDigit() } == null) return "It must have at least 1 digit!"
+        if (password.filter { it.isLetter() }.firstOrNull { it.isUpperCase() } == null) return "Password must have at least 1 uppercase letter!"
+        if (password.filter { it.isLetter() }.firstOrNull { it.isLowerCase() } == null) return "Password must have at least 1 lowercase letter!"
+        if (password.firstOrNull { !it.isLetterOrDigit() } != null) return "Password must only have letters and digits!"
+
+        return "valid"
     }
 }

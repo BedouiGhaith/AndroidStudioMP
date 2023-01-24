@@ -7,10 +7,10 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@drawable/img_group6215"
+        android:icon="@mipmap/app_icon"
         android:label="MedTech"
         android:largeHeap="true"
-        android:roundIcon="@drawable/img_group6215"
+        android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="true"

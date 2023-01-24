@@ -24,7 +24,15 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_password)
         viewInitializations()
+
+        btContinue=findViewById(R.id.bt_forget)
+
+        btContinue.setOnClickListener {
+            performForgetPassword()
+        }
     }
+
+
 
     private fun viewInitializations() {
 
@@ -50,6 +58,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
         return EMAIL_ADDRESS.matcher(email).matches()
     }
     private val apiInterface = ApiInterface.create()
+
 
     fun performForgetPassword () {
 
