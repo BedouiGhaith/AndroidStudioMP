@@ -74,44 +74,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="@string/lbl_10_d" />
 
-            <LinearLayout
-                android:id="@+id/linearRowstar"
-                style="@style/groupStyleamber_A400cornerRadius"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageStar"
-                    android:layout_width="@dimen/_13pxh"
-                    android:layout_height="@dimen/_12pxh"
-                    android:layout_marginStart="@dimen/_7pxh"
-                    android:layout_marginTop="@dimen/_6pxv"
-                    android:layout_marginBottom="@dimen/_6pxv"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_star"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/img_star" />
-
-                <TextView
-                    android:id="@+id/txtFortyTwo"
-                    style="@style/txtOverpassromanregular13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_3pxh"
-                    android:layout_marginTop="@dimen/_2pxv"
-                    android:layout_marginEnd="@dimen/_6pxh"
-                    android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_weight="0.59"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_4_2"
-                    tools:text="@string/lbl_4_2" />
-            </LinearLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </LinearLayout>
