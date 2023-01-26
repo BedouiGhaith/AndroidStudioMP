@@ -107,7 +107,7 @@ class SignupActivity : AppCompatActivity() {
                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
                 )
 
-                apiInterface.reset(requestBody).enqueue(object : Callback<String> {
+                apiInterface.confirmmail(requestBody).enqueue(object : Callback<String> {
 
                     override fun onResponse(call: Call<String>, response: Response<String>) {
                         val code = response.body()
