@@ -23,7 +23,7 @@ export async function sendEmail(email, code) {// Use Smtp Protocol to send Email
     })
 
     const mail = {
-        from: "MedTech@gmail.com>",
+        from: "MedTech@gmail.com",
         to: email,
         subject: "Action Confirmation",
         text: "Your code is: " + code,

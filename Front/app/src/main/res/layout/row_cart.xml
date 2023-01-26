@@ -63,23 +63,11 @@
                     tools:src="@drawable/img_close" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtBottleof50pe"
-                style="@style/txtOverpassregular13_2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_2pxv"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="@string/msg_bottle_of_50_pe"
-                tools:text="@string/msg_bottle_of_50_pe" />
-
             <LinearLayout
                 android:id="@+id/linearRowprice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginTop="50px"
                 android:layout_marginEnd="@dimen/_5pxh"
                 android:orientation="horizontal">
 

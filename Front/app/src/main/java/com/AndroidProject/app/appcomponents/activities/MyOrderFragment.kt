@@ -41,9 +41,6 @@ class MyOrderFragment : Fragment() {
         val cancel = view.findViewById<Button>(R.id.cancel_pending_order)
         val finish = view.findViewById<Button>(R.id.finish_pending_order)
 
-
-        val user = (this.activity as FragmentContainerActivity).getLogin()
-
         val order: Order = requireArguments().getSerializable("EXTRA_ORDER") as Order
 
         orderId.text = order.id
