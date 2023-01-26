@@ -237,6 +237,25 @@ export async function reset(req, res) {
     }
 }
 
+export async function sendConfirmation(req, res) {
+
+    try {
+
+        const {email}  = req.body;
+
+        console.log(email)
+        if (!(email)) {
+            res.status(400).send("An email is required ");
+        }
+            let code = makeid(8)
+            await sendEmail(email, code )
+
+            res.status(200).json(code);;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 export async function validate(req, res) {
 
     try {

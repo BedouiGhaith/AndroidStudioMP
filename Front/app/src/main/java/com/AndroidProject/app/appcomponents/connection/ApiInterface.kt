@@ -26,6 +26,9 @@ interface ApiInterface {
     @POST("user/reset")
     fun reset(@Body map: Map<String,String>): Call<String>
 
+    @POST("user/confirmmail")
+    fun confirmmail(@Body map: Map<String,String>): Call<String>
+
     @GET("user/checkUsername/{username}")
     fun checkUsername(@Path("username") username:String): Call<Int>
 
