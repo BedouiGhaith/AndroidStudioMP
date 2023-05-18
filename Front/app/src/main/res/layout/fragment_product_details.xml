@@ -43,7 +43,7 @@
             android:backgroundTint="@color/green_600"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:text="Commander Ce Produit"
+            android:text="Order Product"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
