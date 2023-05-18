@@ -250,7 +250,7 @@ export async function sendConfirmation(req, res) {
             let code = makeid(8)
             await sendEmail(email, code )
 
-            res.status(200).json(code);;
+            res.status(200).json(code);
     } catch (err) {
         console.log(err);
     }

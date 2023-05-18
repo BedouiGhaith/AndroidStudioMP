@@ -15,7 +15,7 @@ export async function sendEmail(email, code) {// Use Smtp Protocol to send Email
         secureConnection: false,
         auth: {
             user: 'medtech.tn@gmail.com',
-            pass: 'yplbbdhscxxrwbjj',
+            pass: 'excymhjyweswxdtn',
         },
         tls:{
             rejectUnAuthorized:true
